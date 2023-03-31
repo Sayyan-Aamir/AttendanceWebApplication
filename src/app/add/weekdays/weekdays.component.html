@@ -1,0 +1,44 @@
+<div class="upper" style="height:100% important">
+    <section class="h-100 bg-dark">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="inner">
+          <div class="col">
+          <div class="card card-registration my-4">
+            <div class="row g-0">
+              <div class="col-sm-9 col-md-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                  alt="Sample photo" class="img-fluid"
+                  style=" width:78%;height:100%;" />
+              </div>
+              <div class="col-xl">
+                <div class="card-body p-md-5 text-black" >
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">The Attendence System</p>
+                  
+                    <div class="form-outline mb-4" style="margin-top: 20%; text-align: center;">
+                      <input type="text" name="EmployeeCode" [(ngModel)]="EmployeeCode" placeholder="Enter Code" class="form-control form-control-lg" required />                    
+                      <span style="font-size: large;"><label class="status-label">{{'Employee Code'}}</label>
+                    </span>
+                    <div style="margin-top:10% ;">
+                        <p style="font-size: large;">{{data}}</p>
+                    </div>
+                    
+                    </div>
+                    <div class="d-flex justify-content-center pt-3" style="margin-top: 10%;text-align: center;">
+                       <!-- <button type="submit" class="btn btn-warning btn-lg">Log Out</button> -->
+                       <!-- i am doing a little change by commenting the following line
+                      <button type="submit" class="btn btn-success btn-lg ms-2">Log In</button> -->
+                      <button class="btn btn-success w3-btn" style="margin:5px ;height:50px;width:30%;font-size: larger;" [disabled]="((s == 6) || (s == 7))? false:true" (click)="checkinemployees();">CHECK IN</button>&nbsp;
+                      <button class="btn btn-warning w3-btn" style="margin:5px ;height:50px;width:30%;font-size: larger;" [disabled]="((s == 6) || (s == 7))? false:true" (click)="checkoutemployees();">CHECK OUT</button>&nbsp;
+                    </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+    </div> 
+   </section></div>
+  
+   

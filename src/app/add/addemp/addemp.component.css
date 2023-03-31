@@ -1,0 +1,86 @@
+.Button{
+    text-align: center;
+} 
+.abc{
+    background-color: #8fc4b7;
+}
+
+mat-drawer{
+    width: 260px;
+    background: #0f172a;
+}
+
+mat-drawer-container{
+    height: 100%;
+}
+
+.lower{
+    background-color: rgba(161, 196, 253, 1);
+}
+#mySidenav a {
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+  
+#mySidenav a:hover {
+    left: 0;
+}
+
+.container-login100-form-btn {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mrttop30{
+    margin-top: 30px;
+}
+
+
+.mrttop40{
+    margin-top: 40px;
+}
+
+.mrttop10{
+    margin-top: 10px;
+}
+
+.mrttop25{
+    margin-top: 25px;
+}
+
+.mrttop20{
+    margin-top: 20px;
+}
+
+
+
+.login100-form-btn {
+    align-items: center;
+    padding: 0 60px;
+    height: 46px;
+    border: none;
+    border-radius: 25px;
+    background: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+    background: rgb(94,99,173);
+background: linear-gradient(25deg, rgba(94,99,173,1) 0%, rgba(145,40,141,1) 70%);
+}
+
+.login100-form-btn:hover{
+    background:#0a2641 ;
+}

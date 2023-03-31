@@ -1,0 +1,22 @@
+.header{
+    text-align: center;
+}
+
+.buttons {
+    float: right;
+    border-radius: 25px;
+    width:120px;
+    height: 45px;
+    font-size: large;
+    background-color:   #198754;
+    color:   White;
+    border: none;
+    text-align: center;
+    margin: 5px;
+}
+  
+.buttons:hover
+{
+    background-color:  #198754;
+    color: White;  
+}

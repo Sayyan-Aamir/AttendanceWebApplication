@@ -1,0 +1,40 @@
+<mat-drawer-container style="height: 100%;">
+    <mat-drawer-content>
+<section class="background-radial-gradient overflow-hidden" style="height:100%;">
+      <div class="container px-4 px-md-5 text-center text-lg-start my-3">
+        <div class="row gx-lg-5 align-items-center mb-5">
+
+          <div class="col-lg-6 mb-5 mb-lg-0 position-relative" style="width: 100%;height: 100%;">
+            <div class="card bg-glass">
+              <div class="card-body px-4 py-5 px-md-5">
+                <div class="panel-header fa_cart-header2" style="border: 2px black;text-align: left;background-color: rgb(94,99,173);color: white;"><h2 style="font-size:30px;text-align: center;">ADD HOLIDAY</h2></div>
+                <form class="px-md-2"  [formGroup]="employeeForm" (ngSubmit)="onsubmit(employeeForm.value)">
+                     <div class="form-outline mb-4" style="text-align: center;">
+                        <label class="status-label">{{'HOLIDAY NAME'}}</label>
+                        <input type="text" formControlName="holiday_name" id="form3Example97" class="form-control form-control-lg" style="width:90%;border-radius:20px;margin-left: 5%;" required/>
+                      </div>
+                    <div class="form-outline mb-3" style="text-align: center;">
+                        <div class="form-group has-success"> 
+                        <label class="form-label" for="form3Example1q">HOLIDAY DATE</label>
+                        <input type="date" formControlName="holiday_date" id="form3Example1w" class="form-control" style="height: 45px;border-radius: 30px;width:90%;margin-left:5%;" />                  
+                        </div>
+                    </div>
+                    <div class="Button">
+                      <div class="container-login100-form-btn mrttop30">
+                        <button type="submit" *ngIf="userid == 0" style="margin:5px ;height:50px;font-size: larger;" class="buttons">Enter Holiday</button>
+                        <button type="submit" *ngIf="userid == 1" style="margin:5px ;height:50px;font-size: larger;" class="buttons" style="width:120px">UPDATE</button>
+                        <!-- <button type="reset" style="margin:5px ;height:50px;width:80px;font-size: larger;" class="button" (click)="msg()">Reset</button> -->
+                          <button type="submit" class="login100-form-btn" style="margin:5px ;font-size: larger;height:50px" (click)="msg()">Reset</button>
+                      </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </section> 
+    

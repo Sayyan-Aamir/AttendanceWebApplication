@@ -1,0 +1,44 @@
+<div class="sidenav"><mat-nav-list>
+    <div class="responsive" style="margin-top:20%;">
+     <!-- <img src="{{imagesrc}}" alt="Company Logo" style="color: white;min-height:10px;max-height:35px;margin-left: 10px;"> -->
+     <!-- <img src="{{imagesrc}}" alt="Company Logo" style="color: white;margin-left: 10px;width: 200px;"> -->
+     <!-- <img src="{{imagesrc}}" alt="Company Logo" style="margin-left: 5px;" [ngStyle]="{'width':width}"> -->
+     <img src="./assets/img/logoAusztech.png" alt="" class="img-responsive alert-logo" style="margin-left: 25px;" [ngStyle]="{'width':width}"/>
+    </div>
+    <div class="abc">
+    <h2 matSubheader class="mt-2" style="color: white;text-align: center; margin-bottom: 2%;">OPTIONS</h2>
+    <!-- <a mat-list-item  routerLink="" routerLinkActive="list-item-active" style="color:whitesmoke;margin-bottom: 3%;">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+        <span class="menu-size-control">LOGIN PAGE</span></a> -->
+
+        <a mat-list-item  routerLink="/dashboard" routerLinkActive="list-item-active" style="color:whitesmoke;margin-bottom: 3%;">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">dashboard</mat-icon>
+            <span class="menu-size-control">DASHBOARD</span></a>
+
+    <a mat-list-item routerLink="/attendencelist" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
+        <mat-icon aria-hidden="false" aria-label="Example person icon">person</mat-icon>
+        <span class="menu-size-control">ATTENDENCE</span></a>
+          <!-- <h3> <label class="form-label" for="form3Example1w">Department</label></h3> -->
+        <a mat-list-item routerLink="/user-analytics" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
+            <mat-icon aria-hidden="false" aria-label="Example person icon">person</mat-icon>
+            <span class="menu-size-control">HOLIDAY</span></a>
+            <!-- <a mat-list-item routerLink="/official_holiday" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;font-size: larger;">
+                <span class="glyphicon glyphicon-plus" style="padding-right: 15px;margin-left: 3px;"></span>
+                <span class="menu-size-control">OFFICE HOLIDAY</span></a> -->
+    <a mat-list-item routerLink="/list" routerLinkActive="list-item-active" style="color:whitesmoke;margin-bottom: 3%;">
+     <mat-icon aria-hidden="false" aria-label="Example list icon">widgets</mat-icon> 
+     <span class="menu-size-control">EMPLOYEE</span></a>
+    <!-- <a mat-list-item routerLink="/addemployee/0" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
+    <mat-icon aria-hidden="false" aria-label="Example dashboard icon">dashboard</mat-icon>
+    <span class="menu-size-control">ADD EMPLOYEE</span></a> -->
+</div>
+
+</mat-nav-list>
+</div>
+
+
+
+
+
+
+

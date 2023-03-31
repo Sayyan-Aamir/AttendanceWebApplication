@@ -1,0 +1,169 @@
+.box{
+    padding-top: 10%;
+    background-color: gray;
+    position:absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left:0;
+}
+
+.inner{
+    height: fit-content;
+    width: 80%;
+    margin:auto;
+    border-style: solid;
+    background-color: white 
+}
+
+.Button{
+    text-align: center;
+} 
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+    }
+    .card-registration .select-arrow {
+    top: 13px;
+}
+
+.upper{
+    height:100%;
+    background-color: black;
+}
+
+.footerlink a {
+    /* color: #EA151A; */
+    position:absolute;
+    margin-left:auto;
+    margin-right:auto;
+    left:0;
+    right:23%;
+    bottom:20px;
+    text-align:right;
+    font-size:22px;
+}
+
+.login100-form {
+   
+    min-height: 100vh;
+    display: block;
+    background-color: #fff;
+    padding: 30px 55px 55px 55px;
+    box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+.login100-form-title {
+  width: 70%;
+  display: block;
+ 
+  font-size: 30px;
+  color: #333333;
+  line-height: 1.2;
+  text-align: center;
+}
+
+
+.ee{
+    position: absolute;
+    left: 0px;
+    z-index: 999;
+}
+.container-login100-form-btn {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mrttop30{
+    margin-top: 30px;
+}
+
+
+.mrttop40{
+    margin-top: 40px;
+}
+
+.mrttop10{
+    margin-top: 10px;
+}
+
+.mrttop25{
+    margin-top: 25px;
+}
+
+.mrttop20{
+    margin-top: 20px;
+}
+
+.login100-form-btn {
+    align-items: center;
+    padding: 0 60px;
+    height: 46px;
+    border: none;
+    border-radius: 25px;
+    background: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    color: rgb(94,99,173);
+    background: #fff;
+/* background: linear-gradient(25deg, rgba(94,99,173,1) 0%, rgba(145,40,141,1) 70%); */
+}
+
+.login100-form-btn:hover{
+    background:#0a2641 ;
+}
+
+.input-group-text {
+    display: flex;
+    align-items: center;
+    padding: 0.9rem 0.75rem;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #0a2641;
+    border: 1px solid #0a2641;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-radius: 25px 0px 0px 25px;
+}
+
+/* input:focus ~ span.ee .input-group-text {
+    border-left:1px solid #FF0000 !important;
+    border-top:1px solid #FF0000 !important;
+    border-bottom:1px solid #FF0000 !important;
+
+} */
+.input-group input {
+    border-radius: 25px !important;
+    padding: 10.5px 60px;
+    height: 46px;
+}
+
+.loginForm{
+    background: #fff;
+    border-radius: 25px;
+}
+
+input:focus ~ span.ee .change-color {
+    color: #FF0000 !important;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,155 @@
+<mat-drawer-container>
+  <mat-drawer mode="over" [opened]="side" style="background-color: #263238;width: 12%;">
+       <app-sidenav></app-sidenav> 
+  </mat-drawer>
+  <mat-drawer-content>
+      <app-header (togglesidebarForMe)="sidebartog()"></app-header>
+      <div class="abc">
+<section class="h-100 h-custom">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+          class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+          alt="Sample photo">
+          <div class="card-body p-4 p-md-5">
+            <p class="text-center h4 fw-bold mb-5 mx-1 mx-md-4 mt-4">Employee Info</p>
+            <form class="px-md-2"  [formGroup]="employeeForm" (ngSubmit)="onsubmit(employeeForm.value)">
+              <img *ngIf="url!=''" [src]="url" style="width: 250px;height:210px">
+                <br>
+                <input class="form-control" accept="image/*" [hidden]="tablehidden" type="file" (change)="onSelectedFile($event)">
+                <br>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                     <input type="text" formControlName="UserName" id="form3Example97" class="form-control" required/>
+                  <label class="form-label" for="form3Example97">UserName</label>
+                  </div> 
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" formControlName="FirstName" id="form3Example97" class="form-control" required/>
+                    <label class="form-label" for="form3Example97">FirstName</label> 
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                     <input type="text" formControlName="LastName" id="form3Example97" class="form-control" required/>
+                     <label class="form-label" for="form3Example97">LastName</label> 
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="password" formControlName="Password" id="form3Example97" class="form-control" required/>
+                    <label class="form-label" for="form3Example97">Password</label> 
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                     <input type="email" formControlName="Email" id="exampleInputEmail1" class="form-control" required/>
+                     <label class="form-label" for="exampleInputEmail1">Email</label> 
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="tel" formControlName="ContactNumber" id="form3Example97" class="form-control" required/>
+                    <label class="form-label" for="form3Example97">Contact Number</label> 
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" formControlName="City" id="exampleInputEmail1" class="form-control" required/>
+                    <label class="form-label" for="exampleInputEmail1">City</label> 
+                 </div>
+                  
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="date" formControlName="DateOfBirth" id="form3Example97" class="form-control" required/>
+                    <label class="form-label" for="form3Example97">Date of Birth</label> 
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <textarea class="form-control" formControlName="Addresses" rows="2" ></textarea>
+                       <label class="form-label" for="form3Example97">Address</label>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" formControlName="EmployeeCode" id="exampleInputEmail1" class="form-control" required/>
+                    <label class="form-label" for="exampleInputEmail1">Registration Code</label> 
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <input type="time" formControlName="StartTime" id="exampleInputEmail1" class="form-control" required/>
+                       <label class="form-label" for="form3Example97">Start Time</label>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="number" formControlName="WorkingHours" id="exampleInputEmail1" min="1" max="9" class="form-control" required/>
+                    <label class="form-label" for="exampleInputEmail1">Working Hours</label> 
+                 </div>
+                </div>
+              </div>
+              <div class="row">
+                 
+                <div class="col-md-6 mb-4">
+                  <div class="mb-4">
+
+                    <select class="select" required formControlName="DepartmentName" style="height:30px ;width: 170px;">
+                      <option value="Software Development">Software Development</option>
+                      <option value="Game Development">Game Development</option>
+                      <option value="IT Support">IT Support</option>
+                    </select>
+                    <h3> <label class="form-label" for="form3Example1w">Department</label></h3>
+    
+                  </div> 
+                </div>
+                <div class="col-md-6 mb-4">
+                 
+                  <h4 class="mb-0 me-4">Gender: </h4>
+                  <div class="radio">
+                    <label><input name="optradio"
+                        formControlName="Gender"
+                        type="radio"
+                        id="maleGender"
+                        value="male"
+                     >Male</label>
+                  </div>
+                  <div class="radio">
+                    <label><input 
+                      formControlName="Gender"
+                      type="radio"
+                      id="femaleGender"
+                      value="female">Female</label>
+                  </div>
+                </div>
+                </div>
+              <div class="Button">
+              <div class="card-footer">
+              <button type="submit" *ngIf="userid.id > 0" class="btn btn-success btn-lg mb-1">Update Employee</button>
+              <button type="submit" *ngIf="userid.id == 0" style="margin:5px ;height:50px;width:130px;font-size: larger;" class="w3-btn btn-success">Add Employee</button>
+              <button type="reset" style="margin:5px ;height:50px;width:80px;font-size: larger;" class="w3-btn btn-warning" (click)="reset()">Reset</button>
+          </div>
+          </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+  </mat-drawer-content>
+  </mat-drawer-container>

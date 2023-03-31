@@ -1,0 +1,169 @@
+.Button{
+  text-align: center;
+} 
+.abc{
+  background-color: #8fc4b7;
+}
+
+mat-drawer{
+  width: 260px;
+  background: #0f172a;
+}
+
+mat-drawer-container{
+  height: 100%;
+}
+
+.lower{
+  background-color: rgba(161, 196, 253, 1);
+}
+#mySidenav a {
+  position: absolute;
+  left: -80px;
+  transition: 0.3s;
+  padding: 15px;
+  width: 100px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  border-radius: 0 5px 5px 0;
+}
+
+#mySidenav a:hover {
+  left: 0;
+}
+
+.container-login100-form-btn {
+  width: 60%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.mrttop30{
+  margin-top: 30px;
+}
+
+
+.mrttop40{
+  margin-top: 40px;
+}
+
+.mrttop10{
+  margin-top: 10px;
+}
+
+.mrttop25{
+  margin-top: 25px;
+}
+
+.mrttop20{
+  margin-top: 20px;
+}
+
+
+
+.login100-form-btn {
+  align-items: left;
+  padding: 0 60px;
+  height: 46px;
+  border: none;
+  border-radius: 25px;
+  background: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+  background: rgb(94,99,173);
+background: linear-gradient(25deg, rgba(94,99,173,1) 0%, rgba(145,40,141,1) 70%);
+}
+
+.login100-form-btn:hover{
+  background:#0a2641 ;
+}
+
+.button {
+    float: right;
+    border-radius: 25px;
+    width:158px;
+    height: 45px;
+    font-size: large;
+    margin-left: 35px;
+    background-color: #0a2641;
+    color: white;
+    border: none;
+    text-align: center;
+    margin: 5px;
+}
+
+.button:hover
+{
+    background-color: #fff;
+    color: rgba(145,40,141,1);
+} 
+
+.buttons {
+    float: right;
+    border-radius: 25px;
+    width:120px;
+    height: 45px;
+    font-size: large;
+    background-color:   #198754;
+    color:   White;
+    border: none;
+    text-align: center;
+    margin: 5px;
+}
+
+.buttons:hover
+{
+    background-color:  #198754;
+    color: White;  
+} 
+.Button {
+  float: right;
+  border-radius: 25px;
+  width:120px;
+  height: 45px;
+  font-size: large;
+  background-color: #dc3545;
+  color: White;
+  border: none;
+  text-align: center;
+  margin: 5px;
+}
+
+.Button:hover
+{
+  background-color: #dc3545;
+  color: White;  
+
+} 
+
+.toast-top-center {
+top: 12px;
+margin: 0 auto;
+left: 50%;
+}
+.crud-icon {
+    font-size: 16px !important;
+    padding: 7px 8px !important;
+    cursor: pointer;
+    font-weight: bold !important;
+}
+
+
+.crud-icon-add {
+    color: #3ABDAA !important;
+}
+.crud-icon-add-plus:hover {
+    color: rgba(145,40,141,1) !important;
+    background-color: white !important;
+}
+.crud-icon-add-plus {
+    color: white !important;
+    background-color: rgba(145,40,141,1) !important;
+}

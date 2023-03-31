@@ -1,0 +1,156 @@
+<mat-drawer-container style="height: 100%;">
+    <mat-drawer mode="over" [opened]="side" style="background-color: #263238;" [ngStyle]="{'width':width}">
+        <app-sidenav></app-sidenav> 
+    </mat-drawer>   
+    <mat-drawer-content>
+       <app-header (togglesidebarForMe)="sidebartog()"></app-header>
+
+       <div class="container">
+        <div class="row">
+          <h1>Statistics</h1>
+          <label>Today</label> &nbsp;
+          <p>3.45/8 hrs</p>
+          <p><ngb-progressbar type="success" [value]="50"></ngb-progressbar></p>
+        </div>
+       
+        <div class="row">
+          <label>This Week</label> &nbsp;
+          <p>28/40hrs</p>
+          <p><ngb-progressbar type="danger" [value]="100"></ngb-progressbar></p>
+        </div>
+        <div class="row">
+          <label>This Month</label> &nbsp;
+          <p>90/180hrs</p>
+          <p><ngb-progressbar type="info" [value]="50"></ngb-progressbar></p>
+        </div>
+        <div class="row">
+          <label>Remaining</label> &nbsp;
+          <p>90/180hrs</p>
+          <p><ngb-progressbar type="secondary" [value]="50"></ngb-progressbar></p>
+        </div>
+        <div class="row">
+          <label>OverTime</label> &nbsp;
+          <p>5hrs</p>
+          <p><ngb-progressbar type="warning" [value]="50"></ngb-progressbar></p>
+        </div>
+       </div>
+
+       <div class="container">
+        <div class="row" style="float:left;">
+         <h1>Timesheet</h1>
+          <p>March 11, 2023</p>
+        </div>
+       <div class="row">
+        <label>Puch In at</label>
+        <p> Wed 11th Mar 2023 10:00 AM</p>
+       </div>
+       </div>
+       <div class="container">
+       <div class="row">
+        <div style="display: block;">
+          <fusioncharts width="40%"
+          height="40%"
+          type="doughnut2d"
+          [dataSource]="chartpie">
+          </fusioncharts>
+        </div>
+       </div>
+
+       <div class="row" style="float: left;">
+        <h3>BREAK</h3>
+        <p>1.2hrs</p>
+       </div>
+       <div class="row">
+        <h3>OverTime</h3>
+        <p>3hrs</p>
+       </div>
+      </div>
+
+      <div class="container">
+        <div class="col-md-12" style="margin-left: 10%;width: 80%;font-size: larger;">
+          <div style="width: 100%">
+            <ngx-datatable class="bootstrap" [limit]="30" [rows]="employees" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
+                <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+              [resizeable]="false" style="font-size: larger;">
+              </ngx-datatable-column>  
+                 <ngx-datatable-column name="Date" prop="UserName">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row?.UserName}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Puch In" [flexGrow]="1" prop="FirstName">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.FirstName}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Puch Out" [flexGrow]="2" prop="Email">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.Email}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Site" [flexGrow]="2" prop="ContactNumber">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.ContactNumber}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Break" [flexGrow]="2" prop="workingdays" >
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row?.workingdays | date}}
+                  </ng-template>
+              </ngx-datatable-column>
+            <ngx-datatable-column name="OverTime" [flexGrow]="2" prop="status">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <span style="color: red;"> {{row?.status}}</span>
+              </ng-template>
+          </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div> 
+      </div>
+      <div class="container" style="margin-top:5%;float:left;">
+        <div class="row" style="float: left;">
+          <p>Absents - Last 7 days</p>
+         <div style="display: block;">
+           <fusioncharts width="80%"
+           height="40%"
+           type="doughnut2d"
+           [dataSource]="chartpie">
+           </fusioncharts>
+         </div>
+        </div>
+
+        <div class="row" style="float:left;">
+          <p>Absents - This Month</p>
+         <div style="display: block;">
+           <fusioncharts width="70%"
+           height="40%"
+           type="doughnut2d"
+           [dataSource]="chartpie">
+           </fusioncharts>
+         </div>
+        </div>
+
+        <div class="row" style="float:right;">
+          <p>Leaves - This Month</p>
+         <div style="display: block;">
+           <fusioncharts width="80%"
+           height="40%"
+           type="doughnut2d"
+           [dataSource]="chartpie">
+           </fusioncharts>
+         </div>
+        </div>
+
+        <fusioncharts
+        type="angulargauge"
+        width="450"
+        height="250"
+        dataFormat="json"
+        [dataSource]="Doneit"
+       ></fusioncharts>
+      </div>
+    </mat-drawer-content>
+</mat-drawer-container>
+
+
+    

@@ -1,0 +1,1389 @@
+.ee{
+    position: absolute;
+    left: 0px;
+    z-index: 999;
+}
+
+.input-group-text {
+    display: flex;
+    align-items: center;
+    padding: 0.9rem 0.75rem;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #0a2641;
+    border: 1px solid #0a2641;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-radius: 25px 0px 0px 25px;
+}
+
+/* input:focus ~ span.ee .input-group-text {
+    border-left:1px solid #FF0000 !important;
+    border-top:1px solid #FF0000 !important;
+    border-bottom:1px solid #FF0000 !important;
+
+} */
+.input-group input {
+    border-radius: 25px !important;
+    padding: 10.5px 60px;
+    height: 46px;
+}
+
+.loginForm{
+    background: #fff;
+    border-radius: 25px;
+}
+
+input:focus ~ span.ee .change-color {
+    color: #FF0000 !important;
+}
+
+    
+
+
+
+
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+
+/*//////////////////////////////////////////////////////////////////
+[ RESTYLE TAG ]*/
+
+* {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:#F5F5F5; 
+    width: 100%;
+}
+
+
+/*---------------------------------------------*/
+input {
+	outline: none;
+	border: none;
+}
+
+textarea {
+  outline: none;
+  border: none;
+}
+
+
+
+
+label {
+  display: block;
+  margin: 0;
+}
+
+
+
+
+
+
+
+.limiter {
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+
+.wrap-login100 {
+
+
+}
+
+
+
+
+input{
+    background:none !important;
+}
+/*==================================================================
+[ Form ]*/
+.login100-form {
+   
+    min-height: 100vh;
+    display: block;
+    /* background-color: #FAF9F6; */
+    /* background-color: #FFFFF0; */
+    background-color: #f5f5f5;
+    padding: 60px 55px 55px 55px;
+    box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+.login100-form-title {
+  width: 90%;
+  display: block;
+ 
+  font-size: 30px;
+  color: #333333;
+  line-height: 1.2;
+  text-align: center;
+}
+
+
+.login100-form .box-shadow {
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2) !important;
+    border-radius:25px;
+}
+
+
+.login100-form .form-control {
+    height: 46px;
+    border-radius: 25px 25px 25px 25px !important;
+    background-color: #F5F5F5 !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #3F3E40 !important;
+    border: 1px solid #ccc !important;
+}
+
+
+
+.login100-form .input-group-addon {
+    border-radius: 25px 0px 0px 25px;
+    background: #3F3E40;
+    color: #fff;
+    font-size: 22px;
+}
+
+.login100-form label {
+    margin-left: 20px;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 17px;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000 !important;
+}
+
+.remember-me input {
+    float:left;
+    margin-right:10px;
+    display:inline-block;
+}
+
+.remember-me span {
+    font-size: 16px;
+    color: #000000 !important;
+}
+
+
+.headingText h2 {
+    color: #fff;
+    font-size: 45px;
+    line-height: 52px;
+    text-align: center;
+    margin-top:70px;
+    display: block;
+    font-weight:bold;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.Plan-checks {
+    color: #fff;
+    font-size: 45px;
+    line-height: 52px;
+    text-align: center;
+    margin-top: 10px;
+    display: block;
+    position:absolute;
+    bottom:20px;
+    margin-left:auto;
+    margin-right:auto;
+    left:0;
+    right:0;
+}
+
+.footerlink a {
+    color: #0a2641;
+    position:absolute;
+    margin-left:auto;
+    margin-right:auto;
+    left:0;
+    right:0;
+    bottom:20px;
+    text-align:center;
+    font-size:22px;
+}
+/*------------------------------------------------------------------
+[ Input ]*/
+/*---------------------------------------------*/
+/*==================================================================
+[ Restyle Checkbox ]*/
+.input-checkbox100 {
+    display: none;
+}
+
+.label-checkbox100 {
+
+
+  font-size: 13px;
+  color: #fff;
+  line-height: 1.4;
+
+  display: block;
+  position: relative;
+  padding-left: 26px;
+  cursor: pointer;
+}
+
+
+
+.input-checkbox100:checked + .label-checkbox100::before {
+  color: #6675df;
+}
+
+
+.forgotpassword a {
+    color: #3F3E40;
+    text-decoration: none;
+    font-size:16px;
+}
+
+.alert-logo{
+    padding-left:60px;
+    padding-right:60px;
+}
+
+/*------------------------------------------------------------------
+[ Button ]*/
+.container-login100-form-btn {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mrttop30{
+    margin-top: 30px;
+}
+
+
+.mrttop40{
+    margin-top: 40px;
+}
+
+.mrttop10{
+    margin-top: 10px;
+}
+
+.mrttop25{
+    margin-top: 25px;
+}
+
+.mrttop20{
+    margin-top: 20px;
+}
+
+
+
+.login100-form-btn {
+    align-items: center;
+    padding: 0 60px;
+    height: 46px;
+    border: none;
+    border-radius: 25px;
+    background: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+    background: rgb(94,99,173);
+background: linear-gradient(25deg, rgba(94,99,173,1) 0%, rgba(145,40,141,1) 70%);
+}
+
+.login100-form-btn:hover{
+    background:#0a2641 ;
+}
+
+
+
+
+
+
+input{
+     outline:none !important;
+}
+
+
+
+/*------------------------------------------------------------------
+[ Responsive ]*/
+
+
+@media (max-width: 1366px) {
+    body {
+        background-position: right;
+    }
+
+.login100-form {
+       
+        padding-top: 100px;
+}
+
+
+.headingText h2 {
+        color: #fff;
+        font-size: 38px;
+        line-height: 42px;
+        text-align: center;
+        margin-top: 15px;
+        display: block;
+        font-weight: bold;
+        padding-left:50px;
+        padding-right:50px;
+
+}
+
+.Plan-checks {
+        color: #fff;
+        font-size: 38px;
+        line-height: 42px;
+        text-align: center;
+        margin-top: 0px;
+        display: block;
+}
+
+.login-right-image img{
+        width:70%;
+    }
+
+   
+}
+
+
+
+
+
+
+
+
+@media (max-width: 1024px) {
+
+    body {
+        background-color: #fff;
+}
+
+
+.login100-form {
+        min-height: auto;
+        display: block;
+        background-color: #fff;
+        padding: 150px 55px 55px 55px;
+        box-shadow: none;
+        
+}
+
+
+.login100-form {
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 40px;
+}
+
+  
+
+.hide-div{
+        display:none;
+}
+
+
+.alert-logo {
+        padding-left: 100px;
+        padding-right: 100px;
+        width:70%;
+        display:block;
+        text-align:center;
+        margin:auto;
+        margin-top:40px;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+.alert-logo {
+        padding-left: 50px;
+        padding-right: 50px;
+        width: 100%;
+        display: block;
+        text-align: center;
+        margin: auto;
+        margin-top: 20px;
+}
+
+.login100-form {
+        min-height: 100vh;
+        display: block;
+        background-color: #fff;
+        padding: 40px 20px 20px 20px;
+        box-shadow: 0px 6px 24px rgba(0, 0, 0, 0.5);
+}
+}
+
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    background: #dae5e8;
+    font-family: Arial, Helvetica, sans-serif !important;
+    background: url('/src/assets/img/attendanceapp.jpg') no-repeat !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    height: 100vh ;
+    width: 100% !important;
+ 
+}
+a {
+  outline:none !important;
+}
+
+button:focus,
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+    outline: 0 none !important;
+}
+.btn:hover,
+.btn:focus,
+.btn.focus {
+
+}
+
+h2{
+    font-size:50px;
+    color:#fff;
+    margin:0px 0px 30px 0px;
+    padding:0px;
+    padding-left:10px;
+}
+.bg-shadow {
+   
+  
+}
+
+.left-border{
+    border-right:1px solid #408077 ;
+    padding-top:80px;
+    padding-bottom:80px;
+    padding-right:100px;
+}
+.container{
+    padding-top:5%;
+}
+.loginlogo{
+      
+       border-radius:100%;
+       text-align:center;
+       width:230px;
+       height:220px;
+       padding-top:70px;
+       vertical-align:middle;
+      box-shadow: 0 0px 30px rgba(0, 0, 0, 0.3); 
+
+       
+    }
+.loginlogo img{
+    width:160px;
+    height:auto;
+}
+.login-form {
+   
+ 
+    background: #fefefe;
+    border-radius: 8px;
+    font-weight: normal;
+    border: 1px solid #fff;
+   
+   
+}
+.login-form > section {
+    text-align: center;
+    margin-top: 15px;
+}
+.login-form > section:first-child {
+    margin-bottom: 42px;
+}
+.forgote-password {
+    padding-right: 5px;
+    padding-top: 15px;
+    color: #fff;
+    float: right;
+}
+.forgote-password:hover {
+    text-decoration: none;
+    color: #369e91;
+}
+.form-inner {
+    color: #444;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+   
+    margin-bottom: 5px;
+     padding:70px 0px 0px 200px;
+}
+.form-inner .form-group {
+    margin-bottom: 8px;
+}
+.form-inner label {
+    margin: 0;
+    color: #fff;
+    padding-left: 15px;
+    font-weight: 500;
+    padding-top: 19px;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+.form-inner input,
+.form-inner button {
+    margin: 0;
+}
+.form-inner input {
+    color: #fff !important;
+    background:none !important;
+    border: 3px solid #00ffde !important;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    box-shadow: none;
+    border-radius: 25px !important;
+    height: 45px !important;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 6px 6px -6px black;
+	        box-shadow: 0 6px 6px -6px black;
+
+    margin-bottom:10px;
+    padding-left:20px;
+
+}
+.form-inner button {
+    padding: 7px 35px;
+    margin-top: 15px;
+    font-size: 16px;
+}
+.checkbox {
+    margin-top: 10px !important;
+    margin-right: 5px !important;
+    display: inline-block;
+    float: left;
+}
+.login-footer label {
+    font-size: 13px;
+    padding-top: 8px;
+    display: inline-block;
+    float: left;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+.login-button {
+    background: #3abdaa;
+    padding: 10px 10px 10px 10px;
+    border-radius: 25px;
+    color: #fff;
+    box-shadow: -1px 5px 6px -3px rgba(0, 0, 0, 0.176);
+    -webkit-box-shadow: -1px 5px 6px -3px rgba(0, 0, 0, 0.176);
+    -moz-box-shadow: -1px 5px 6px -3px rgba(0, 0, 0, 0.176);
+    -o-box-shadow: -1px 5px 6px -3px rgba(0, 0, 0, 0.176);
+    border: 3px solid #00ffde !important;
+}
+.login-button:hover {
+    color: #fff;
+}
+.footer{
+    background:#3abdaa;
+    padding:10px;
+    text-align:center;
+    border-radius:5px;
+    color:#fff;
+    position:relative;
+   
+
+}
+
+ .main-footer {
+   
+
+    position: absolute; 
+    bottom: 20px; 
+    display: inline-block; 
+    left: 34%;
+
+    width:400px;
+
+}
+
+
+.padngtop0{
+    padding-top:0px !important;
+    height:0px !important;
+    float:left !important;
+}
+
+
+
+
+@media (max-width: 2600px) {
+    .container{
+      width: 100%
+    }
+     .container{
+    padding-top:10%;
+}
+     .form-inner {
+    color: #444;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+   
+    margin-bottom: 5px;
+     padding:0px 110px 0px 180px;
+}
+     .loginlogo{
+      
+       border-radius:100%;
+       text-align:center;
+       width:290px;
+       height:280px;
+       padding-top:100px;
+       vertical-align:middle;
+       margin:auto;
+       
+    }
+.loginlogo img{
+    width:220px;
+    height:auto;
+}
+
+.form-inner input {
+    color: #fff !important;
+    background:none !important;
+    border: 3px solid #00ffde !important;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    box-shadow: none;
+    border-radius: 40px !important;
+    height: 60px !important;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 6px 6px -6px black;
+	        box-shadow: 0 6px 6px -6px black;
+
+    margin-bottom:10px;
+    padding-left:20px;
+    font-size:24px;
+
+}
+.form-group i{
+    font-size:25px;
+    position:absolute; 
+    right:25px; 
+    top:63px; 
+    color:#fff;
+}
+
+.form-inner button {
+    padding: 10px 40px;
+    margin-top: 15px;
+    font-size: 22px;
+    border-radius:30px;
+}
+
+   .forgote-password {
+        padding-right: 0px;
+        padding-top: 10px;
+        color: #369e91;
+        float: none;
+        padding-left:15px;
+        display: inline-block;
+        font-size:18px;
+        float:right;
+        color:#fff;
+        padding-right:10px;
+        padding-top:25px;
+}
+
+.form-inner label {
+    margin: 0;
+    color: #fff;
+    padding-left: 15px;
+    font-weight: 500;
+    padding-top: 0px;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size:18px;
+}
+
+
+.main-footer {
+        position: absolute;
+        bottom: 20px;
+        display: inline-block;
+        left:34%;
+       
+}
+
+
+}
+
+
+
+
+@media (max-width: 1920px) {
+    .main-footer {
+        position: absolute;
+        bottom: 20px;
+        display: inline-block;
+        left: 41%;
+        width: 350px;
+    }
+}
+
+@media (max-width: 1680px) {
+     .container{
+    padding-top:10%;
+    width: 1300px;
+}
+     
+}
+
+@media (max-width: 1680px) {
+     .container{
+    padding-top:5%;
+}
+}
+
+@media (max-width: 1500px) {
+
+     .container{
+    padding-top:5%;
+      width: 940px;
+}
+      .form-inner {
+    color: #444;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+   
+    margin-bottom: 5px;
+     padding: 0px 0px 0px 80px;
+}
+      @media (max-width: 1920px) {
+    .main-footer {
+        position: absolute;
+        bottom: 20px;
+        display: inline-block;
+        left: 37%;
+        width: 350px;
+    }
+    
+}
+       @media (min-width: 1024px) and (max-width: 768px){
+             body {
+    background: #dae5e8;
+    font-family: Arial, Helvetica, sans-serif !important;
+     background: url('/src/assets/img/attendanceapp.jpg') top center  no-repeat !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    height:100%;
+    width: 100% !important;
+}
+.main-footer {
+   
+
+    position: absolute; 
+    bottom: 20px; 
+    display: inline-block; 
+    left: 30%;
+    width:360px;
+}
+
+}
+
+
+
+@media (max-width: 1024px) {
+         body {
+    background: #dae5e8;
+    font-family: Arial, Helvetica, sans-serif !important;
+     background: url('/src/assets/img/background.webp') top center  no-repeat !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    
+    width: 100% !important;
+}
+.col-sm-7 {
+            width: 100%;
+}
+.col-sm-5{
+            width:100%;
+            text-align:center;
+} 
+.left-border{
+            border-right:none;
+             padding-top: 10px;
+            padding-bottom: 100px;
+            padding-right: 0px;       
+}
+.main-footer {
+   
+
+    position: relative; 
+    bottom: 20px; 
+    display: inline-block; 
+    left: 30%;
+width:360px;
+}
+
+.form-inner {
+        color: #444;
+        border-radius: 0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        padding: 10px 20px 6px 5px;
+}
+}
+
+@media (max-width: 991px) {
+            body {
+    background: #dae5e8;
+    font-family: Arial, Helvetica, sans-serif !important;
+     background: url('/src/assets/img/attendanceapp.jpg') top center  no-repeat !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+
+    width: 100% !important;
+}
+.container{
+    padding-top:5%;
+      width: 800px;
+}
+.col-sm-7 {
+    width: 100%;
+}
+
+.form-inner {
+    color: #444;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+   
+    margin-bottom: 5px;
+     padding:70px 0px 0px 40px;
+}
+
+.main-footer {
+   
+
+    position: relative; 
+    bottom: 20px; 
+    display: inline-block; 
+    left: 30%;
+    width:360px;
+}
+}
+
+@media (max-width: 823px) {
+
+             body {
+    background: #dae5e8;
+    font-family: Arial, Helvetica, sans-serif !important;
+     background: url('/src/assets/img/attendanceapp.jpg') top center  no-repeat !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+   
+    width: 100% !important;
+}
+
+.container {
+            padding-top: 5%;
+            width: 850px;
+}
+
+.main-footer {
+   
+
+    position: relative; 
+    bottom: 20px; 
+    display: inline-block; 
+    left: 30%;
+    width:360px;
+}
+
+.form-inner {
+    color: #444;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+   
+    margin-bottom: 5px;
+     padding:70px 0px 0px 20px;
+}
+
+.left-border{
+            border-right:none;
+             padding-top: 10px;
+            padding-bottom: 10px;
+            padding-right: 0px;
+        
+   
+     }
+}
+
+
+@media (max-width: 768px) {
+
+    body {
+    background: #dae5e8;
+    font-family: Arial, Helvetica, sans-serif !important;
+    background: url('/src/assets/img/attendanceapp.jpg') top center no-repeat !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    width: 100% !important;
+}
+   
+
+.container {
+        padding-top: 5%;
+        width: 768px;
+}
+.form-inner {
+    color: #444;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+   
+    margin-bottom: 5px;
+     padding:20px 30px 0px 30px;
+}
+
+   
+
+.loginlogo{
+       border-radius:100%;
+       text-align:center;
+       width:200px;
+       height:190px;
+       padding-top:75px;
+       vertical-align:middle;
+       margin:auto;
+      
+
+       
+}
+
+.main-footer {
+   
+
+    position: absolute; 
+    bottom: 20px; 
+    display: inline-block; 
+    left: 30%;
+    width:320px;
+}
+
+.footer{
+    background:#3abdaa;
+    padding:10px;
+    margin-top:50px;
+    text-align:center;
+    border-radius:5px;
+    color:#fff;
+    font-size:12px;
+   
+
+}
+.loginlogo img{
+    width:130px;
+    height:auto;
+}
+.left-border{
+    padding-top: 10px;
+    padding-bottom: 80px;
+    padding-right: 0px;
+     }
+}
+
+@media (max-width: 767px) {
+
+    body {
+    background: #dae5e8;
+    font-family: Arial, Helvetica, sans-serif !important;
+     background: url('/src/assets/img/attendanceapp.jpg') top right no-repeat !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+
+    width: 100% !important;
+}
+    .container{
+    padding-top:5%;
+      width: 500px;
+}
+     .container{
+    padding-top:0%;
+}
+.form-inner {
+    color: #444;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+   
+    margin-bottom: 5px;
+     padding:20px 0px 0px 0px;
+}
+
+.left-border{
+    border-right:none;
+    padding-top:10px;
+    padding-bottom:00px;
+    padding-right:0px;
+}
+
+.loginlogo{
+       border-radius:100%;
+       text-align:center;
+       width:230px;
+       height:220px;
+       padding-top:70px;
+       vertical-align:middle;
+       margin:auto;
+
+       
+    }
+.loginlogo img{
+    width:160px;
+    height:auto;
+}
+}
+
+@media (min-width: 441px) and (max-width: 731px){
+        body {
+            background: #dae5e8;
+            font-family: Arial, Helvetica, sans-serif !important;
+         background: url('/src/assets/img/attendanceapp.jpg') top center no-repeat !important; 
+            background-size: cover !important;
+            background-repeat: no-repeat;
+            height:100%;
+            width: 100% !important;
+}
+
+.main-footer {
+            position: relative;
+            bottom: 20px;
+            display: inline-block;
+            left: 30%;
+            width: 320px;
+}
+}
+
+   
+
+@media (max-width: 640px) {
+
+         body {
+    background: #dae5e8;
+    font-family: Arial, Helvetica, sans-serif !important;
+     background: url('/src/assets/img/background.webp') top right no-repeat !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    width: 100% !important;
+    height:100%;
+}
+.container {
+            padding-top: 5%;
+            width: 650px;
+}
+
+.left-border {
+            padding-top: 10px;
+            padding-bottom: 20px;
+            padding-right: 0px;
+}
+
+.form-inner input {
+            font-size: 18px;
+}
+.main-footer {
+   
+
+    position:relative; 
+    bottom: 20px; 
+    display: inline-block; 
+    left: 30%;
+    width:320px;
+}
+
+}
+
+@media (max-width: 568px) {
+
+       
+        .container {
+            padding-top: 5%;
+            width: 568px;
+        }
+
+      
+    }
+@media (max-width: 500px) {
+     body {
+    background: #dae5e8;
+    font-family: Arial, Helvetica, sans-serif !important;
+     background: url('/src/assets/img/attendanceapp.jpg') top center  no-repeat !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    height: auto !important;
+    width: 100% !important;
+}
+    .container {
+        padding-top: 5%;
+        width: 400px;
+    }
+
+    h2 {
+        font-size: 35px;
+    }
+
+.loginlogo {
+        border-radius: 100%;
+        text-align: center;
+        width: 160px;
+        height: 150px;
+        padding-top: 55px;
+        vertical-align: middle;
+        margin: auto;
+}
+
+.loginlogo img {
+            width: 120px;
+            height: auto;
+}
+
+  
+.footer{
+    background:#3abdaa;
+    padding:10px;
+    margin-top:50px;
+    text-align:center;
+    border-radius:5px;
+    color:#fff;
+    font-size:12px;
+   
+
+}
+
+.forgote-password {
+    padding-right: 5px;
+    padding-top: 15px;
+    color: #fff;
+    float: left;
+}
+.main-footer {
+            position: relative;
+            bottom: 20px;
+            display: inline-block;
+            left: 2%;
+            width: 320px;
+}
+
+.border-left{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 10px;
+}
+
+}
+
+@media (max-width: 420px) {
+        .main-footer {
+            position: relative;
+            bottom: 20px;
+            display: inline-block;
+            left: 5%;
+            width: 320px;
+        }
+         .left-border{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-right: 0px;
+     }
+         .form-inner input {
+        font-size: 18px;
+    }
+    }
+@media (max-width: 380px) {
+    .login-button {
+        background: #3abdaa;
+    padding: 10px 10px 10px 10px;
+    border-radius: 25px;
+    color: #fff;
+    width:100%;
+    box-shadow: -1px 5px 6px -3px rgba(0, 0, 0, 0.176);
+    -webkit-box-shadow: -1px 5px 6px -3px rgba(0, 0, 0, 0.176);
+    -moz-box-shadow: -1px 5px 6px -3px rgba(0, 0, 0, 0.176);
+    -o-box-shadow: -1px 5px 6px -3px rgba(0, 0, 0, 0.176);
+    border: 3px solid #00ffde !important;
+    }
+   
+    
+
+form[role=login] {
+        font: 14px/2.2em Tahoma, serif;
+        color: #444;
+        border-radius: 0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        padding: 21px 30px 0px 30px;
+        margin-bottom: 5px;
+}
+
+.login-form {
+        margin: 7px auto;
+}
+.login-form .checkbox{
+        margin-left:15px !important;
+}
+
+.login-footer {
+      padding: 4px 20px 19px 20px;
+}
+
+.login-form {
+        text-align: left;
+}
+
+form label {
+        margin: 0;
+        color: #2c474d;
+        padding-left: 0px;
+}
+
+.checkbox {
+        margin-top: 10px !important;
+        margin-right: 5px !important;
+        display: inline-block;
+        float: none;
+}
+
+.login-footer label {
+        font-size: 13px;
+       
+        display: inline-block;
+        float: none;
+}
+
+   
+
+.form-inner {
+        color: #444;
+        border-radius: 0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        padding: 19px 20px 6px 20px;
+}
+.logo{
+       padding-top:5px;
+}
+.footer{
+    background:#3abdaa;
+    padding:10px;
+    margin-top:50px;
+    text-align:center;
+    border-radius:5px;
+    color:#fff;
+    font-size:10px;
+   
+
+}
+.main-footer {
+            position: relative;
+            bottom: 20px;
+            display: inline-block;
+            left: 1%;
+            width: 280px;
+}
+    
+.left-border{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-right: 0px;
+     }
+
+      .form-inner input {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 380px) {
+ body {
+    background: #dae5e8;
+    font-family: Arial, Helvetica, sans-serif !important;
+     background: url('/src/assets/img/attendanceapp.jpg') top center  no-repeat !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    height: auto !important;
+    width: 100% !important;
+}
+
+.footer{
+       
+    background:#3abdaa;
+    padding:10px;
+    margin-top:50px;
+    text-align:center;
+    border-radius:5px;
+    color:#fff;
+    font-size:10px;
+   
+
+}
+.container {
+        padding-top: 5%;
+        width: 320px;
+}
+h2{
+        font-size:28px;
+}
+.padngtop0{
+    padding-top:0px !important;
+    height:0px !important;
+    float:left !important;
+}
+
+.form-inner input {
+        font-size: 16px;
+ }
+}
+}

@@ -1,0 +1,94 @@
+@media (max-width: 1500px){
+    body{
+        overflow-x: hidden;
+    }
+    .prlx_075_slide>h1{
+    font-size:50px;
+    font-weight:900;
+    line-height: 65px;
+    top:80px!important;
+    -webkit-animation-delay:.7s;
+    animation-delay:.7s;
+    -webkit-animation-duration:2s;
+    animation-duration:2s;
+    -webkit-animation-timing-function:cubic-bezier(.075,.82,.165,1);
+    animation-timing-function:cubic-bezier(.075,.82,.165,1)
+}
+    
+    .heading-title h3 {
+    margin: 0;
+    font-size: 40px;
+    line-height: 50px !important;
+
+}
+    
+    .cards--portfolio .cards-text p {
+    font-size: 13px;
+    line-height: 25px;
+    color: #FFF;
+}
+    .cards--portfolio .cards-name h4 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFF;px
+}
+    
+    .cards--portfolio .tags-item {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 12px;
+    line-height: 25px;
+    color: #fff;
+    background-color: #017CBF;
+}
+    
+    .cards--page-main-1 .cards-name h4 {
+    font-size: 22px;
+    line-height: 28px;
+}
+    
+    .heading--big .heading-description {
+    font-size: 1em;
+}
+    
+    .cards .heading-description {
+    margin-top: 20px;
+    margin-bottom: 0!important;
+}
+    
+    .cards--page-main-2 .cards-name h4 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+}
+    
+    .quote-content {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+    
+    h3 {
+    font-size: 30px;
+    line-height: 35px;
+}
+    
+    .x_021_animated_layers_img {
+    top: 0;
+    bottom: 0;
+    right: 8%;
+    width: 40%;
+    height: 40%;
+    margin: auto 0;
+    position: absolute;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+}
+    
+    .about-slider{
+    margin-top: 30px; 
+}
+}

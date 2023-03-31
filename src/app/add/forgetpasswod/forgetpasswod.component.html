@@ -1,0 +1,80 @@
+<div class="limiter">    
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="col-12-8 col-md-12 col-lg-4 login100-form validate-form">
+                <span class="login100-form-title p-b-43" style="margin-bottom:30px;padding-left:10%;">
+                    <img src="./assets/img/auszogo.png" alt="" class="img-responsive alert-logo" />
+                </span>
+                <p style="font-size: larger;text-align: center;color: #0a2641;">Please Enter The Email Address Associated With The User Account. A Password Reset String Will Be Sent To You.</p>
+                <div class="loginForm  wow bounceInDown " data-wow-duration="1s" style="background-color:whitesmoke;"></div>
+                <div class="form-group mb-3 mt-5">
+                    <label for="username">Login</label>
+                    <div class="input-group wow bounceInDown" data-wow-duration="2s" >
+                        <input  type="text" name="Login" (input)="valuechange($event)"  class="form-control" [(ngModel)]="Login" required style="background-color:white;color:black;height: 52px;">
+                       <span  class="ee">
+                            <span class="input-group-text bi bi-person-fill text-white change-color" style="width: 50px;">
+                               <span class="material-icons" style="padding-right: 10px;margin-left:2px;color:white;">person</span>
+                            </span>
+                        </span>
+    
+                      </div>
+                      <div ngClass=" wow fadeInDown" *ngIf="msg == 0" [ngStyle]="{'padding-left' : '25px', 'padding-top': '5px', 'color' : 'rgb(94,99,173)','font-size':'Larger'}">
+                        The login field is required.
+                      </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="username" style="float:left;">Email</label>
+                    <div class="input-group wow bounceInDown" data-wow-duration="2s" >
+                        <input type="Email" class="form-control" name="Email" (input)="valuechanges($event)"  [(ngModel)]="Email" required style="background-color:white;color:black; height: 52px;">
+                        <span  class="ee">
+                         <span class="input-group-text bi bi-person-fill text-white change-color" style="width: 50px;">
+                            <!-- <img class="wow bounceInDown" data-wow-duration="1s"  src="./assets/img/key1.png" style="height:8%;width:2%;"> -->
+                            <span class="material-icons" style="padding-right: 10px;margin-left:2px;color:white;">email
+                                
+                         </span>
+                         </span>
+                     </span>
+                      </div>
+                      
+                      <div *ngIf="msgs == 0" [ngStyle]="{'padding-left' : '25px', 'padding-top': '5px', 'color' : 'rgb(94,99,173)','font-size':'Larger'}">
+                        The password field is required.
+                      </div>
+                </div>
+
+                <div class="flex-sb-m w-full p-t-3 p-b-32 ">
+                    <div class="clearfix"></div>
+                    <div class="clearfix" style="padding-bottom: 5px;"></div>
+                </div>
+
+                <!-- <span id="invalidUserSpan" style="color:#EA151A;text-align:center;display:block;width:100%; font-size:20px;margin-top:15px;">@ViewBag.InvalidUser</span> -->
+                <div class="container-login100-form-btn mrttop30">
+                    <button type="submit" class="login100-form-btn" style="margin-top:20px;" (click)="email()">Send Email</button>
+                </div>
+
+
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-8  text-center hide-div" style="margin:0px; padding:0px;">
+                   <div style="background-image: url('./assets/img/confirm2.jpg'); background-size:cover; width:100%; height:100vh; position:absolute; "> 
+                     <!-- <div style="background-image: url('./assets/img/testing.webp'); background-size:cover; width:100%; height:100vh; position:absolute; "> -->
+                    <div class="headingText">
+                        <h2 style="color:#0a2641">Meet the new standard in employee attendance tracking</h2>
+                        <p style="color:#0a2641;font-size:25px;">Free forever for unlimited users. Any device. Anywhere.</p>
+                    </div>
+
+                    <!-- <div class="text-center login-right-image">
+                        <img src="assets/img/testing.webp" style="width:60%;height:60%;margin-top:2%;"/>
+                    </div> -->
+
+                     <div class="Plan-checks" style="color:black;">
+                         <!-- Plan  |  Do  |  Check  |  Act -->
+                        
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+   
+</div>  

@@ -1,0 +1,66 @@
+.logo{
+    text-align: center;
+    padding: 2.6rem 1rem;
+    
+}
+mat-icon{
+    vertical-align: center;
+    margin-right: 1rem;
+}
+
+.responsive{
+    max-width: 200px;
+}
+
+mat-divider{
+    border-top-width: 2px;
+    border-color: white;
+}
+
+mat-list-item{
+    color:white;
+    font-size: 0.8rem;
+    height:44px !important;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    margin:0 8px;
+}
+
+mat-subheader{
+    color:white;
+    font-size: 0.8rem;
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+
+.abc{
+  text-align: center;
+   color:white;
+}
+.sidenav{
+      transition: all .5s ease;
+      box-shadow: 0.63rem 0 1.25rem 0 #8690a3;
+ }
+
+.Button{
+    text-align: center;
+} 
+.abc :hover{
+    color: white;
+    background-color: black;  
+}
+
+@media (max-width : 1500px){
+.menu-size-control{
+    font-size: 12px;
+}
+}
+
+.dropdown-container {
+    display: none;
+    background-color: #262626;
+    padding-left: 8px;
+}
+
+
+  

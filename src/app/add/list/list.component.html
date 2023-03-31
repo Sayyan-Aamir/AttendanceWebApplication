@@ -1,0 +1,116 @@
+<mat-drawer-container>
+    <mat-drawer mode="over" [opened]="side" style="background-color: #263238" [ngStyle]="{'width':width}">
+         <app-sidenav></app-sidenav> 
+    </mat-drawer>
+    <mat-drawer-content>
+       <app-header (togglesidebarForMe)="sidebartog()"></app-header>
+       <div class="border-top" style="margin-bottom: 1rem !important;">
+      </div>
+        <div class="header" style="margin-left: 5%;width: 90%;" >
+             <div class="row">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item" style="color:black;font-weight: 700;font-size: medium;" [routerLink]="['/list']">USER</li>
+                <li class="breadcrumb-item"></li>
+                &nbsp;
+                <div class="btn-group">
+                  <button  type="button" class="btn btn-navbar crud-icon crud-icon-add-plus"
+                  [routerLink]="['/addemployee/0']">
+               ADD NEW USER
+              <span class="fa fa-plus "></span>
+          </button>
+                </div>
+                <li class="breadcrumb-item" style="color:black;font-weight: 700;font-size: medium;"></li>
+                <li class="breadcrumb-item"></li>
+                &nbsp;
+                <div class="btn-group">
+                  <button  type="button" class="btn btn-navbar crud-icon crud-icon-add-plus" (click)="leave()">
+               MARK LEAVE
+              <span class="fa fa-plus-square "></span>
+          </button>
+                </div>
+              </ol>
+             </div>
+             <div class="row" style="text-align: center; border:none;">
+              <div class="col-lg-3">        
+                <div class="form-floating">
+                  <select [(ngModel)]="CompanyId" class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                     <option [value]="CompanyId" style="font-size: smaller;" disabled selected hidden>Please Choose...</option>
+                    <option *ngFor="let emp of Company" [value]="emp.Id">
+                      {{emp.CompanyName}}
+                    </option> 
+                  </select>
+                  <label for="floatingSelectGrid" style="font-weight:bold;font-size: medium;">COMPANY</label>
+                </div>
+            </div>
+              <div class="col-lg-3">
+
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" [(ngModel)]="Name" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">EMPLOYEE NAME</label>
+              </div>
+              </div>        
+              <div class="col-lg-6" style="text-align: left;">  
+                <button type="submit" class="login100-form-btn" (click)="filter()">FILTER</button>
+                     
+              <button type="submit" class="login100-form-btn" style="margin-left: 10px;" (click)="clearfilter()">CLEAR FILTER</button>
+              </div>
+            </div>
+         
+        </div>
+          <div class="col-md-12" style="margin-left: 5%;width: 90%;font-size: larger;">
+            <div style="width: 100%">
+              <ngx-datatable class="bootstrap" [limit]="20" [rows]="allemployees" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
+                  <ngx-datatable-column [width]="100" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+                [resizeable]="false" style="font-size: larger;">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                let-row="row">
+                <div style="text-align: center;display: inline-flex;">
+
+                  <button type="button" class="btn btn-outline-danger" (click)="delete(row)" style="border: 0px;font-size: 8px;" matTooltip="DELETE"
+                  matTooltipPosition="below"><i class="material-icons">delete</i><br></button>
+                  <!-- <button type="button" class="btn btn-outline-success" (click)="update(row)" style="margin-right: 100%;border: 0px;" matTooltip="UPDATE"
+                  matTooltipPosition="below"><i class="material-icons">update</i></button> -->
+                  <button type="button" (click)="update(row)" class="btn btn-datatable  crud-icon crud-icon-add btn-outline-success" matTooltip="UPDATE">
+                    <span class="fa fa-edit ml-1 font-size-large" style="font-size: larger;"></span>
+                </button>
+                </div>
+               
+    </ng-template>
+                </ngx-datatable-column>  
+                <ngx-datatable-column name="UserName" prop="UserName">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row?.UserName}}
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Name" [flexGrow]="2" prop="Name" >
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.Name}}
+                </ng-template>
+            </ngx-datatable-column>
+              <ngx-datatable-column name="Email" [flexGrow]="1" prop="Email">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row?.Email}}
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="EmployeeCode" [flexGrow]="2" prop="EmployeeCode">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.EmployeeCode}}
+                </ng-template>  
+            </ngx-datatable-column>
+              <ngx-datatable-column name="Department Name" [flexGrow]="2" prop="DepartmentName">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row?.DepartmentName}}
+                  </ng-template>
+              </ngx-datatable-column>
+              <!-- <ngx-datatable-column>
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <button type="button" class="btn" (click)="delete(row)" style="border: 0px;font-size: 8px;font-size: medium;background-color: #dc3545;color:white" matTooltip="LEAVE"
+                  matTooltipPosition="below"><i class="material-icons">sick</i>MARK_LEAVE</button>
+              </ng-template>
+
+            </ngx-datatable-column> -->
+              </ngx-datatable>
+            </div>
+          </div> 
+    </mat-drawer-content>
+    </mat-drawer-container>
