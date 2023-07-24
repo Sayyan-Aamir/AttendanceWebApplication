@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseurl:'http://localhost:59123/'
- //baseurl:'http://101.50.84.106/AusztechApp'
+  //baseurl:'http://localhost:59123/'
+baseurl:'http://localhost:7182'
 };
 
 /*

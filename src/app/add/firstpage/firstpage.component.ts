@@ -31,16 +31,27 @@ export class FirstpageComponent implements OnInit {
   employee = new product();
   longitude:any;
   latitude:any;
-  constructor(private serve:EmployeeService,private router: Router,private toast:ToastrService,private dialog:MatDialog) { }
+  constructor(private serve:EmployeeService,private router: Router,private toast:ToastrService,
+    private dialog:MatDialog) { }
 
   ngOnInit(): void {
   this.s = this.currentdate.getDay();
   this.dialog.closeAll();
-  // if(this.s == 6 || this.s == 7)
-  // {
-  //   debugger;
-  //   this.emp=false;
-  // }
+  const token = localStorage.getItem('Token');
+debugger;
+  if (token) {
+
+    const parts = token.split('.');
+    const header = parts[0];
+    const payload = parts[1];
+    const signature = parts[2];
+    const decodedPayload = atob(payload);
+
+    const payloadObj = JSON.parse(decodedPayload);
+    const subject = payloadObj.sub;
+    console.log(payloadObj);
+    console.log(subject);
+  }
 
   }
   public authsave(token: string)

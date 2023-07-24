@@ -1,64 +1,61 @@
 <mat-drawer-container>
-    <mat-drawer mode="over" [opened]="side" style="background-color: #263238" [ngStyle]="{'width':width}">
+    <mat-drawer mode="side" [opened]="true" style="background-color: #263238">
          <app-sidenav></app-sidenav> 
     </mat-drawer>
     <mat-drawer-content>
-       <app-header (togglesidebarForMe)="sidebartog()"></app-header>
-       <div class="border-top" style="margin-bottom: 1rem !important;">
-      </div>
-        <div class="header" style="margin-left: 5%;width: 90%;" >
-             <div class="row">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item" style="color:black;font-weight: 700;font-size: medium;" [routerLink]="['/list']">USER</li>
-                <li class="breadcrumb-item"></li>
-                &nbsp;
-                <div class="btn-group">
-                  <button  type="button" class="btn btn-navbar crud-icon crud-icon-add-plus"
-                  [routerLink]="['/addemployee/0']">
-               ADD NEW USER
-              <span class="fa fa-plus "></span>
-          </button>
-                </div>
-                <li class="breadcrumb-item" style="color:black;font-weight: 700;font-size: medium;"></li>
-                <li class="breadcrumb-item"></li>
-                &nbsp;
-                <div class="btn-group">
-                  <button  type="button" class="btn btn-navbar crud-icon crud-icon-add-plus" (click)="leave()">
-               MARK LEAVE
-              <span class="fa fa-plus-square "></span>
-          </button>
-                </div>
-              </ol>
-             </div>
-             <div class="row" style="text-align: center; border:none;">
-              <div class="col-lg-3">        
-                <div class="form-floating">
-                  <select [(ngModel)]="CompanyId" class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                     <option [value]="CompanyId" style="font-size: smaller;" disabled selected hidden>Please Choose...</option>
-                    <option *ngFor="let emp of Company" [value]="emp.Id">
-                      {{emp.CompanyName}}
-                    </option> 
-                  </select>
-                  <label for="floatingSelectGrid" style="font-weight:bold;font-size: medium;">COMPANY</label>
-                </div>
-            </div>
-              <div class="col-lg-3">
 
-              <div class="form-floating mb-3">
-                <input type="email" class="form-control" [(ngModel)]="Name" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">EMPLOYEE NAME</label>
+             <div class="row mt-4" style="text-align: center; border:none;margin-left:auto;">
+
+              <div class="col-lg-3 col-md-3">
+                <select class="form-select" aria-label="Default select example" placeholder = "Name"
+                style="height: 55px;border-radius: 5px;" [(ngModel)]="this.model.SiteId" >
+                  <option *ngFor="let option of Sitelist" [value]="option.siteId">{{ option.siteName }}</option>
+                </select> 
+                </div> 
+
+              <div class="col-md-3">
+
+              <div class="form-floating">
+                <input type="email" class="form-control" style="border-radius: 10px;" [(ngModel)]="this.model.Employee_Name" id="floatingInput" placeholder="@">
+                <label for="floatingInput">Employee Name</label>
               </div>
               </div>        
-              <div class="col-lg-6" style="text-align: left;">  
-                <button type="submit" class="login100-form-btn" (click)="filter()">FILTER</button>
-                     
-              <button type="submit" class="login100-form-btn" style="margin-left: 10px;" (click)="clearfilter()">CLEAR FILTER</button>
-              </div>
-            </div>
+
+              <div class="col-lg-3 col-md-3">
+
+                <div class="form-floating" >
+                  <input type="date" class="form-control" style="border-radius: 10px;" [(ngModel)]="this.model.FromDate" id="floatingInput">
+                  <label for="floatingInput">FromDate</label>
+                </div>
+                </div> 
          
         </div>
-          <div class="col-md-12" style="margin-left: 5%;width: 90%;font-size: larger;">
-            <div style="width: 100%">
+
+        <div class="row mt-4" style="border:none;margin-left:auto;">   
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+
+                  <div class="form-floating mb-3">
+                    <input type="date" class="form-control" style="border-radius: 10px;" [(ngModel)]="this.model.ToDate" id="floatingInput">
+                    <label for="floatingInput">ToDate</label>
+                  </div>
+
+                </li>
+                <li class="breadcrumb-item" >
+                  <button type="submit" class="login100-form-btn" (click)="filter()">FILTER</button>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  <button type="submit" class="login100-form-btn" (click)="clearfilter()">
+                    CLEAR FILTER</button>
+                </li>
+              </ol>
+            </nav>
+     
+    </div>
+
+          <div class="card" style="font-size:larger;margin: 50px 20px 10px 20px">
+            <div>
               <ngx-datatable class="bootstrap" [limit]="20" [rows]="allemployees" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
                   <ngx-datatable-column [width]="100" [sortable]="false" [canAutoResize]="false" [draggable]="false"
                 [resizeable]="false" style="font-size: larger;">
@@ -75,40 +72,47 @@
                 </button>
                 </div>
                
-    </ng-template>
+                </ng-template>
                 </ngx-datatable-column>  
-                <ngx-datatable-column name="UserName" prop="UserName">
+                <ngx-datatable-column name="Email" [flexGrow]="3" prop="email">
                   <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{ row?.UserName}}
+                      {{ row?.email}}
                   </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="Name" [flexGrow]="2" prop="Name" >
+              <ngx-datatable-column name="FirstName" prop="firstName" >
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{row?.Name}}
+                    {{row?.firstName}}
                 </ng-template>
             </ngx-datatable-column>
-              <ngx-datatable-column name="Email" [flexGrow]="1" prop="Email">
+              <ngx-datatable-column name="SiteName" prop="siteName">
                   <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{row?.Email}}
+                      {{row?.siteName}}
                   </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="EmployeeCode" [flexGrow]="2" prop="EmployeeCode">
+              <ngx-datatable-column name="FullDayLeaves" prop="fullDayLeaves">
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{row?.EmployeeCode}}
+                    {{row?.fullDayLeaves}}
                 </ng-template>  
             </ngx-datatable-column>
-              <ngx-datatable-column name="Department Name" [flexGrow]="2" prop="DepartmentName">
+              <ngx-datatable-column name="HalfDayLeaves" prop="halfDayLeaves">
                   <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{row?.DepartmentName}}
+                      {{row?.halfDayLeaves}}
                   </ng-template>
               </ngx-datatable-column>
-              <!-- <ngx-datatable-column>
+              <ngx-datatable-column name="Status" prop="activeBit">
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                  <button type="button" class="btn" (click)="delete(row)" style="border: 0px;font-size: 8px;font-size: medium;background-color: #dc3545;color:white" matTooltip="LEAVE"
-                  matTooltipPosition="below"><i class="material-icons">sick</i>MARK_LEAVE</button>
+                   <span *ngIf="row.activeBit==1" style="color:green">Active</span>
+                   <span *ngIf="row.activeBit==0" style="color:red"> InActive</span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Present/Absent" prop="status">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                 <span *ngIf="row.status=='Absent'" style="color:red">{{row?.status}}</span>
+                 <span *ngIf="row.status=='Present'" style="color:green">Present</span>
+                 <span *ngIf="row.status==''" style="color:green">Present</span>
+                 <span *ngIf="row.status=='Leave'" style="color:rgba(145,40,141,1)">Leave</span>
               </ng-template>
-
-            </ngx-datatable-column> -->
+          </ngx-datatable-column>
               </ngx-datatable>
             </div>
           </div> 

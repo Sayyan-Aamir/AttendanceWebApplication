@@ -1,0 +1,63 @@
+<mat-drawer-container style="height: 100%;">
+    <mat-drawer mode="side" [opened]="true" style="background-color: #263238;" >
+      <app-sidenav></app-sidenav>
+    </mat-drawer> 
+   <mat-drawer-content>
+
+    <div class="card" style="font-size:larger;margin: 50px 20px 10px 20px">
+        <div>
+            <ngx-datatable class="bootstrap" [limit]="10" [rows]="Leavelist" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" rowHeight="auto">
+                <ngx-datatable-column [width]="10" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+                    [resizeable]="false" style="font-size: larger;">
+                </ngx-datatable-column>
+              
+                <ngx-datatable-column name="First Name" prop="firstName">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row?.firstName}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Status" prop="status">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.status}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="From Date" prop="fromDate">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.fromDate | date:'longDate'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="To Date" prop="toDate">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.toDate | date:'longDate'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Leave Reason" prop="leaveReason">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.leaveReason}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column>
+                    <ng-template ngx-datatable-cell-template let-row="row">
+                        <div style="text-align: left;display: inline-flex; gap: 3px;">
+                            <button type="button" value="Approve"
+                                class="btn btn-success"
+                                (click)="updateLeave(row,'Approved')">
+                                Approved
+                            </button>
+                            <button type="button" value="Reject"
+                                class="btn btn-danger"
+                                (click)="updateLeave(row,'Reject')">
+                                Reject
+                            </button>
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+    
+        </div>
+    
+    </div>
+
+</mat-drawer-content>
+</mat-drawer-container>

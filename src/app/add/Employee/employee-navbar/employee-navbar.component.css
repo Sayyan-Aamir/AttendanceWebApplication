@@ -1,0 +1,74 @@
+.logo{
+    text-align: center;
+    padding: 2.6rem 1rem;
+    
+}
+mat-icon{
+    vertical-align: center;
+    margin-right: 1rem;
+}
+
+.responsive{
+    max-width: 200px;
+}
+
+
+mat-list-item{
+    color:white;
+    font-size: 0.8rem;
+    height:44px !important;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    margin:0 8px;
+}
+
+
+.sidenav{
+      transition: all .5s ease;
+      /* box-shadow: 0.63rem 0 1.25rem 0 #8690a3; */
+}
+
+.Button{
+    text-align: center;
+} 
+@media (max-width : 1500px){
+.menu-size-control{
+    font-size: 12px;
+}
+}
+
+.dropdown-container {
+    display: none;
+    background-color: #262626;
+    padding-left: 8px;
+}
+
+
+/* .scroller {
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
+  } */
+  
+  /* width */
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #eee;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background:#eee;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #eee;
+  }
+
+
+  

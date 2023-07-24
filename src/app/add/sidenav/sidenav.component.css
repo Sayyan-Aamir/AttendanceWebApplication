@@ -32,34 +32,74 @@ mat-subheader{
     font-weight: 100;
     letter-spacing: 1px;
 }
-
-.abc{
-  text-align: center;
-   color:white;
-}
-.sidenav{
-      transition: all .5s ease;
-      box-shadow: 0.63rem 0 1.25rem 0 #8690a3;
- }
-
-.Button{
-    text-align: center;
-} 
-.abc :hover{
-    color: white;
-    background-color: black;  
+.list-item {
+    margin-bottom: 3%;
+    display: flex;
+    align-items: center;
 }
 
-@media (max-width : 1500px){
-.menu-size-control{
-    font-size: 12px;
-}
-}
-
+.list-item mat-icon {
+    margin-right: 5px;
+  }
 .dropdown-container {
     display: none;
     background-color: #262626;
     padding-left: 8px;
+}
+
+.sidenav{
+  transition: all .5s ease;
+  position: fixed;
+  /* box-shadow: 0.63rem 0 1.25rem 0 #8690a3; */
+}
+
+.scroller {
+    width: 90%;
+    height: 400px;
+    overflow-y: scroll;
+}
+  
+::-webkit-scrollbar {
+    width: 2px;
+}
+  
+/* ::-webkit-scrollbar-track {
+    background: #eee;
+}
+   */
+
+/* ::-webkit-scrollbar-thumb {
+    background:#eee;
+} */
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #eee;
+}
+
+@media (min-width: 1700px) {
+  .scroller {
+    width: 85%;
+    height: 500px;
+  }
+}
+
+@media (min-width: 1600px) and (max-width: 1700px) {
+    .scroller {
+      width: 85%;
+      height: 500px;
+    }
+}
+
+@media (max-width: 1600px) and (min-width: 1370px) {
+.scroller {
+    width: 100%; /* Increase margin-right for larger screens */
+}
+}
+
+@media (max-width: 1300px) and (min-width: 1000px) {
+  .mat-drawer {
+    width: 17%; /* Increase margin-right for larger screens */
+  }
 }
 
 

@@ -45,9 +45,26 @@ import { ForgetpasswodComponent } from './add/forgetpasswod/forgetpasswod.compon
 import { NewpasswordComponent } from './add/newpassword/newpassword.component';
 import { GoogleMapLocationComponent } from './add/google-map-location/google-map-location.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { CreateCompanyComponent } from './add/create-company/create-company.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoanlistComponent } from './add/Loan/loanlist/loanlist.component';
+import { AddloanComponent } from './add/Loan/addloan/addloan.component';
+import { EmployeeDashboardComponent } from './add/Employee/employee-dashboard/employee-dashboard.component';
+import { RequestleaveComponent } from './add/Employee/requestleave/requestleave.component';
+import { UserLeavelistComponent } from './add/User/user-leavelist/user-leavelist.component';
+import { UpdateLoanComponent } from './add/Loan/update-loan/update-loan.component';
+import { LoanDetailListComponent } from './add/Loan/loan-detail-list/loan-detail-list.component';
+import { EmployeeListComponent } from './add/Dashboard list/employee-list/employee-list.component';
+import { EmployeeNavbarComponent } from './add/Employee/employee-navbar/employee-navbar.component';
+import { EmployeeLeavelistComponent } from './add/Employee/employee-leavelist/employee-leavelist.component';
+import { AbsentListComponent } from './add/Dashboard list/absent-list/absent-list.component';
+import { OfficeHolidaylistComponent } from './add/officeHoliday/office-holidaylist/office-holidaylist.component';
+import { OfficeHolidayaddComponent } from './add/officeHoliday/office-holidayadd/office-holidayadd.component';
+
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
@@ -71,7 +88,19 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     ForgetpasswodComponent,
     NewpasswordComponent,
     GoogleMapLocationComponent,
-    CreateCompanyComponent
+    LoanlistComponent,
+    AddloanComponent,
+    EmployeeDashboardComponent,
+    RequestleaveComponent,
+    UserLeavelistComponent,
+    UpdateLoanComponent,
+    LoanDetailListComponent,
+    EmployeeListComponent,
+    EmployeeNavbarComponent,
+    EmployeeLeavelistComponent,
+    AbsentListComponent,
+    OfficeHolidaylistComponent,
+    OfficeHolidayaddComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +129,10 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
       //progressBar:true
     }),
     NgbModule,
-    
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule, 
+    MatNativeDateModule
   ],
   providers: [EmployeeService,ActguardGuard,DatePipe,{provide:LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]

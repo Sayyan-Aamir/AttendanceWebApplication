@@ -1,0 +1,79 @@
+<mat-drawer-container>
+    <mat-drawer mode="side" [opened]="true" style="background-color: #263238">
+         <app-sidenav></app-sidenav> 
+    </mat-drawer>
+    <mat-drawer-content>
+       <div class="border-top" style="margin-bottom: 1rem !important;">
+      </div>
+        <div class="header mt-4" style="margin-left: 5%;width: 90%;" >
+             <div class="row" style="text-align: center; border:none;">
+
+              <div class="col-lg-4">
+
+              <div class="form-floating " >
+                <select class="form-select" aria-label="Default select example" placeholder = "Name"
+            style="border-radius: 5px;" [(ngModel)]="this.loanModel.EmployeeId" >
+              <option *ngFor="let option of allemployees" [value]="option.employeeId">{{ option.firstName }}</option>
+            </select> 
+                <label for="floatingInput">Employee Name</label>
+              </div>
+              </div>        
+
+              <div class="col-lg-6" style="text-align: left;">  
+                <button type="submit" class="login100-form-btn" (click)="filter()">FILTER</button>
+                     
+              <button type="submit" class="login100-form-btn" style="margin-left: 10px;" (click)="clearfilter()">CLEAR FILTER</button>
+              </div>
+            </div>
+         
+        </div>
+          <div class="col-md-12" style="margin-left: 5%;width: 90%;font-size: larger;">
+            <div>
+              <ngx-datatable class="bootstrap" [limit]="20" [rows]="loanList" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
+                  <ngx-datatable-column [width]="150" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+                [resizeable]="false" style="font-size: larger;">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                let-row="row">
+                <div style="text-align: center;display: inline-flex;">
+
+                  <button type="button" class="btn btn-outline-danger" (click)="delete(row.loanId)" style="border: 0px;font-size: 8px;" matTooltip="DELETE"
+                  matTooltipPosition="below"><i class="material-icons">delete</i><br></button>
+                  <button type="button" class="btn btn-outline-success" (click)="listPage(row.loanId)" style="border: 0px;font-size: 8px;" matTooltip="LIST"
+                  matTooltipPosition="below"><i class="material-icons">filter_list</i><br></button>
+                    <button type="button" (click)="update(row)" class="btn btn-datatable  crud-icon crud-icon-add btn-outline-success" matTooltip="UPDATE">
+                    <span class="fa fa-edit ml-1 font-size-large" style="font-size: larger;"></span>
+                </button>
+                </div>
+               
+                </ng-template>
+                </ngx-datatable-column>  
+                <ngx-datatable-column name="First Name" [flexGrow]="3" prop="firstName">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{ row?.firstName}}
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Loan Date" prop="loanDate" >
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.loanDate | date:'mediumDate'}}
+                </ng-template>
+            </ngx-datatable-column>
+              <ngx-datatable-column name="Loan Amount" prop="loanAmount">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row?.loanAmount}}
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Paid Amount" prop="paidAmount">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <span style="color:green;">  {{row?.paidAmount}} </span>
+                </ng-template>  
+            </ngx-datatable-column>
+              <ngx-datatable-column name="Remaining Amount" prop="outstandingAmount">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span style="color:red;">  {{row?.outstandingAmount}} </span>
+                  </ng-template>
+              </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div> 
+    </mat-drawer-content>
+    </mat-drawer-container>

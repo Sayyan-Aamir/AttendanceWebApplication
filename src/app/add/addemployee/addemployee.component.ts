@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/employee.service';
 import { Validators } from '@angular/forms';
-import { DomSanitizer } from '@angular/platform-browser';
 import { FormBuilder } from '@angular/forms';
-import { Empclass } from 'src/app/empclass';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { HostListener} from "@angular/core";
+import {HttpClient} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
+import {  SiteSearchDto } from '../../Model/site-search-dto';
+import {  EmployeeModel } from '../../Model/employee-model';
+import { DatePipe, Time } from '@angular/common';
 
 @Component({
   selector: 'app-addemployee',
@@ -15,42 +19,84 @@ import { ToastrService } from 'ngx-toastr';
 export class AddemployeeComponent implements OnInit {
   resultGridList :any;
   side=false;
+  width:any;
+  getScreenWidth: any;
+  SiteName:any = null;
+  StartTime: Date | null | Time  = null;
+  Gender:any = null;
+  Sitelist:any[]=[];
+  Sitemodel = new SiteSearchDto();
+  Employeemodel = new EmployeeModel();
   datasaved =false;
+  GenderList:any[] = [];
   employeeId=null;
   employeeForm:any;
   userid: any = 0;
+  empId:number = 0;
   tablehidden=false;
   url:any='';
   en:any='';
   file:any="";
   updatedImage:any="";
   
-  constructor(private data:EmployeeService, private serve:EmployeeService, private builder:FormBuilder, public route: ActivatedRoute,private router:Router,private sanitizer: DomSanitizer
-    ,private toast:ToastrService) { 
+  constructor(private data:EmployeeService, private serve:EmployeeService,
+     private builder:FormBuilder, public route: ActivatedRoute,private router:Router
+    ,private com:HttpClient,public datepipe: DatePipe,
+    private toast:ToastrService) { 
+
+    this.Sitemodel = new SiteSearchDto();
+    this.Employeemodel = new EmployeeModel();
 
     this.route.params.subscribe(id => {this.userid = id});
   }
   ngOnInit(): void {
-    console.log(this.userid.id);
-    this.employeeFormBuilder();
 
-  if(this.userid.id > 0)
-  {
-    this.tablehidden = true;
-    this.getUser();
+    if(this.userid.id > 0)
+    {
+      this.tablehidden = true;
+      this.getUser();
+    }
+
+    this.SiteList();
+    this.employeeFormBuilder();
+    this.GenderList = [
+      {
+        value: 'Male'
+      },
+      {
+        value: 'Female'
+      },
+      {
+        value: 'Other'
+      }
+    ];
+
+
   }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.getScreenWidth = window.innerWidth;
+    if(this.getScreenWidth <= 1500)
+    {
+      this.width = '18%';;
+    }
+   else if(this.getScreenWidth > 1500)
+    {
+      this.width = '18%';
+    }
+    
   }
+
 
   onSelectedFile(event:any)
    {
      if(event.target.files.length > 0)
      {
-       debugger;
        this.updatedImage="";
        var reader = new FileReader();
        reader.readAsDataURL(event.target.files[0]);
        reader.onload=(events:any)=>{
-       debugger;
        this.url =events.target.result;
        }
         this.file = event.target.files[0];
@@ -59,68 +105,74 @@ export class AddemployeeComponent implements OnInit {
     }
   sidebartog()
   {
-    debugger;
     this.side = !this.side; 
-    console.log(this.side);
   }
   getUser()
   {
-    this.data.updateemployee(this.userid.id).subscribe(response=>{
-      debugger;
-      console.log(response.Table);
-      this.resultGridList = [];
-      this.en=1;
-     this.resultGridList=response.Table;
-     this.employeeForm.controls['UserName'].patchValue(this.resultGridList[0].UserName);
-     this.employeeForm.controls['FirstName'].patchValue(this.resultGridList[0].FirstName);
-     this.employeeForm.controls['LastName'].patchValue(this.resultGridList[0].LastName);
-     this.employeeForm.controls['Password'].patchValue(this.resultGridList[0].Password);
-     this.employeeForm.controls['Email'].patchValue(this.resultGridList[0].Email);
-     this.employeeForm.controls['Gender'].patchValue(this.resultGridList[0].Gender);
-     this.employeeForm.controls['ContactNumber'].patchValue(this.resultGridList[0].ContactNumber);
-     this.employeeForm.controls['Addresses'].patchValue(this.resultGridList[0].Addresses);
-     this.employeeForm.controls['EmployeeCode'].patchValue(this.resultGridList[0].EmployeeCode);
-     this.employeeForm.controls['DateOfBirth'].patchValue(this.resultGridList[0].DateOfBirth);
-     this.employeeForm.controls['City'].patchValue(this.resultGridList[0].City);
-     this.employeeForm.controls['DepartmentName'].patchValue(this.resultGridList[0].DepartmentName);
-     this.employeeForm.controls['StartTime'].patchValue(this.resultGridList[0].StartTime);
-     this.employeeForm.controls['WorkingHours'].patchValue(this.resultGridList[0].WorkingHours);
-     //this.employeeForm.controls['Image'].patchValue(this.resultGridList[0].Image);
-     this.employeeForm.controls['EmployeeId'].patchValue(this.resultGridList[0].EmployeeId);
-     this.updatedImage = this.resultGridList[0].Base64Image;
-     this.onSelectedFile(this.resultGridList[0].Imagename);
+    this.empId = parseInt(this.userid.id, 10);
+    const Token = localStorage.getItem("Token");
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+       'Authorization': `Bearer ${Token}`
+     });
+     this.com.post('http://localhost:7182/api/Employee/GetEmployee',this.empId, {headers}).subscribe((response:any) =>{
+      this.employeeForm.controls['FirstName'].patchValue(response.responseData.firstName);
+      this.employeeForm.controls['LastName'].patchValue(response.responseData.lastName);
+      this.employeeForm.controls['Email'].patchValue(response.responseData.email);
+      // this.employeeForm.controls['SiteId'].patchValue(response.responseData.siteName);
+      this.SiteName = response.responseData.siteName;
+      this.employeeForm.controls['DepartmentName'].patchValue(response.responseData.gender);
+      this.Gender = response.responseData.gender;
+      this.Employeemodel.Gender = this.Gender;
+      console.log(this.Employeemodel.Gender);
+      this.employeeForm.controls['ContactNumber'].patchValue(response.responseData.contactNumber);
+      this.employeeForm.controls['Addresses'].patchValue(response.responseData.addresses);
+      this.employeeForm.controls['EmployeeCode'].patchValue(response.responseData.employeeCode);
+      this.employeeForm.controls['DateOfBirth'].patchValue(response.responseData.DateOfBirth);
+      this.employeeForm.controls['City'].patchValue(response.responseData.city);
+      this.Employeemodel.StartTime = response.responseData.startTime != null ? this.datepipe.transform(response.responseData.startTime,'HH:MM') : new Date('2000-01-01');
+      this.employeeForm.controls['DepartmentName'].patchValue(response.responseData.DepartmentName);
+      this.employeeForm.controls['WorkingHours'].patchValue(response.responseData.workingHours);
+      this.employeeForm.controls['EmployeeId'].patchValue(response.responseData.employeeId);
+      // this.updatedImage = response.responseData.Base64Image;
+      // this.onSelectedFile(response.responseData.Imagename);
+
+     });
+
      
-     debugger;
-     
-      //this.employeeIdupdate==null;
-    })
   }
-  onSelect(emp:any)
-  {
-      debugger;
-      // this.updatedImage="";
-      var reader = new FileReader();
-      reader.readAsDataURL(emp);
-      reader.onload=(events:any)=>{
-      debugger;
-      this.url =events.target.result;
-      }
-       this.file = emp;
+
+  SiteList(){
+    const Token = localStorage.getItem("Token");
+    const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+           'Authorization': `Bearer ${Token}`
+         });
+
+         this.com.post('http://localhost:7182/api/Site/SiteList',this.Sitemodel, {headers}).subscribe((response:any) =>{
+         this.Sitelist = response.responseData;
+
+         for(const item of this.Sitelist)
+         {
+           if(item.siteName == this.SiteName)
+           this.Employeemodel.SiteId = item.siteId;
+           break;
+         }
+     });
   }
+
  employeeFormBuilder(){
     this.employeeForm=this.builder.group({
-      UserName:['',[Validators.required]],
+      SiteId:['',[Validators.required]],
       FirstName:['',[Validators.required]],
       LastName:[''],
-      Password:['',[Validators.required]],
       Email:[''],
-      Gender:[''],
+      DepartmentName:[''],
       ContactNumber:[''],
       Addresses:[''],
       EmployeeCode:['',[Validators.required]],
       DateOfBirth:[''],
       City:[''],
-      DepartmentName:['',[Validators.required]],
       StartTime:['',[Validators.required]],
       WorkingHours:['',[Validators.required]],
      // Image:[''],
@@ -137,85 +189,57 @@ export class AddemployeeComponent implements OnInit {
  onsubmit(Employee:any){
    this.datasaved = false;
    const employee=Employee;
-   debugger;
   this.create(employee);
  }
- create(employee:Empclass){
-   debugger;
-   if(employee.UserName!="" ||employee.FirstName != "" || employee.Password !="" || employee.DepartmentName != "" || employee.EmployeeCode != "" || this.file !="" || employee.StartTime !="" || employee.WorkingHours !="")
-   {
-     debugger;
-     if(employee.UserName == "")
-     {
-       this.toast.info('Enter your UserName');
-     }
-     if(employee.FirstName == "")
-     {
-      this.toast.info('Enter your Name');
-     }
-     if(employee.Password =="")
-     {
-      this.toast.info('Enter a Password');
-     }
-     if(employee.DepartmentName == "")
-     {
-      this.toast.info('Enter your Department');
-     }
-     if(employee.EmployeeCode == "")
-     {
-      this.toast.info('Enter EmployeeCode');
-     }
-     if(employee.StartTime == "")
-     {
-      this.toast.info('Enter Start Time For Employee');
-     }
-     if(employee.WorkingHours == "")
-     {
-      this.toast.info('Enter Working Hours For Employee');
-     }
-     if(employee.UserName!="" && employee.FirstName != "" && employee.Password !="" && employee.EmployeeCode != "" && employee.DepartmentName != "" && employee.StartTime !="" && employee.WorkingHours !=""){  
-       this.serve.Email_Check(employee.Email).subscribe(Response =>{
-        debugger;
-        if(Response != null)
-        {
-          this.serve.create(employee,this.file).subscribe((data:any) =>{
-            debugger;
-            this.datasaved=true;
-            if(this.userid.id > 0)
-            {
-              this.toast.success('Employee Updated Successfully');
-              this.router.navigate(['/list']);
-            }
-            else
-            {
-              this.toast.success('Employee Added Successfully');
-              this.router.navigate(['/list']);
-            }
-            this.employeeForm.reset();
-          })
-        }
-        else{
-          this.toast.error('The Email you entered already exists');
-        }
-       })
-     }
+ create(employee:any){
+  debugger;
+          if(this.empId > 0)
+          {
+            this.Employeemodel.EmployeeId = this.empId;
+          }
 
-   }
-   else
-   {
-     this.toast.warning('Fill The Form');
-   }
+          if(this.Employeemodel.Gender == undefined || this.Employeemodel.Gender == "undefined" || this.Employeemodel.Gender == null)
+          this.Employeemodel.Gender = this.Gender;
 
-  }
+          const formData = new FormData();
+          formData.append('file', this.Employeemodel.files[0]); // Assuming you only want to send the first file in the array
+          
+          formData.append('Birth',String(this.Employeemodel.DateOfBirth));
+          formData.append('EmployeeIds',String(this.Employeemodel.EmployeeId));
+          formData.append('FirstName', this.Employeemodel.FirstName);
+          formData.append('LastName', this.Employeemodel.LastName);
+          formData.append('Email', this.Employeemodel.Email);
+          formData.append('Gender', this.Employeemodel.Gender);
+          formData.append('ContactNumber', this.Employeemodel.ContactNumber);
+          formData.append('Addresses', this.Employeemodel.Addresses);
+          formData.append('Site', String(this.Employeemodel.SiteId));
+          formData.append('EmployeeCode', this.Employeemodel.EmployeeCode);
+          formData.append('City', this.Employeemodel.City);
+          formData.append('StartTimes', String(this.Employeemodel.StartTime));
+          formData.append('WorkingHour',String(this.Employeemodel.WorkingHours));
+          formData.append('OverTime',String(this.Employeemodel.OverTimeAllowed));
+
+          const Token = localStorage.getItem("Token");
+          const headers = new HttpHeaders({
+                 'Authorization': `Bearer ${Token}`
+               });
+      
+               this.com.post('http://localhost:7182/api/Employee/UpdateEmployee',formData, {headers}).subscribe((response:any) =>{
+                this.toast.success("Employee Updated Successfully");
+                this.router.navigate(['/list']);
+           });
+
+        }
+
    
-  transform(base64ImageNew: any) {
+//   transform(base64ImageNew: any) {
 
-  base64ImageNew = "data:image/jpg/png/jpeg;base64," + base64ImageNew;
-    // var reader = new FileReader();
-    // reader.readAsDataURL(base64ImageNew);
-  return this.sanitizer.bypassSecurityTrustResourceUrl(base64ImageNew);
+//   base64ImageNew = "data:image/jpg/png/jpeg;base64," + base64ImageNew;
+//     // var reader = new FileReader();
+//     // reader.readAsDataURL(base64ImageNew);
+//   return this.sanitizer.bypassSecurityTrustResourceUrl(base64ImageNew);
     
-}
+// }
 
 }
 

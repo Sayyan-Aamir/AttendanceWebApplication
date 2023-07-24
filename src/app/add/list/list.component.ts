@@ -4,11 +4,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/employee.service';
 import {MatDialog} from '@angular/material/dialog';
-import { Empclass } from 'src/app/empclass';
 import { ToastrService } from 'ngx-toastr';
 import { HostListener} from "@angular/core";
 import { LeaveDetails } from 'src/app/leave-details';
-import { Token } from '@angular/compiler/public_api';
+import {HttpClient} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
+import {  SearchCriteria } from '../../Model';
+import {  SiteSearchDto } from '../../Model/site-search-dto';
 
 @Component({
   selector: 'app-list',
@@ -20,6 +22,7 @@ export class ListComponent implements OnInit {
   side=false;
   item:any="";
   Name:any;
+  EmployeeId:number = 0;
   width:any;
   RoleId:any = 0;
   RoleList:any[] = [];
@@ -29,23 +32,34 @@ export class ListComponent implements OnInit {
   getScreenWidth: any;
   Details = new LeaveDetails();
   allemployees:any[]=[];
-  constructor(private data:EmployeeService,private router: Router,private sanitizer: DomSanitizer,private toast:ToastrService,private dialog:MatDialog) {
+  Sitelist:any[]=[];
+  model = new SearchCriteria();
+  Sitemodel = new SiteSearchDto();
+
+  constructor(private data:EmployeeService,private router: Router,private sanitizer: DomSanitizer,private toast:ToastrService,private dialog:MatDialog,
+    private com:HttpClient) {
     this.Details = new LeaveDetails();
+    this.model = new SearchCriteria();
+    this.Sitemodel = new SiteSearchDto();
    }
   employeeIdupdate=null;
 
   ngOnInit(): void {
-    this.loadEmployees();
-    this.loadCompany();
-    this.loadRoles();
+
+    this.model.FromDate = null;
+    this.model.ToDate = null; 
+
+    this.EmployeeList();
+    this.SiteList()
+
     this.getScreenWidth = window.innerWidth;
 
     if(this.getScreenWidth <= 1500)
     {
-      this.width = '15%';
+      this.width = '18%';
     }
     else{
-      this.width = '13%';
+      this.width = '15%';
     }
   }
   
@@ -54,7 +68,7 @@ export class ListComponent implements OnInit {
     this.getScreenWidth = window.innerWidth;
     if(this.getScreenWidth <= 1500)
     {
-      this.width = '15%';
+      this.width = '15%';;
     }
    else if(this.getScreenWidth > 1500)
     {
@@ -62,16 +76,32 @@ export class ListComponent implements OnInit {
     }
     
   }
+
+  EmployeeList(){
+    const Token = localStorage.getItem("Token");
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+       'Authorization': `Bearer ${Token}`
+     });
+     this.com.post('http://localhost:7182/api/Employee/EmployeeList',this.model, {headers}).subscribe((response:any) =>{
+     this.allemployees = response.responseData;
+     });
+  }
+
+  SiteList(){
+    const Token = localStorage.getItem("Token");
+    const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+           'Authorization': `Bearer ${Token}`
+         });
+
+         this.com.post('http://localhost:7182/api/Site/SiteList',this.Sitemodel, {headers}).subscribe((response:any) =>{
+         this.Sitelist = response.responseData;
+     });
+  }
+
   opendialog(){
       this.dialog.open(SpinnerComponent, {data: {LeaveId: this.Details.LeaveId}});
-  }
-  loadEmployees(){
-    this.CompanyId = localStorage.getItem('Id');
-    this.data.getAllEmployees(this.Names,this.CompanyId).subscribe(response=>{
-        // response.Base64Image = this.sanitizer.bypassSecurityTrustResourceUrl('Base64Image;base64,' 
-        // + response.Table);
-        this.allemployees=response.Table;
-    });
   }
   transform(base64ImageNew: any) {
 
@@ -80,32 +110,26 @@ export class ListComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(base64ImageNew);
 }
 
- loadCompany(){
-  const arr = [
-     {CompanyName: localStorage.getItem('token'),Id: localStorage.getItem('Id')}
- ];
-  this.Company = arr;
-}
-
- loadRoles(){
-  this.data.RoleList().subscribe(response=>{
-    debugger;
-      this.RoleList = response.Table;
-  });
-}
-
   delete(emp:any)
   {
-    {
-      this.data.deleteemps(emp).subscribe(res=>{
-        this.toast.success('Employee Deleted Successfully');
-        this.loadEmployees();
-      })
-    }
+ 
+    const Token = localStorage.getItem("Token");
+    const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Token}`
+    });
+
+    this.EmployeeId = emp.employeeId;
+    const url = `http://localhost:7182/api/Employee/DeleteEmployee?EmployeeId=${this.EmployeeId}`;
+
+    this.com.post(url, null,{ headers }).subscribe((response: any) => {
+    this.toast.success('Employee Deleted Successfully');
+    this.EmployeeList();
+  });
   }
-  update(emp:Empclass)
+  update(emp:any)
   {
-    this.router.navigate(['/addemployee/' + emp.EmployeeId]);
+    this.router.navigate(['/addemployee/' + emp.employeeId]);
   }
   sidebartog()
   {
@@ -116,24 +140,16 @@ export class ListComponent implements OnInit {
   }
 
   filter(){
-    debugger;
-    if(this.Name == undefined || this.Name == null)
-    {
-      this.Name = "";
-    }
-   this.data.getAllEmployees(this.Name,this.CompanyId).subscribe(result =>{
-    this.allemployees=result.Table;
-    if(result.Table[0] != null)
-    {
-      this.toast.success('Employee Displayed Successfully');
-    }
-   })
+    this.EmployeeList();
+    this.toast.success('Employee list displayed successfully');
   }
   clearfilter(){
-    this.loadEmployees();
-    this.toast.success('Employees Displayed Successfully');
-    this.Name = "";
-    this.CompanyId = "";
+  this.model.FromDate = null;
+  this.model.ToDate = null;
+  this.model.Employee_Name = null;
+  this.model.SiteId = null;
+
+  this.EmployeeList();
   }
   leave(){
  this.opendialog();

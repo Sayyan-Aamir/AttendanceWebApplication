@@ -10,6 +10,55 @@
 .header:hover{
     color: red;
 }
+.card{
+    box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+    -webkit-box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+}
+
+@media (min-width: 1600px) {
+    .mat-drawer {
+      width: 13%; /* Increase margin-right for larger screens */
+    }
+}
+  
+@media (max-width: 1600px) and (min-width: 1300px) {
+.mat-drawer {
+      width: 16%; /* Increase margin-right for larger screens */
+}
+}
+  
+@media (max-width: 1300px) and (min-width: 1000px) {
+    .mat-drawer {
+      width: 17%; /* Increase margin-right for larger screens */
+    }
+}
+
+.btnhover :hover{
+    background-color: white !important;
+    color: rgba(145,40,141,1);
+}
+
+.panel-header:hover{
+    background-color: white !important;
+
+} 
+.panel-header:hover h3{
+    color: rgba(145,40,141,1);
+} 
+
+.fa_cart-header2{
+    background-color: #3c3c3b;
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    margin-bottom: 25px;
+    padding:15px 25px 10px 25px !important;
+}
+
+
+.br{
+    border-radius: 15px;
+}
 
 .box{
     padding-top: 10%;
@@ -229,3 +278,11 @@
         text-align: center;
     }
 }
+
+@media (min-width: 1200px){
+    .col-xl-5{
+        flex: 0 0 auto;
+        width: 25%;
+    }
+}
+

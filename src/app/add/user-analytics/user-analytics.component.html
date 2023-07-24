@@ -1,276 +1,52 @@
 <mat-drawer-container style="height: 100%;">
-<mat-drawer mode="over" [opened]="side" style="background-color: #263238;" [ngStyle]="{'width':width}">
+<mat-drawer mode="side" [opened]="true" style="background-color: #263238;">
     <app-sidenav></app-sidenav> 
 </mat-drawer>   
 <mat-drawer-content class="width-control">
-    <app-header (togglesidebarForMe)="sidebartog()"></app-header>
+    <!-- <app-header (togglesidebarForMe)="sidebartog()"></app-header> -->
  <div class="border-top" style="margin-bottom: 1rem !important;">
  </div>
 
  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-       <!-- <label class="form-label " for="form3Example1q">EMPLOYEE</label>
-       <br>
-        <strong style="padding:0px 0px 5px 10px;visibility: hidden;">Select an Employee</strong> 
-       <select [(ngModel)]="EmployeeId" placeholder="Select Employee"  class="form-control form-control-lg " style="border-radius: 30px;margin-right: 100%;box-shadow: inset 0px 0px 0px 0px;">
-        <option [value]="emp.EmployeeId" style="font-size: smaller;" disabled selected hidden>Please Choose...</option>
-         <option *ngFor="let emp of employeesName" [value]="emp.EmployeeId">
-           {{emp.Name}}
-         </option>
-     </select> -->
-
-     <div class="form-floating">
-      <select [(ngModel)]="CompanyId" class="form-select" id="floatingSelectGrid" style="border-radius: 10px;margin-right: 100%;box-shadow: inset 0px 0px 0px 0px;margin-top:20px;" aria-label="Floating label select example">
-         <option [value]="CompanyId" style="font-size: smaller;" disabled selected hidden>Select Company</option>
-        <option *ngFor="let emp of Company" [value]="emp.Id">
-          {{emp.CompanyName}}
-        </option> 
-      </select>
-      <label for="floatingSelectGrid" style="font-weight:bold;font-size: medium;">COMPANY</label>
-    </div>
-      </div>
-      <div class="col-md-3"> 
-            <div class="form-floating">
-        <select [(ngModel)]="EmployeeId" class="form-select" id="floatingSelectGrid" style="border-radius: 10px;margin-right: 100%;box-shadow: inset 0px 0px 0px 0px;margin-top:20px;" aria-label="Floating label select example">
-           <option [value]="emp.EmployeeId" style="font-size: smaller;" disabled selected hidden>Select Employee</option>
-          <option *ngFor="let emp of employeesName" [value]="emp.EmployeeId">
-            {{emp.Name}}
-          </option> 
-        </select>
-        <label for="floatingSelectGrid" style="font-weight:bold;font-size: medium;">EMPLOYEE</label>
-      </div>
-    </div>
-      <div class="col-md-3">
-       <div class="form-group has-success"> 
-         <label class="form-label" for="form3Example1q">FROM DATE</label>
-         <input type="date" [(ngModel)]="Startdate" id="form3Example1w" class="form-control" style="height: 50px;margin-top:-5px;border-radius: 10px;" />
-         
-         </div>
-
-      </div>
-      <div class="col-md-3">
-       <div class="form-group has-success">
-         <label class="form-label" for="form3Example1q">TO DATE</label>
-         <input type="date" [(ngModel)]="Enddate" id="form3Example1w" class="form-control" style="height: 50px;margin-top:-5px;border-radius: 10px;" /> 
-         </div>
-      </div>&nbsp;
-      <div class="col-md-3" style="margin-top: 2.5%;">
+    <div class="row justify-content-center mb-3">
+      <div class="col-md-3" style="margin-top: 2.5%">
       <div class="btn-group">
-        <button  type="button" class="btn btn-navbar crud-icon crud-icon-add-plus" (click)="loadPage()">
-     ADD NEW HOLIDAY
+        <button  type="button" class="btn btn-navbar crud-icon crud-icon-add-plus" [routerLink]="['/official_holiday']">
+     Add Employee Leave
     <span class="fa fa-plus "></span>
 </button>
       </div>
       </div>
     </div>
-    <div class="text-center">
-      <div class="col-md-4" style="float:right;">
-        <button class="buttons" (click)="filter();" style="margin-top: 2px;border-radius: 25px;">FILTER 
-       <span class="glyphicon glyphicon-filter"></span></button>
- 
-       <div class="col-md-4" style="float:right ;">
-         <button class="button" (click)="Clearfilter();" style="margin-top: 2px;border-radius: 25px;">CLEAR FILTER 
-           <span class="glyphicon glyphicon-filter"></span></button>
-       </div>
- 
-       </div>
-      <ul class="listoptions" style="float: right;margin-right:7%;border-color:rgb(94,99,173);">
-        <li>
-          <span style="margin-right: 10px;font-size: 15px;cursor: pointer;" (click)="day('day');">By DAY</span>
-        </li>
-        <li>
-          <span class=".listoptions_active" style="margin-right: 10px;font-size: 15px;cursor: pointer;" (click)="day('week');">By WEEK</span>
-        </li>
-        <li>
-          <span style="margin-right: 10px;font-size: 15px;cursor: pointer;" (click)="day('month');">By MONTH</span>
-        </li>
-        <li>
-          <span style="margin-right: 10px;font-size: 15px;cursor: pointer;" (click)="day('year');">By YEAR</span>
-        </li>
-      </ul>  
   </div>
-  </div>
-  <!-- <div class="text-center" style="text-align: center;margin-bottom: 10px;margin-right: 5%;">
-    <ul class="listoptions">
-      <li>
-        <span style="margin-right: 10px;font-size: 15px;cursor: pointer;" (click)="day('day');">By DAY</span>
-      </li>
-      <li>
-        <span class=".listoptions_active" style="margin-right: 10px;font-size: 15px;cursor: pointer;" (click)="day('week');">By WEEK</span>
-      </li>
-      <li>
-        <span style="margin-right: 10px;font-size: 15px;cursor: pointer;" (click)="day('month');">By MONTH</span>
-      </li>
-      <li>
-        <span style="margin-right: 10px;font-size: 15px;cursor: pointer;" (click)="day('year');">By YEAR</span>
-      </li>
-    </ul>  
-</div> -->
 
-<!-- this is table data -->
-<div class="col-md-12" style="margin-left: 10%;width: 80%;font-size: larger;" [hidden]="emp">
-  <div style="width: 100%">
-    <ngx-datatable class="bootstrap" [limit]="30" [rows]="employees" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
-        <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
-      [resizeable]="false" style="font-size: larger;">
-      </ngx-datatable-column>  
-         <ngx-datatable-column name="UserName" prop="UserName">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.UserName}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="FirstName" [flexGrow]="1" prop="FirstName">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row?.FirstName}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Email" [flexGrow]="2" prop="Email">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row?.Email}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="ContactNumber" [flexGrow]="2" prop="ContactNumber">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row?.ContactNumber}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="WorkingDays" [flexGrow]="2" prop="workingdays" >
-          <ng-template let-row="row" ngx-datatable-cell-template>
-              {{row?.workingdays | date}}
-          </ng-template>
-      </ngx-datatable-column>
-      <!-- <ngx-datatable-column name="HOLIDAYS" [flexGrow]="2" prop="value">
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          <span *ngIf="value == 0" style="color: red;">HOLIDAY</span>
-        </ng-template>
-    </ngx-datatable-column> -->
-    <ngx-datatable-column name="HOLIDAYS" [flexGrow]="2" prop="status">
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <span style="color: red;"> {{row?.status}}</span>
-      </ng-template>
-  </ngx-datatable-column>
-    </ngx-datatable>
-  </div>
-</div> 
-<!-- this is second table-->
-<div class="col-md-12" style="margin-left: 10%;width: 80%;font-size: larger;" [hidden]="tablehidden">
-  <div style="width: 100%">
-    <ngx-datatable class="bootstrap" [limit]="40" [rows]="employees" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
-        <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
-      [resizeable]="false" style="font-size: larger;">
-      </ngx-datatable-column>  
-         <ngx-datatable-column name="UserName" prop="UserName">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.UserName}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="FirstName" [flexGrow]="1" prop="FirstName">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row?.FirstName}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Email" [flexGrow]="2" prop="Email">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row?.Email}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="ContactNumber" [flexGrow]="2" prop="ContactNumber">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row?.ContactNumber}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="BY WEEK" [flexGrow]="2" prop="Weeknumber" >
-          <ng-template let-row="row" ngx-datatable-cell-template>
-              {{row?.Weeknumber}}
-          </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="HOLIDAYS" [flexGrow]="2" prop="value">
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template style="color: red;">
-         <span style="color: red;">{{row?.holidays}}</span> 
-        </ng-template>
-    </ngx-datatable-column>
-    </ngx-datatable>
-  </div>
-</div>
 
-<!-- this is the third table-->
-<div class="col-md-12" style="margin-left: 10%;width: 80%;font-size: larger;" [hidden]="tablehide">
-  <div style="width: 100%">
-    <ngx-datatable class="bootstrap" [limit]="40" [rows]="employees" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
-        <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
-      [resizeable]="false" style="font-size: larger;">
-      </ngx-datatable-column>  
-         <ngx-datatable-column name="UserName" prop="UserName">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{ row?.UserName}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="FirstName" [flexGrow]="1" prop="FirstName">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row?.FirstName}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Email" [flexGrow]="2" prop="Email">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row?.Email}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="ContactNumber" [flexGrow]="2" prop="ContactNumber">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row?.ContactNumber}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="BY MONTH" [flexGrow]="2" prop="MonthName" >
-          <ng-template let-row="row" ngx-datatable-cell-template>
-              {{row?.MonthName}}
-          </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="HOLIDAYS" [flexGrow]="2" prop="value">
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template style="color: red;">
-         <span style="color: red;">{{row?.holidays}}</span> 
-        </ng-template>
-    </ngx-datatable-column>
-    </ngx-datatable>
-  </div>
-</div>
-   <!-- this is fourth table -->
-<div class="col-md-12" style="margin-left: 10%;width: 80%;font-size: larger;" [hidden]="yeartable">
+<div class="col-md-12" style="margin-left: 10%;width: 80%;font-size: larger;">
     <div style="width: 100%">
-      <ngx-datatable class="bootstrap" [limit]="40" [rows]="employees" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
+      <ngx-datatable class="bootstrap" [limit]="40" [rows]="LeaveList" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
           <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
         [resizeable]="false" style="font-size: larger;">
         </ngx-datatable-column>  
-           <ngx-datatable-column name="UserName" prop="UserName">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                  {{ row?.UserName}}
-              </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="FirstName" [flexGrow]="1" prop="FirstName">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                  {{row?.FirstName}}
-              </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Email" [flexGrow]="2" prop="Email">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                  {{row?.Email}}
-              </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="ContactNumber" [flexGrow]="2" prop="ContactNumber">
-              <ng-template let-row="row" ngx-datatable-cell-template>
-                  {{row?.ContactNumber}}
-              </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="BY YEAR" [flexGrow]="2" prop="yearname" >
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row?.yearname}}
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="HOLIDAYS" [flexGrow]="2" prop="value">
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template style="color: red;">
-           <span style="color: red;">{{row?.holidays}}</span> 
+        <ngx-datatable-column name="FirstName" [flexGrow]="2" prop="firstName" >
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row?.firstName}}
           </ng-template>
       </ngx-datatable-column>
+           <ngx-datatable-column name="From Date" prop="fromDate">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row?.fromDate | date:'fullDate'}}
+              </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="To Date" prop="toDate">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row?.toDate | date:'fullDate'}}
+              </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Status" [flexGrow]="2" prop="status">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+               <span style="color:green;">   {{row?.status}}</span>
+              </ng-template>
+          </ngx-datatable-column>
       </ngx-datatable>
     </div>
   </div>

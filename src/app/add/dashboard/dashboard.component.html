@@ -1,156 +1,111 @@
 <mat-drawer-container style="height: 100%;">
-    <mat-drawer mode="over" [opened]="side" style="background-color: #263238;" [ngStyle]="{'width':width}">
-        <app-sidenav></app-sidenav> 
-    </mat-drawer>   
-    <mat-drawer-content>
-       <app-header (togglesidebarForMe)="sidebartog()"></app-header>
+  <mat-drawer mode="side" [opened]="true" style="background-color: #263238">
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+  <mat-drawer-content>
 
-       <div class="container">
-        <div class="row">
-          <h1>Statistics</h1>
-          <label>Today</label> &nbsp;
-          <p>3.45/8 hrs</p>
-          <p><ngb-progressbar type="success" [value]="50"></ngb-progressbar></p>
-        </div>
-       
-        <div class="row">
-          <label>This Week</label> &nbsp;
-          <p>28/40hrs</p>
-          <p><ngb-progressbar type="danger" [value]="100"></ngb-progressbar></p>
-        </div>
-        <div class="row">
-          <label>This Month</label> &nbsp;
-          <p>90/180hrs</p>
-          <p><ngb-progressbar type="info" [value]="50"></ngb-progressbar></p>
-        </div>
-        <div class="row">
-          <label>Remaining</label> &nbsp;
-          <p>90/180hrs</p>
-          <p><ngb-progressbar type="secondary" [value]="50"></ngb-progressbar></p>
-        </div>
-        <div class="row">
-          <label>OverTime</label> &nbsp;
-          <p>5hrs</p>
-          <p><ngb-progressbar type="warning" [value]="50"></ngb-progressbar></p>
-        </div>
-       </div>
+    <div class="container" style="background-color: #fdfdfd00;">
+      <div class="row">
 
-       <div class="container">
-        <div class="row" style="float:left;">
-         <h1>Timesheet</h1>
-          <p>March 11, 2023</p>
-        </div>
-       <div class="row">
-        <label>Puch In at</label>
-        <p> Wed 11th Mar 2023 10:00 AM</p>
-       </div>
-       </div>
-       <div class="container">
-       <div class="row">
-        <div style="display: block;">
-          <fusioncharts width="40%"
-          height="40%"
-          type="doughnut2d"
-          [dataSource]="chartpie">
-          </fusioncharts>
-        </div>
-       </div>
+        <section class="vh-10">
+          <div class="container py-5 h-100">
+            <div class="d-flex justify-content-center align-items-center">
+              <button class="btn-success p-3 btnhover" style="border: none; border-radius:9px;" [routerLink]="['/userlist']">
+                leave requests {{Requestsnumber}}
+              </button>
+            </div>
 
-       <div class="row" style="float: left;">
-        <h3>BREAK</h3>
-        <p>1.2hrs</p>
-       </div>
-       <div class="row">
-        <h3>OverTime</h3>
-        <p>3hrs</p>
-       </div>
-      </div>
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col col-md-9 col-lg-7 col-xl-5" style="width: 100%;">
+                <div class="d-flex justify-content-between">
+                  <div class="card" style="border-radius: 15px; background-color: #50C878; width: 20%;"
+                    (click)="Navigate('Present')">
+                    <div class="card-body p-4">
+                      <div class="d-flex text-white">
+                        <div class="flex-shrink-0">
+                          <img src="./assets/img/Present.png" alt="Generic placeholder image" class="img-fluid"
+                            style="width: 70px; border-radius: 10px;">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <h3 class="mb-1">{{Present}}</h3>
+                          <p class="mb-2 pb-1">PRESENT</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-      <div class="container">
-        <div class="col-md-12" style="margin-left: 10%;width: 80%;font-size: larger;">
-          <div style="width: 100%">
-            <ngx-datatable class="bootstrap" [limit]="30" [rows]="employees" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
-                <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
-              [resizeable]="false" style="font-size: larger;">
-              </ngx-datatable-column>  
-                 <ngx-datatable-column name="Date" prop="UserName">
-                    <ng-template let-row="row" ngx-datatable-cell-template>
-                        {{ row?.UserName}}
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Puch In" [flexGrow]="1" prop="FirstName">
-                    <ng-template let-row="row" ngx-datatable-cell-template>
-                        {{row?.FirstName}}
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Puch Out" [flexGrow]="2" prop="Email">
-                    <ng-template let-row="row" ngx-datatable-cell-template>
-                        {{row?.Email}}
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Site" [flexGrow]="2" prop="ContactNumber">
-                    <ng-template let-row="row" ngx-datatable-cell-template>
-                        {{row?.ContactNumber}}
-                    </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Break" [flexGrow]="2" prop="workingdays" >
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{row?.workingdays | date}}
-                  </ng-template>
-              </ngx-datatable-column>
-            <ngx-datatable-column name="OverTime" [flexGrow]="2" prop="status">
-              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                <span style="color: red;"> {{row?.status}}</span>
-              </ng-template>
-          </ngx-datatable-column>
-            </ngx-datatable>
+                  <div class="card" style="border-radius: 15px; background-color: #FFDF00; width: 20%;"
+                  (click)="Navigate('Late')">
+                    <div class="card-body p-4">
+                      <div class="d-flex text-white">
+                        <div class="flex-shrink-0">
+                          <img src="./assets/img/lates (1).png" alt="Generic placeholder image" class="img-fluid"
+                            style="width: 70px; border-radius: 10px;">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <h3 class="mb-1">{{Late}}</h3>
+                          <p class="mb-2 pb-1">LATE</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card" style="border-radius: 15px; background-color: red; width: 20%;"
+                  (click)="List('Absent')">
+                    <div class="card-body p-4">
+                      <div class="d-flex text-white">
+                        <div class="flex-shrink-0">
+                          <img src="./assets/img/4993059.png" alt="Generic placeholder image" class="img-fluid"
+                            style="width: 70px; border-radius: 10px;">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <h3 class="mb-1">{{Absent}}</h3>
+                          <p class="mb-2 pb-1">ABSENT</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card" style="border-radius: 15px; background-color: #0a2641; width: 20%;"
+                  (click)="List('Leave')">
+                    <div class="card-body p-4">
+                      <div class="d-flex text-white">
+                        <div class="flex-shrink-0">
+                          <img src="./assets/img/Alibhai.png" alt="Generic placeholder image" class="img-fluid"
+                            style="width: 70px; border-radius: 10px;">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <h3 class="mb-1">{{Leave}}</h3>
+                          <p class="mb-2 pb-1">LEAVE</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <br>
+
+                <div class="d-flex justify-content-around  mt-4">
+                  <div class="card p-2" style="background-color: white;border-radius: 15px;">
+                  <fusioncharts width="500" height="400" [type]="type" [dataFormat]="dataFormat"
+                    [dataSource]="dataSource">
+                  </fusioncharts>
+                  </div>
+
+                  <div class="card p-2" style="background-color: white;border-radius: 15px;">
+                    <fusioncharts width="400" height="400" [type]="Charttype" [dataFormat]="dataFormat"
+                      [dataSource]="GuagedataSource">
+                    </fusioncharts>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
-        </div> 
+        </section>
+
       </div>
-      <div class="container" style="margin-top:5%;float:left;">
-        <div class="row" style="float: left;">
-          <p>Absents - Last 7 days</p>
-         <div style="display: block;">
-           <fusioncharts width="80%"
-           height="40%"
-           type="doughnut2d"
-           [dataSource]="chartpie">
-           </fusioncharts>
-         </div>
-        </div>
-
-        <div class="row" style="float:left;">
-          <p>Absents - This Month</p>
-         <div style="display: block;">
-           <fusioncharts width="70%"
-           height="40%"
-           type="doughnut2d"
-           [dataSource]="chartpie">
-           </fusioncharts>
-         </div>
-        </div>
-
-        <div class="row" style="float:right;">
-          <p>Leaves - This Month</p>
-         <div style="display: block;">
-           <fusioncharts width="80%"
-           height="40%"
-           type="doughnut2d"
-           [dataSource]="chartpie">
-           </fusioncharts>
-         </div>
-        </div>
-
-        <fusioncharts
-        type="angulargauge"
-        width="450"
-        height="250"
-        dataFormat="json"
-        [dataSource]="Doneit"
-       ></fusioncharts>
-      </div>
-    </mat-drawer-content>
+    </div>
+  </mat-drawer-content>
 </mat-drawer-container>
-
-
-    

@@ -1,5 +1,5 @@
 <mat-drawer-container>
-  <mat-drawer mode="over" [opened]="side" style="background-color: #263238;width: 12%;">
+  <mat-drawer mode="over" [opened]="side" style="background-color: #263238" [ngStyle]="{'width':width}">
        <app-sidenav></app-sidenav> 
   </mat-drawer>
   <mat-drawer-content>
@@ -23,13 +23,18 @@
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                     <input type="text" formControlName="UserName" id="form3Example97" class="form-control" required/>
-                  <label class="form-label" for="form3Example97">UserName</label>
+                      <select class="form-select" aria-label="Default select example" placeholder = "Name"
+                      style="height: 45px;border-radius: 5px;" formControlName="SiteId" [(ngModel)]="this.Employeemodel.SiteId" >
+                         <!-- <option *ngIf="SiteName != ''" selected>{{SiteName}}</option> -->
+                        <option *ngFor="let option of Sitelist" [value]="option.siteId" 
+                        [selected]="SiteName === option.siteName">{{ option.siteName }}</option>
+                      </select> 
+                  <label class="form-label" for="form3Example97">SiteName</label>
                   </div> 
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="text" formControlName="FirstName" id="form3Example97" class="form-control" required/>
+                    <input type="text" formControlName="FirstName" [(ngModel)]="this.Employeemodel.FirstName" id="form3Example97" class="form-control" required/>
                     <label class="form-label" for="form3Example97">FirstName</label> 
                  </div>
                 </div>
@@ -37,27 +42,28 @@
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                     <input type="text" formControlName="LastName" id="form3Example97" class="form-control" required/>
+                     <input type="text" formControlName="LastName" [(ngModel)]="this.Employeemodel.LastName" id="form3Example97" class="form-control" required/>
                      <label class="form-label" for="form3Example97">LastName</label> 
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="password" formControlName="Password" id="form3Example97" class="form-control" required/>
-                    <label class="form-label" for="form3Example97">Password</label> 
-                 </div>
+                     <select class="select" required formControlName="DepartmentName" [(ngModel)]="this.Employeemodel.Gender" style="height:30px ;width: 170px;">
+                      <option *ngFor="let option of GenderList" [value]="option.value" 
+                        [selected]="Gender === option.value">{{ option.value }}</option>
+                    </select>
+                    <h3> <label class="form-label" for="form3Example1w">Gender</label></h3>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                     <input type="email" formControlName="Email" id="exampleInputEmail1" class="form-control" required/>
+                     <input type="email" formControlName="Email" [(ngModel)]="this.Employeemodel.Email" id="exampleInputEmail1" class="form-control" required/>
                      <label class="form-label" for="exampleInputEmail1">Email</label> 
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="tel" formControlName="ContactNumber" id="form3Example97" class="form-control" required/>
+                    <input type="tel" formControlName="ContactNumber" [(ngModel)]="this.Employeemodel.ContactNumber" id="form3Example97" class="form-control" required/>
                     <label class="form-label" for="form3Example97">Contact Number</label> 
                  </div>
                 </div>
@@ -65,48 +71,51 @@
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="text" formControlName="City" id="exampleInputEmail1" class="form-control" required/>
+                    <input type="text" formControlName="City" [(ngModel)]="this.Employeemodel.City" id="exampleInputEmail1" class="form-control" required/>
                     <label class="form-label" for="exampleInputEmail1">City</label> 
                  </div>
                   
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="date" formControlName="DateOfBirth" id="form3Example97" class="form-control" required/>
+                    <input type="date" formControlName="DateOfBirth" [(ngModel)]="this.Employeemodel.DateOfBirth" id="form3Example97" class="form-control" required/>
                     <label class="form-label" for="form3Example97">Date of Birth</label> 
                  </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 mb-4">
-                  <textarea class="form-control" formControlName="Addresses" rows="2" ></textarea>
+                  <textarea class="form-control" [(ngModel)]="this.Employeemodel.Addresses" formControlName="Addresses" rows="2" ></textarea>
                        <label class="form-label" for="form3Example97">Address</label>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="text" formControlName="EmployeeCode" id="exampleInputEmail1" class="form-control" required/>
+                    <input type="text" formControlName="EmployeeCode" [(ngModel)]="this.Employeemodel.EmployeeCode" id="exampleInputEmail1" class="form-control" required/>
                     <label class="form-label" for="exampleInputEmail1">Registration Code</label> 
                  </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 mb-4">
-                  <input type="time" formControlName="StartTime" id="exampleInputEmail1" class="form-control" required/>
+                  <input type="time" formControlName="StartTime" 
+                  [(ngModel)]="this.Employeemodel.StartTime" id="exampleInputEmail1" 
+                  class="form-control" required [(ngModel)]="StartTime"  ngbTimepicker
+                  (ngModelChange)="this.Employeemodel.StartTime = $event"/>
                        <label class="form-label" for="form3Example97">Start Time</label>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <input type="number" formControlName="WorkingHours" id="exampleInputEmail1" min="1" max="9" class="form-control" required/>
+                    <input type="number" formControlName="WorkingHours" [(ngModel)]="this.Employeemodel.WorkingHours" id="exampleInputEmail1" min="1" max="9" class="form-control" required/>
                     <label class="form-label" for="exampleInputEmail1">Working Hours</label> 
                  </div>
                 </div>
               </div>
-              <div class="row">
+              <!-- <div class="row">
                  
                 <div class="col-md-6 mb-4">
                   <div class="mb-4">
 
-                    <select class="select" required formControlName="DepartmentName" style="height:30px ;width: 170px;">
+                     <select class="select" required formControlName="DepartmentName" style="height:30px ;width: 170px;">
                       <option value="Software Development">Software Development</option>
                       <option value="Game Development">Game Development</option>
                       <option value="IT Support">IT Support</option>
@@ -115,7 +124,7 @@
     
                   </div> 
                 </div>
-                <div class="col-md-6 mb-4">
+                 <div class="col-md-6 mb-4">
                  
                   <h4 class="mb-0 me-4">Gender: </h4>
                   <div class="radio">
@@ -134,12 +143,12 @@
                       value="female">Female</label>
                   </div>
                 </div>
-                </div>
+                </div> -->
               <div class="Button">
               <div class="card-footer">
               <button type="submit" *ngIf="userid.id > 0" class="btn btn-success btn-lg mb-1">Update Employee</button>
               <button type="submit" *ngIf="userid.id == 0" style="margin:5px ;height:50px;width:130px;font-size: larger;" class="w3-btn btn-success">Add Employee</button>
-              <button type="reset" style="margin:5px ;height:50px;width:80px;font-size: larger;" class="w3-btn btn-warning" (click)="reset()">Reset</button>
+              <button type="reset" style="margin:5px ;height:50px;width:80px;font-size: larger;" class="btn btn-warning" (click)="reset()">Reset</button>
           </div>
           </div>
             </form>

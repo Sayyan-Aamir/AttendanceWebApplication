@@ -1,0 +1,65 @@
+import { Component, OnInit } from '@angular/core';
+import {LeaveModel} from 'src/app/Model/leave-model';
+import { HostListener} from "@angular/core";
+import {HttpClient} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-requestleave',
+  templateUrl: './requestleave.component.html',
+  styleUrls: ['./requestleave.component.css']
+})
+export class RequestleaveComponent implements OnInit {
+
+  model = new LeaveModel();
+  LoanTitle:any = null;
+  width:any = "13%";
+  getScreenWidth: any;
+
+  constructor(private com:HttpClient,private router: Router,private toast:ToastrService) { 
+    this.model = new LeaveModel();
+  }
+
+  ngOnInit(): void {
+    const Token = localStorage.getItem("Token");
+     const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Token}`
+    });
+
+  this.com.post('http://localhost:7182/api/Loan/LoanTitleList',null, {headers}).subscribe((response:any) =>{          
+  this.LoanTitle = response.responseData
+  });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.getScreenWidth = window.innerWidth;
+
+    if(this.getScreenWidth <= 1500)
+    {
+      this.width = '15%';
+    }
+   else if(this.getScreenWidth > 1500)
+    {
+      this.width = '13%';
+    }
+    console.log(this.width);
+  }
+
+  add(){
+    const Token = localStorage.getItem("Token");
+    const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+           'Authorization': `Bearer ${Token}`
+         });
+                  
+              this.com.post('http://localhost:7182/api/Employee/LeaveRequest',this.model, {headers}).subscribe((response:any) =>{
+               this.toast.success("Leave Requested Successfully");
+              this.router.navigate(['/Empdashboard']);
+             });
+  }
+
+}

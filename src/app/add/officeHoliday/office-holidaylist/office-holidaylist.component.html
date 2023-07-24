@@ -1,0 +1,64 @@
+<mat-drawer-container style="height: 100%;">
+    <mat-drawer mode="side" [opened]="true" style="background-color: #263238;" >
+      <app-sidenav></app-sidenav>
+    </mat-drawer> 
+   <mat-drawer-content>
+
+<div class="card" style="font-size:larger;margin: 50px 50px 10px 50px">
+    <div>
+      <ngx-datatable class="bootstrap" [limit]="20" [rows]="holidaylist" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
+        
+        
+        <ngx-datatable-column [width]="150" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+        [resizeable]="false" style="font-size: larger;">
+        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+        let-row="row">
+        <div style="text-align: center;display: inline-flex;">
+
+          <button type="button" class="btn btn-outline-danger" (click)="delete(row)" style="border: 0px;font-size: 8px;" matTooltip="DELETE"
+          matTooltipPosition="below"><i class="material-icons">delete</i><br></button>
+            <button type="button" (click)="update(row)" class="btn btn-datatable crud-icon-add btn-outline-success" matTooltip="UPDATE">
+            <span class="fa fa-edit ml-1 font-size-large" style="font-size: larger;"></span>
+        </button>
+        </div>
+       
+        </ng-template>
+        </ngx-datatable-column> 
+
+      <ngx-datatable-column name="Holiday Name" prop="firstName" >
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.holidayName}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Description" prop="status">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.description}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="From Date" prop="fromDate">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.fromDate | date:'longDate'}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="To Date" prop="toDate">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.toDate | date:'longDate'}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Leave Status" prop="isActive">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+           <span *ngIf="row.isActive == '0'" style="color:red">Date Passed</span>
+           <span *ngIf="row.isActive == '1'" style="color:green">Up Coming</span>
+        </ng-template>
+    </ngx-datatable-column>
+
+      </ngx-datatable>
+    </div>
+  </div> 
+
+</mat-drawer-content>
+</mat-drawer-container>

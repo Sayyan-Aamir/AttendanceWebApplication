@@ -1,0 +1,47 @@
+<mat-drawer-container style="height: 100%;">
+    <mat-drawer mode="side" [opened]="true" style="background-color: #263238;" >
+      <app-sidenav></app-sidenav>
+    </mat-drawer> 
+   <mat-drawer-content>
+
+    <div class="card" style="font-size:larger;margin: 50px 50px 10px 50px">
+        <div >
+            <ngx-datatable class="bootstrap" [limit]="20" [rows]="Leavelist" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" rowHeight="auto">
+                <ngx-datatable-column [width]="100" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+                    [resizeable]="false" style="font-size: larger;">
+                </ngx-datatable-column>
+              
+                <ngx-datatable-column name="First Name" [flexGrow]="3" prop="firstName">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row?.firstName}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Pay Amount" prop="payAmount">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                       <span style="color: green;"> {{row?.payAmount}}</span>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Outstanding Amount" prop="outstandingAmount">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                     <span style="color:red;">{{row?.outstandingAmount }}</span>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Repay Date" prop="repayDate">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.repayDate | date:'longDate'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <!-- <ngx-datatable-column name="Paid Amount" prop="paidAmount">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.paidAmount}}
+                    </ng-template>
+                </ngx-datatable-column> -->
+            </ngx-datatable>
+    
+        </div>
+    
+    </div>
+
+</mat-drawer-content>
+</mat-drawer-container>

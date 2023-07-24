@@ -1,0 +1,41 @@
+.card{
+    box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+    -webkit-box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+}
+
+@media (min-width: 1600px) {
+    .border {
+      margin-right: 200px; /* Increase margin-right for larger screens */
+    }
+}
+
+@media (max-width: 1600px) and (min-width: 1200px) {
+    .border {
+      margin-right: 100px; /* Increase margin-right for larger screens */
+    }
+}
+
+@media (max-width: 1200px) and (min-width: 700px) {
+    .border {
+      margin-right: 0px; /* Increase margin-right for larger screens */
+    }
+}
+
+@media (min-width: 1600px) {
+  .mat-drawer {
+    width: 12%; /* Increase margin-right for larger screens */
+  }
+}
+
+@media (max-width: 1600px) and (min-width: 1300px) {
+  .mat-drawer {
+    width: 15%; /* Increase margin-right for larger screens */
+  }
+}
+
+@media (max-width: 1300px) and (min-width: 1000px) {
+  .mat-drawer {
+    width: 15%; /* Increase margin-right for larger screens */
+  }
+}

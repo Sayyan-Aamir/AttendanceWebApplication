@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/employee.service';
 import { ToastrService } from 'ngx-toastr';
 import { Logincheck } from 'src/app/logincheck';
 import { Sendemail} from 'src/app/sendemail';
+import {HttpClient} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
-import { AddempComponent } from '../addemp/addemp.component';
 
 @Component({
   selector: 'app-login-page',
@@ -16,24 +15,26 @@ import { AddempComponent } from '../addemp/addemp.component';
 })
 export class LoginPageComponent implements OnInit {
   msg:number= 1;
+  RoleId: number = 0;
   msgs:number= 1;
   Login:any="";
   Password:any="";
   employee = new Logincheck();
   detail = new Sendemail();
   
-  constructor(private serve:EmployeeService,private router: Router,private toast:ToastrService,private dialog:MatDialog) {
+  constructor(private serve:EmployeeService,private router: Router,
+    private toast:ToastrService,private dialog:MatDialog,private com:HttpClient) {
     this.employee = new Logincheck();
     this.detail = new Sendemail();
    }
 
   ngOnInit(): void {
-    this.opendialog();
+    // this.opendialog();
 }
 
-opendialog(){
-  this.dialog.open(AddempComponent);
-}
+// opendialog(){
+//   this.dialog.open(AddempComponent);
+// }
 
 valuechange(s:any){
   if(this.Login != null || this.Login != "")
@@ -73,23 +74,59 @@ check(){
     else{
       this.msg = 1
       this.msgs = 1;
-      debugger;
-      this.serve.LoginEmployee(this.employee).subscribe((data:any) =>{
-        let message = data.Table[0];
-        if(message == null || message == "" || message == undefined)
-        {
-          this.toast.error('Invalid Data');
-        }
-        else
-        {
-          debugger;
-          localStorage.setItem('token',data.Table[0].CompanyName);
-          localStorage.setItem('Id',data.Table[0].CompanyId);
-          this.toast.success('Logged In Successfully','Success');
-          this.serve.Authenticate(1);
-          this.router.navigate(['/dashboard']);
-        }
+      
+      this.serve.Login(this.Login,this.Password).subscribe(result =>{
+        let message = result.responseData;
+         if(message == null || message == "" || message == undefined)
+         {
+           this.toast.error('Invalid Data');
+         }
+         else
+         {
+           localStorage.setItem('Token',result.responseData);
+           this.toast.success('Logged In Successfully','Success');
+           this.serve.Authenticate(1);
+
+           const Token = localStorage.getItem("Token");
+           const headers = new HttpHeaders({
+                 'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${Token}`
+                });
+       
+                this.com.post('http://localhost:7182/api/Employee/GetRole',null, {headers}).subscribe((response:any) =>{
+                 debugger; 
+                this.RoleId =  response.responseData;
+
+                 if(this.RoleId == 1)
+                {
+                  this.router.navigate(['/dashboard']);
+                }
+                else{
+                  this.router.navigate(['/Empdashboard']);
+                }
+
+                });
+
+         }
       })
+
+
+      // this.serve.LoginEmployee(this.employee).subscribe((data:any) =>{
+      //   let message = data.Table[0];
+      //   if(message == null || message == "" || message == undefined)
+      //   {
+      //     this.toast.error('Invalid Data');
+      //   }
+      //   else
+      //   {
+      //     debugger;
+      //     localStorage.setItem('token',data.Table[0].CompanyName);
+      //     localStorage.setItem('Id',data.Table[0].CompanyId);
+      //     this.toast.success('Logged In Successfully','Success');
+      //     this.serve.Authenticate(1);
+      //     this.router.navigate(['/dashboard']);
+      //   }
+      // })
     }
   }
 }

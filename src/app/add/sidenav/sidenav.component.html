@@ -1,44 +1,78 @@
-<div class="sidenav"><mat-nav-list>
-    <div class="responsive" style="margin-top:20%;">
-     <!-- <img src="{{imagesrc}}" alt="Company Logo" style="color: white;min-height:10px;max-height:35px;margin-left: 10px;"> -->
-     <!-- <img src="{{imagesrc}}" alt="Company Logo" style="color: white;margin-left: 10px;width: 200px;"> -->
-     <!-- <img src="{{imagesrc}}" alt="Company Logo" style="margin-left: 5px;" [ngStyle]="{'width':width}"> -->
-     <img src="./assets/img/logoAusztech.png" alt="" class="img-responsive alert-logo" style="margin-left: 25px;" [ngStyle]="{'width':width}"/>
-    </div>
-    <div class="abc">
-    <h2 matSubheader class="mt-2" style="color: white;text-align: center; margin-bottom: 2%;">OPTIONS</h2>
-    <!-- <a mat-list-item  routerLink="" routerLinkActive="list-item-active" style="color:whitesmoke;margin-bottom: 3%;">
-        <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-        <span class="menu-size-control">LOGIN PAGE</span></a> -->
 
-        <a mat-list-item  routerLink="/dashboard" routerLinkActive="list-item-active" style="color:whitesmoke;margin-bottom: 3%;">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">dashboard</mat-icon>
-            <span class="menu-size-control">DASHBOARD</span></a>
 
-    <a mat-list-item routerLink="/attendencelist" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
-        <mat-icon aria-hidden="false" aria-label="Example person icon">person</mat-icon>
-        <span class="menu-size-control">ATTENDENCE</span></a>
-          <!-- <h3> <label class="form-label" for="form3Example1w">Department</label></h3> -->
+<div class="sidenav" style="overflow-y: hidden;">
+    <mat-nav-list>
+      <div class="responsive" style="margin-top: 20%;">
+        <img src="./assets/img/logoAusztech.png" alt="" class="img-responsive alert-logo" style="margin-left: 25px;" [ngStyle]="{'width':width}" />
+      </div>
+      <div class="scroller p-3" style="font-size:100px;font-weight: 500;">
+  
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">dashboard</mat-icon>
+          <span class="menu-size-control">DASHBOARD</span>
+        </a>
+  
+        <a mat-list-item routerLink="/attendencelist" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
+          <mat-icon aria-hidden="false" aria-label="Example person icon">person</mat-icon>
+          <span class="menu-size-control">ATTENDENCE</span>
+        </a>
+  
         <a mat-list-item routerLink="/user-analytics" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
-            <mat-icon aria-hidden="false" aria-label="Example person icon">person</mat-icon>
-            <span class="menu-size-control">HOLIDAY</span></a>
-            <!-- <a mat-list-item routerLink="/official_holiday" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;font-size: larger;">
-                <span class="glyphicon glyphicon-plus" style="padding-right: 15px;margin-left: 3px;"></span>
-                <span class="menu-size-control">OFFICE HOLIDAY</span></a> -->
-    <a mat-list-item routerLink="/list" routerLinkActive="list-item-active" style="color:whitesmoke;margin-bottom: 3%;">
-     <mat-icon aria-hidden="false" aria-label="Example list icon">widgets</mat-icon> 
-     <span class="menu-size-control">EMPLOYEE</span></a>
-    <!-- <a mat-list-item routerLink="/addemployee/0" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
-    <mat-icon aria-hidden="false" aria-label="Example dashboard icon">dashboard</mat-icon>
-    <span class="menu-size-control">ADD EMPLOYEE</span></a> -->
-</div>
+          <mat-icon aria-hidden="false" aria-label="Example person icon">flight_takeoff</mat-icon>
+          <span class="menu-size-control">Leave</span>
+        </a>
+  
+        <a mat-list-item (click)="toggleEmployeeList()" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
+          <mat-icon aria-hidden="false" aria-label="Example list icon">person</mat-icon>
+          <span class="menu-size-control" >EMPLOYEE</span>
+          <mat-icon style="margin-left:18%;" aria-hidden="false" aria-label="Example list icon">keyboard_arrow_down</mat-icon>
+        </a>
 
-</mat-nav-list>
-</div>
+        <ul *ngIf="showEmployeeList" style="font-size:15px;color: whitesmoke;font-weight: 300;list-style: none;">
+          <li routerLink="/list" class="list-item"> <mat-icon aria-hidden="false">list_alt</mat-icon>
+            <span>Employee list</span>
+          </li>
+          <li routerLink="/addemployee/:0" class="list-item"> <mat-icon aria-hidden="false">person_add</mat-icon>
+            <span>Add Employee</span>
+          </li>
+        </ul>
 
+        <a mat-list-item (click)="toggleLoanList()" style="color: whitesmoke; margin-bottom: 3%;">
+          <mat-icon aria-hidden="false" aria-label="Example person icon">attach_money</mat-icon>
+          <span class="menu-size-control">Loan</span>
+          <mat-icon style="margin-left:46%;" aria-hidden="false" aria-label="Example list icon">keyboard_arrow_down</mat-icon>
+        </a>
+        
+        <ul *ngIf="showLoanList" style="font-size:15px;color: whitesmoke;font-weight: 300;list-style: none;">
+          <li routerLink="/loanlist" class="list-item"> <mat-icon aria-hidden="false">list</mat-icon>
+            <span>Loan list</span>
+          </li>
+          <li routerLink="/addloan" class="list-item"> <mat-icon aria-hidden="false">add</mat-icon>
+            <span>Add Loan</span>
+          </li>
+        </ul>
 
+        <a mat-list-item (click)="toggleHolidayList()" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
+          <mat-icon aria-hidden="false" aria-label="Example list icon">event</mat-icon>
+          <span class="menu-size-control" >Office Holiday</span>
+           <mat-icon style="margin-left:33%;" aria-hidden="false" aria-label="Example list icon">keyboard_arrow_down</mat-icon>
+        </a>
 
+        <ul *ngIf="showHolidayList" style="font-size:15px;color: whitesmoke;font-weight: 300;list-style: none;">
+          <li routerLink="/officeholiday" class="list-item"> <mat-icon aria-hidden="false">list_alt</mat-icon>
+            <span>Holiday list</span>
+          </li>
+          <li routerLink="/officeholidayadd/:0" class="list-item"> <mat-icon aria-hidden="false">person_add</mat-icon>
+            <span>Add office holiday</span>
+          </li>
+        </ul>
 
-
-
-
+        <a mat-list-item routerLink="" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
+          <mat-icon aria-hidden="false" aria-label="Example person icon">exit_to_app</mat-icon>
+          <span class="menu-size-control">Logout</span>
+        </a>
+  
+      </div>
+    </mat-nav-list>
+  </div>
+  

@@ -3,6 +3,24 @@
     text-align: center !important;
 }
 
+@media (min-width: 1600px) {
+    .mat-drawer {
+      width: 13%; /* Increase margin-right for larger screens */
+    }
+}
+  
+  @media (max-width: 1600px) and (min-width: 1300px) {
+    .mat-drawer {
+      width: 15%; /* Increase margin-right for larger screens */
+    }
+}
+  
+  @media (max-width: 1300px) and (min-width: 1000px) {
+    .mat-drawer {
+      width: 17%; /* Increase margin-right for larger screens */
+    }
+}
+
 .listoptions
 {
     background-color: white;

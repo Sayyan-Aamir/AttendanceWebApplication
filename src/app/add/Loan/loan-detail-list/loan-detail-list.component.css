@@ -1,0 +1,50 @@
+/* .crud-icon-add-plus {
+    color: white !important;
+    background-color: rgba(145,40,141,1) !important;
+}
+
+.crud-icon-add-plus:hover {
+    color: rgba(145,40,141,1) !important;
+    background-color: white !important;
+}
+
+.crud-icon {
+    font-size: 16px !important;
+    padding: 7px 8px !important;
+    cursor: pointer;
+    font-weight: bold !important;
+}
+
+
+.crud-icon-add {
+    color: #3ABDAA !important;
+} */
+
+.btn-datatable {
+    border: none !important;
+    background: transparent !important;
+}
+
+.card{
+    box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+    -webkit-box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+}
+
+@media (min-width: 1600px) {
+    .mat-drawer {
+      width: 10%; /* Increase margin-right for larger screens */
+    }
+  }
+  
+  @media (max-width: 1600px) and (min-width: 1300px) {
+    .mat-drawer {
+      width: 16%; /* Increase margin-right for larger screens */
+    }
+  }
+  
+  @media (max-width: 1300px) and (min-width: 1000px) {
+    .mat-drawer {
+      width: 16%; /* Increase margin-right for larger screens */
+    }
+  }

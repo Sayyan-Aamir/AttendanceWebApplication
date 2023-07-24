@@ -1,7 +1,4 @@
-mat-drawer{
-    width: 260px;
-    background: #0f172a;
-}
+
 
 mat-drawer-container{
     height: 100%;
@@ -26,40 +23,72 @@ mat-drawer-container{
 }
 
 .button {
-    border-radius: 25px;
-    width:158px;
-    height: 45px;
+    width:170px;
+    padding: auto;
+    height: 50px;
     font-size: large;
-    background-color: black;
+    background-color: rgba(145,40,141,1);
     color: white;
     border: none;
     text-align: center;
-    margin: 5px;
+    margin-left: 20px;
 }
 
 .button:hover
 {
-    background-color: red;
+    background-color: #0a2641;
 } 
 
 .buttons {
-    border-radius: 25px;
-    width:120px;
+    width:100px;
     height: 45px;
     font-size: large;
-    background-color: black;
+    background-color: rgba(145,40,141,1);
     color: white;
     border: none;
     text-align: center;
-    margin: 5px;
 }
 
 .buttons:hover
 {
-    background-color: red;
+    background-color: #0a2641;
 } 
 
 .icon-hover span:hover{
     color:red;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+@media (min-width: 1600px) {
+    .mat-drawer {
+      width: 13%; /* Increase margin-right for larger screens */
+    }
+}
+  
+@media (max-width: 1600px) and (min-width: 1300px) {
+.mat-drawer {
+      width: 16%; /* Increase margin-right for larger screens */
+}
+}
+  
+@media (max-width: 1300px) and (min-width: 1000px) {
+    .mat-drawer {
+      width: 17%; /* Increase margin-right for larger screens */
+    }
 }
 

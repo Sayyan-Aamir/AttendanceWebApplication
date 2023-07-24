@@ -1,0 +1,34 @@
+
+
+<div class="sidenav" style="overflow-y: hidden;">
+    <mat-nav-list>
+      <div class="responsive" style="margin-top: 20%;">
+        <img src="./assets/img/logoAusztech.png" alt="" class="img-responsive alert-logo" style="margin-left: auto;margin-right: auto;" [ngStyle]="{'width':width}" />
+      </div>
+      <div class="p-3" style="font-size:100px;font-weight: 500;">
+  
+        <a mat-list-item routerLink="/Empdashboard" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">dashboard</mat-icon>
+          <span class="menu-size-control" >Dashboard</span>
+        </a>
+  
+        <a mat-list-item routerLink="/reqLeave" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
+            <mat-icon aria-hidden="false" aria-label="Example person icon">time_to_leave</mat-icon>
+            <span class="menu-size-control" >Request Leave</span>
+          </a>  
+
+          <a mat-list-item routerLink="/empleavelist" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
+            <mat-icon aria-hidden="false" aria-label="Example person icon">list</mat-icon>
+            <span class="menu-size-control" >Leave List</span>
+          </a>  
+  
+
+        <a mat-list-item routerLink="" routerLinkActive="list-item-active" style="color: whitesmoke;margin-bottom: 3%;">
+          <mat-icon aria-hidden="false" aria-label="Example person icon">exit_to_app</mat-icon>
+          <span class="menu-size-control">Logout</span>
+        </a>
+  
+      </div>
+    </mat-nav-list>
+  </div>
+  

@@ -1,0 +1,60 @@
+<mat-drawer-container style="height: 100%;">
+    <mat-drawer mode="side" [opened]="true" style="background-color: #263238;" >
+      <app-employee-navbar></app-employee-navbar>
+    </mat-drawer> 
+   <mat-drawer-content>
+
+<div class="card" style="font-size:larger;margin: 50px 50px 10px 50px">
+    <div>
+      <ngx-datatable class="bootstrap" [limit]="20" [rows]="leavelist" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto">  
+      <ngx-datatable-column name="First Name" prop="firstName" >
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.firstName}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="From Date" prop="fromDate">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.fromDate | date:'longDate'}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="To Date" prop="toDate">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.toDate | date:'longDate'}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Leave Amount" prop="status">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.status}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Leave Reason" prop="leaveReason">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.leaveReason}}
+        </ng-template>
+    </ngx-datatable-column>
+
+      <ngx-datatable-column name="Leave Status" prop="requestLeave">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+           <span *ngIf="row.requestLeave == 'request'" style="color:black"> {{row?.requestLeave}}</span>
+           <span *ngIf="row.requestLeave == 'Approved'" style="color:green"> {{row?.requestLeave}}</span>
+           <span *ngIf="row.requestLeave == 'Reject'" style="color:red"> {{row?.requestLeave}}</span>
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Leave Status" prop="requestLeave">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            <span *ngIf="row.requestLeave == 'request'"><img src="./assets/img/circle.png"></span>
+           <span *ngIf="row.requestLeave == 'Approved'"><img src="./assets/img/correct.png" ></span>
+           <span *ngIf="row.requestLeave == 'Reject'"><img src="./assets/img/remove.png"></span>
+        </ng-template>
+    </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div> 
+
+</mat-drawer-content>
+</mat-drawer-container>

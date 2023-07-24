@@ -1,0 +1,105 @@
+mat-drawer{
+    width: 200px;
+    background: #0f172a;
+}
+
+mat-drawer-container{
+    height: 100%;
+}
+
+.status-label {
+    color:  #2C474D;
+    text-align: left;
+    font-weight: bold !important;
+    font-size: 12px !important;
+}
+.crud-icon-add-plus {
+    color: white !important;
+    background-color: rgba(145,40,141,1) !important;
+}
+
+.header{
+    text-align: center;
+}
+.crud-icon-add-plus:hover {
+    color: rgba(145,40,141,1) !important;
+    background-color: white !important;
+}
+
+.breadcrumb {
+    border-bottom: none !important;
+    padding: 15px 0px 5px 10px !important;
+    /* background: #fff !important; */
+}
+
+.breadcrumb>.breadcrumb-item+.breadcrumb-item:before {
+    content: "|" !important;
+}
+.breadcrumb .breadcrumb-item {
+    padding-top: 6px !important;
+    content: var("|");
+}
+
+
+.form-group-default-border-filter {
+    /* border: 1px solid #3ABDAA !important; */
+    border-radius: 6px !important;
+}
+
+
+.crud-icon {
+    font-size: 16px !important;
+    padding: 7px 8px !important;
+    cursor: pointer;
+    font-weight: bold !important;
+}
+
+
+.crud-icon-add {
+    color: #3ABDAA !important;
+}
+
+.btn-datatable {
+    border: none !important;
+    background: transparent !important;
+}
+
+
+
+
+
+.login100-form-btn {
+    align-items: center;
+    padding: 0 30px;
+    height: 46px;
+    border: none;
+    border-radius: 25px;
+    background: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+    background: rgb(94,99,173);
+background: linear-gradient(25deg, rgba(94,99,173,1) 0%, rgba(145,40,141,1) 70%);
+}
+
+.login100-form-btn:hover{
+    background:#0a2641 ;
+}
+
+@media (min-width: 1600px) {
+    .mat-drawer {
+      width: 13%; /* Increase margin-right for larger screens */
+    }
+}
+  
+@media (max-width: 1600px) and (min-width: 1300px) {
+    .mat-drawer {
+      width: 16%; /* Increase margin-right for larger screens */
+    }
+}
+  
+@media (max-width: 1300px) and (min-width: 1000px) {
+    .mat-drawer {
+      width: 16%; /* Increase margin-right for larger screens */
+    }
+}

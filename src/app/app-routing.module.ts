@@ -15,19 +15,66 @@ import {DashboardComponent} from './add/dashboard/dashboard.component';
 import { LoginPageComponent } from './add/login-page/login-page.component';
 import {ForgetpasswodComponent} from './add/forgetpasswod/forgetpasswod.component';
 import { NewpasswordComponent} from './add/newpassword/newpassword.component';
-import { CreateCompanyComponent} from './add/create-company/create-company.component';
+import { LoanlistComponent} from './add/Loan/loanlist/loanlist.component';
+import { UpdateLoanComponent} from './add/Loan/update-loan/update-loan.component';
+import { LoanDetailListComponent} from './add/Loan/loan-detail-list/loan-detail-list.component';
+import { AbsentListComponent} from './add/Dashboard list/absent-list/absent-list.component';
+import { AddloanComponent} from './add/Loan/addloan/addloan.component';
+import { EmployeeDashboardComponent} from './add/Employee/employee-dashboard/employee-dashboard.component';
+import { RequestleaveComponent} from './add/Employee/requestleave/requestleave.component';
+import { EmployeeLeavelistComponent} from './add/Employee/employee-leavelist/employee-leavelist.component';
+import { UserLeavelistComponent } from './add/User/user-leavelist/user-leavelist.component';
+import { EmployeeListComponent } from './add/Dashboard list/employee-list/employee-list.component';
+import { OfficeHolidaylistComponent } from './add/officeHoliday/office-holidaylist/office-holidaylist.component';
+import { OfficeHolidayaddComponent } from './add/officeHoliday/office-holidayadd/office-holidayadd.component';
+
 
 const routes: Routes = [
   {
     path:'firstpage',component:FirstpageComponent
   },
   {
-    path:'createcompany',component:CreateCompanyComponent
+    path:'empList/:id',component:EmployeeListComponent
+  },
+  {
+    path:'Ablist/:id',component:AbsentListComponent
   },
    {
      path:'addemp',component:AddempComponent 
       //,canActivate:[ActguardGuard]
    },
+   {
+    path:'Empdashboard',component:EmployeeDashboardComponent 
+     //,canActivate:[ActguardGuard]
+  },
+  {
+    path:'userlist',component:UserLeavelistComponent 
+     //,canActivate:[ActguardGuard]
+  },
+  {
+    path:'reqLeave',component:RequestleaveComponent 
+     //,canActivate:[ActguardGuard]
+  },
+  {
+    path:'empleavelist',component:EmployeeLeavelistComponent 
+     //,canActivate:[ActguardGuard]
+  },
+   {
+    path:'loanlist',component:LoanlistComponent 
+     //,canActivate:[ActguardGuard]
+  },
+  {
+    path:'updateloan/:id',component:UpdateLoanComponent 
+     //,canActivate:[ActguardGuard]
+  },
+  {
+    path:'loandetail/:id',component:LoanDetailListComponent 
+     //,canActivate:[ActguardGuard]
+  },
+  {
+    path:'addloan',component:AddloanComponent 
+     //,canActivate:[ActguardGuard]
+  },
    {
     path:'spinner',component:SpinnerComponent 
      //,canActivate:[ActguardGuard]
@@ -57,9 +104,6 @@ const routes: Routes = [
     // ,canActivate:[ActguardGuard]
    },
    {
-    path:'firstpage' , component: FirstpageComponent 
-   },
-   {
     path:'' , component: LoginPageComponent 
    },
    {
@@ -71,6 +115,14 @@ const routes: Routes = [
    },
    {
     path:'official_holiday' , component: OfficialHolidayComponent 
+    // ,canActivate:[ActguardGuard]
+  },
+  {
+    path:'officeholiday' , component: OfficeHolidaylistComponent 
+    // ,canActivate:[ActguardGuard]
+  },
+  {
+    path:'officeholidayadd/:id' , component: OfficeHolidayaddComponent 
     // ,canActivate:[ActguardGuard]
   },
   {

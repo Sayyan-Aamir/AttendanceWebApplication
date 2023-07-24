@@ -2,24 +2,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
 import { Empclass } from './empclass';
 import { Emp } from './emp';
-import { HttpParams } from '@angular/common/http';
 import { Login } from './login';
 import {product} from 'src/app/product';
 import {environment} from 'src/environments/environment';
-import {Chartdata} from 'src/app/chartdata';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { SpinnerService } from './spinner.service';
-import { HolidayDates } from './holiday-dates';
 import { HolidayList } from './holiday-list';
 import { Mode } from './mode';
 import { Logincheck } from './logincheck';
 import {Sendemail} from './sendemail';
 import { LeaveDetails } from './leave-details';
-import { NewCompany } from './new-company';
-
+import { SearchCriteria } from '../../src/app/Model';
 
 @Injectable({
   providedIn: 'root'
@@ -70,33 +64,33 @@ constructor(private com:HttpClient, private router:Router,private service:Spinne
 
   }
 
-  createnewCompany(employee: NewCompany): Observable<NewCompany>
-  {
-    const formData: FormData = new FormData();
-    formData.append('CompanyName',employee.CompanyName);
-    formData.append('CompanyCode',employee.CompanyCode);
-    formData.append('CompanyNote',employee.CompanyNote);
-    formData.append('CompanyEmail',employee.CompanyEmail);
-    formData.append('CompanyNotificationEmail',employee.CompanyNotificationEmail);
-    formData.append('CompanyContactName',employee.CompanyContactName);
-    formData.append('CompanyAddress1',employee.CompanyAddress1);
-    formData.append('CompanyCity',employee.CompanyCity);
-    formData.append('CompanyStateProvince',employee.CompanyStateProvince);
-    formData.append('CompanyCountry',employee.CompanyCountry);
-    formData.append('CompanyPostCode',employee.CompanyPostCode);
-    formData.append('CompanyMobile',employee.CompanyMobile);
-    formData.append('Login',employee.Login);
-    formData.append('Password',employee.Password);
-    formData.append('UserFirstName',employee.UserFirstName);
-    formData.append('UserMiddleName',employee.UserMiddleName);
-    formData.append('UserLastName',employee.UserLastName);
-    formData.append('UserEmail',employee.UserEmail);
-    formData.append('Phone',employee.Phone);
+  // createnewCompany(employee: NewCompany): Observable<NewCompany>
+  // {
+  //   const formData: FormData = new FormData();
+  //   formData.append('CompanyName',employee.CompanyName);
+  //   formData.append('CompanyCode',employee.CompanyCode);
+  //   formData.append('CompanyNote',employee.CompanyNote);
+  //   formData.append('CompanyEmail',employee.CompanyEmail);
+  //   formData.append('CompanyNotificationEmail',employee.CompanyNotificationEmail);
+  //   formData.append('CompanyContactName',employee.CompanyContactName);
+  //   formData.append('CompanyAddress1',employee.CompanyAddress1);
+  //   formData.append('CompanyCity',employee.CompanyCity);
+  //   formData.append('CompanyStateProvince',employee.CompanyStateProvince);
+  //   formData.append('CompanyCountry',employee.CompanyCountry);
+  //   formData.append('CompanyPostCode',employee.CompanyPostCode);
+  //   formData.append('CompanyMobile',employee.CompanyMobile);
+  //   formData.append('Login',employee.Login);
+  //   formData.append('Password',employee.Password);
+  //   formData.append('UserFirstName',employee.UserFirstName);
+  //   formData.append('UserMiddleName',employee.UserMiddleName);
+  //   formData.append('UserLastName',employee.UserLastName);
+  //   formData.append('UserEmail',employee.UserEmail);
+  //   formData.append('Phone',employee.Phone);
 
-    debugger;
-    return this.com.post<NewCompany>(this.url +'/Employee/CreateNewCompany',formData);
+  //   debugger;
+  //   return this.com.post<NewCompany>(this.url +'/Employee/CreateNewCompany',formData);
 
-  }
+  // }
 
   Employee_Leave(employee: LeaveDetails): Observable<any>
   {
@@ -213,7 +207,7 @@ constructor(private com:HttpClient, private router:Router,private service:Spinne
 
   LoginEmployee(employee: Logincheck): Observable<any>
   {
-    debugger;
+    console.log("old");
     return this.com.post<any>(this.url +'/Employee/Login_Check',employee);
   }
 
@@ -243,6 +237,33 @@ constructor(private com:HttpClient, private router:Router,private service:Spinne
   TimeDetail_Employee(company_id: number): Observable<any>
   {
     return this.com.get<any>(this.url +'/Employee/WorkingTime_Employees?comp_id='+company_id);
+  }
+
+  Dashboard(model: SearchCriteria): Observable<any>
+  {
+    debugger;
+    const Token = localStorage.getItem("Token");
+  //   const header = new Headers({'Authorization': `Bearer ${Token}` });
+  //   const options = {
+  //     headers: header,
+  //  };
+
+  //     const header = new Headers({'Authorization': `Bearer ${Token}` });
+  //   const options = {
+  //     headers: header,
+  //  };
+
+    return this.com.post<any>('http://192.168.1.4:7182/api/Dashboard/Dashboard',model);
+  }
+
+  Login(Username: string, Password: string): Observable<any>
+  {
+  return this.com.post<any>(`http://localhost:7182/api/Auth/Login?username=${Username}&password=${Password}`,{});
+  }
+
+  AttendaceList(Username: string, Password: string): Observable<any>
+  {
+  return this.com.post<any>(`http://localhost:7182/api/Auth/Login?username=${Username}&password=${Password}`,{});
   }
 
 }

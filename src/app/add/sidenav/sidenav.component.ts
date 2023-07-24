@@ -8,8 +8,11 @@ import { HostListener} from "@angular/core";
 })
 export class SidenavComponent implements OnInit {
   width:any;
+  showHolidayList = false;
+  showLoanList = false;
+  showEmployeeList = false;
   getScreenWidth: any;
- imagesrc = 'assets/img/logoaud.png';
+  imagesrc = 'assets/img/logoaud.png';
   constructor() { }
 
   ngOnInit(): void {
@@ -36,40 +39,15 @@ export class SidenavComponent implements OnInit {
     }
     
   }
-  menuLinks = [
-    {
-      label: "DashBoard",
-      routerLink: "dashboard",
-      iconType: "",
-      iconName: "",
-      thumbNailClass: "bg-link"
-    },   
-    {
-      label: "Admin",
-      iconType: "fa",
-      iconName: "cogs",
-      toggle: "close",
-      thumbNailClass: "bg-link",
-      submenu: [
-        {
-          label: "Group",
-          routerLink: "/audit/group",
-          iconType: "letter",
-          iconName: "",
-        },
-        {
-          label: "Site",
-          routerLink: "/audit/site",
-          iconType: "letter",
-          iconName: "",
-        },
-        {
-          label: "Assign Notifications",
-          routerLink: "/admn/notification-assignment",
-          iconType: "letter",
-          iconName: "",
-        },
-          ]
-        }
-      ]
+
+  toggleEmployeeList(){
+     this.showEmployeeList = !this.showEmployeeList;
+  }
+
+  toggleHolidayList(){
+    this.showHolidayList = !this.showHolidayList;
+ }
+      toggleLoanList() {
+        this.showLoanList = !this.showLoanList;
+      }
 }

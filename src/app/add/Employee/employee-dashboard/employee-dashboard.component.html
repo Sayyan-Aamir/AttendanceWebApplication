@@ -1,0 +1,104 @@
+<mat-drawer-container style="height: 100%;">
+   <mat-drawer mode="side" [opened]="true" style="background-color: #263238">
+     <app-employee-navbar></app-employee-navbar>
+   </mat-drawer> 
+  <mat-drawer-content>
+     <!-- <app-header (togglesidebarForMe)="sidebartog()"></app-header>   -->
+    <!-- <div>
+      <nav class="mt-4" >
+        <ul class="d-flex justify-content-around">
+          <li style="list-style: none;">
+            <div class="btn-group">
+              <button type="button" class="btn btn-navbar crud-icon crud-icon-add-plus" [routerLink]="['/reqLeave']">
+                REQUEST LEAVE
+                <span class="fa fa-plus-square "></span>
+              </button>
+            </div>
+          </li>
+           <li><a href=""></a>
+          </li>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+        </ul>
+      </nav>
+    </div> -->
+
+    <div class="container" style="background-color: #fdfdfd00;">
+      <div class="row">
+
+        <section class="vh-10">
+          <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col col-md-9 col-lg-7 col-xl-5" style="width: 100%;">
+                <div class="d-flex justify-content-between">
+
+                </div>
+                  <div class="d-flex justify-content-between g-2   mt-4">
+
+                    <div class="card p-2" style="background-color: white;border-radius: 15px;">
+                    <fusioncharts width="500" height="450" [type]="type" [dataFormat]="dataFormat"
+                      [dataSource]="dataSource">
+                    </fusioncharts>
+                    </div>
+
+
+                      <div class="card p-2" style="background-color: white;border-radius: 15px;">
+                      <fusioncharts width="450" height="400" [type]="type" [dataFormat]="dataFormat"
+                        [dataSource]="DataSource">
+                      </fusioncharts>
+                      </div>
+                 
+                  </div>
+                  <br>
+                  <div class="row" style="margin-top:5%;">
+                    <div class="col-md-12" style="margin-left: 5%;width: 90%;font-size: larger;">
+                      <div style="width: 100%">
+                        <ngx-datatable class="bootstrap" [limit]="20" [rows]="Monthlylist" [columnMode]="'force'"
+                          [headerHeight]="50" [footerHeight]="50" rowHeight="auto">
+                          <ngx-datatable-column [width]="100" [sortable]="false" [canAutoResize]="false"
+                            [draggable]="false" [resizeable]="false" style="font-size: larger;">
+                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                              let-row="row">
+
+                            </ng-template>
+                          </ngx-datatable-column>
+                          <ngx-datatable-column name="Month" [flexGrow]="3" prop="month">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                              {{ row?.month}}
+                            </ng-template>
+                          </ngx-datatable-column>
+                          <ngx-datatable-column name="Present" prop="present">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                              {{row?.present}}
+                            </ng-template>
+                          </ngx-datatable-column>
+                          <ngx-datatable-column name="Late" prop="late">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                              {{row?.late}}
+                            </ng-template>
+                          </ngx-datatable-column>
+                          <ngx-datatable-column name="Leave" prop="leaves">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                              {{row?.leaves}}
+                            </ng-template>
+                          </ngx-datatable-column>
+                          <ngx-datatable-column name="Absents" prop="absents">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                              {{row?.absents}}
+                            </ng-template>
+                          </ngx-datatable-column>
+                        </ngx-datatable>
+                      </div>
+                    </div>
+                  </div>
+
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
