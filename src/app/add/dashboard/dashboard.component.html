@@ -1,20 +1,13 @@
 <mat-drawer-container style="height: 100%;">
-  <mat-drawer mode="side" [opened]="true" style="background-color: #263238">
+  <mat-drawer mode="side" [opened]="true" style="background-color: #100C08;">
     <app-sidenav></app-sidenav>
   </mat-drawer>
   <mat-drawer-content>
 
     <div class="container" style="background-color: #fdfdfd00;">
       <div class="row">
-
         <section class="vh-10">
           <div class="container py-5 h-100">
-            <div class="d-flex justify-content-center align-items-center">
-              <button class="btn-success p-3 btnhover" style="border: none; border-radius:9px;" [routerLink]="['/userlist']">
-                leave requests {{Requestsnumber}}
-              </button>
-            </div>
-
             <div class="row d-flex justify-content-center align-items-center h-100">
               <div class="col col-md-9 col-lg-7 col-xl-5" style="width: 100%;">
                 <div class="d-flex justify-content-between">
@@ -35,7 +28,7 @@
                   </div>
 
                   <div class="card" style="border-radius: 15px; background-color: #FFDF00; width: 20%;"
-                  (click)="Navigate('Late')">
+                    (click)="Navigate('Late')">
                     <div class="card-body p-4">
                       <div class="d-flex text-white">
                         <div class="flex-shrink-0">
@@ -51,7 +44,7 @@
                   </div>
 
                   <div class="card" style="border-radius: 15px; background-color: red; width: 20%;"
-                  (click)="List('Absent')">
+                    (click)="List('Absent')">
                     <div class="card-body p-4">
                       <div class="d-flex text-white">
                         <div class="flex-shrink-0">
@@ -67,7 +60,7 @@
                   </div>
 
                   <div class="card" style="border-radius: 15px; background-color: #0a2641; width: 20%;"
-                  (click)="List('Leave')">
+                    (click)="List('Leave')">
                     <div class="card-body p-4">
                       <div class="d-flex text-white">
                         <div class="flex-shrink-0">
@@ -83,14 +76,47 @@
                   </div>
 
                 </div>
+                <div class="d-flex justify-content-center gap-4 mt-4">
+                  <div class="card" style="border-radius: 15px; background-color: #0a2641; width: 20%;"
+                  [routerLink]="['/userlist']">
+                    <div class="card-body p-4">
+                      <div class="d-flex text-white">
+                        <div class="flex-shrink-0">
+                          <img src="./assets/img/Alibhai.png" alt="Generic placeholder image" class="img-fluid"
+                            style="width: 70px; border-radius: 10px;">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <h3 class="mb-1">{{Requestsnumber}}</h3>
+                          <p class="mb-2 pb-1">Leave Requests</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
+                  <div class="card" style="border-radius: 15px; background-color: #50C878; width: 20%;"
+                  [routerLink]="['/userloanlist']">
+                    <div class="card-body p-4">
+                      <div class="d-flex text-white">
+                        <div class="flex-shrink-0">
+                          <!-- <img src="./assets/img/Present.png" alt="Generic placeholder image" class="img-fluid"
+                            style="width: 70px; border-radius: 10px;"> -->
+                            <mat-icon aria-hidden="false" style="width: 70px; border-radius: 10px;font-size:70px;" aria-label="Example person icon">attach_money</mat-icon>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <h3 class="mb-1">{{loanRequests}}</h3>
+                          <p class="mb-2 pb-1">Loan Requests</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <br>
 
                 <div class="d-flex justify-content-around  mt-4">
                   <div class="card p-2" style="background-color: white;border-radius: 15px;">
-                  <fusioncharts width="500" height="400" [type]="type" [dataFormat]="dataFormat"
-                    [dataSource]="dataSource">
-                  </fusioncharts>
+                    <fusioncharts width="500" height="400" [type]="type" [dataFormat]="dataFormat"
+                      [dataSource]="dataSource">
+                    </fusioncharts>
                   </div>
 
                   <div class="card p-2" style="background-color: white;border-radius: 15px;">

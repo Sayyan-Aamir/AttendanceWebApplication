@@ -1,5 +1,5 @@
 <mat-drawer-container style="height: 100%;">
-  <mat-drawer mode="side" [opened]="true" style="background-color: #263238;" >
+  <mat-drawer mode="side" [opened]="true" style="background-color: #100C08;" >
     <app-sidenav></app-sidenav>
   </mat-drawer> 
  <mat-drawer-content>
@@ -10,32 +10,25 @@
       <img src="./assets/img/auszogo.png" class="img-fluid"
      style="width: 200px;height: auto;">
      <h2 style="width:450px;font-weight: normal;font-size: 28px;font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif">
-      Please submit your Loan request at least tens days before you want money </h2>
+      Add loan for employee at least ten days before you give loan</h2>
  </div>
  <div class="border d-flex flex-column gap-3 p-3 card"
  style="height: auto; width: 500px; margin-right: 100px; background-color: white;border-radius: 10px;">
- <h2 style="font-weight: 700;text-align: center;">Submit your Loan request</h2>
+ <h2 style="font-weight: 700;text-align: center;">Submit Employee Loan</h2>
 
  <div>
-   <select title="leave status" class="form-select" aria-label="Default select example" placeholder="Name"
-     style="border:none; box-shadow: none; border-radius:0px ;  border-bottom: 1px solid #ccc;"
+   <select class="form-select" aria-label="Default select example" placeholder="Name"
+     style="border:none; box-shadow: none; border-radius:0px ;
+     border-bottom: 1px solid #ccc;"
      [(ngModel)]="this.model.EmployeeId">
-     <option disabled>Employee</option>
-     <option *ngFor="let option of employeeList" [value]="option.employeeId">{{option.firstName}}</option>
+     <option selected disabled [value]="1">employee list</option>
+     <option *ngFor="let option of employeeList" [value]="option.employeeId" style="color: black;">{{option.firstName}}</option>
    </select>
+
  </div>
+
 
  <div>
-   <select title="leave status" class="form-select" aria-label="Default select example" placeholder="Name"
-     style="border:none; box-shadow: none; border-radius:0px ;  border-bottom: 1px solid #ccc;"
-     [(ngModel)]="this.model.LoanTitleId">
-     <option disabled>Loan Status</option>
-     <option *ngFor="let option of LoanTitle" [value]="option.loanTitleId">{{option.loanTitle}}</option>
-   </select>
- </div>
-
-
- <div class="">
 
    <div class="form-floating">
      <input [(ngModel)]="this.model.LoanAmount" type="number" class="form-control"
@@ -44,37 +37,49 @@
    </div>
  </div>
 
- <div class="">
+ 
+ <div>
+  <select title="leave status" class="form-select" aria-label="Default select example" placeholder="Name"
+    style="border:none; box-shadow: none; border-radius:0px ;  border-bottom: 1px solid #ccc;"
+    [(ngModel)]="this.model.LoanTitleId">
+    <option selected disabled [value]="1">loan status</option>
+    <option *ngFor="let option of LoanTitle" [value]="option.loanTitleId">{{option.loanTitle}}</option>
+  </select>
+</div>
+
+ <div>
 
    <div class="form-floating">
      <textarea class="form-control"
        style="border:none; box-shadow: none; border-radius:0px ;  border-bottom: 1px solid #ccc;"
        [(ngModel)]="this.model.LoanReason" rows="2"></textarea>
-     <label for="floatingInput">Loan Reason</label>
+       <label>Loan Reason</label>
    </div>
  </div>
 
- <div class="">
+ <div>
 
    <div class="form-floating">
      <input type="date" class="form-control"
        style="border:none; box-shadow: none; border-radius:0px ;  border-bottom: 1px solid #ccc;"
        [(ngModel)]="this.model.LoanDate" id="floatingInput">
-     <label for="floatingInput">FromDate</label>
+     <label for="floatingInput">LoanDate</label>
    </div>
  </div>
 
 
  <div>
-   <label class="form-label" for="form3Example97">Leave</label>
+
    <select title="leave status" class="form-select" aria-label="Default select example" placeholder="Name"
-     style="border:none; box-shadow: none; border-radius:0px ;  border-bottom: 1px solid #ccc;"
+     style="border:none; box-shadow: none; border-radius:0px ;
+     border-bottom: 1px solid #ccc;"
      [(ngModel)]="this.model.LoanStatus">
-     <option value="Pending" selected>Pending</option>
+     <option selected disabled value="">loan status</option>
+     <option value="Pending">Pending</option>
      <option value="Approved">Approved</option>
    </select>
  </div>
- <button class="btn btn-success" (click)="add()"> Request</button>
+ <button class="btn btn-success" (click)="add()">Add Loan</button>
 </div>
    </div>
    

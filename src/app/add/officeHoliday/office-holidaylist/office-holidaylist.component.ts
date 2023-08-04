@@ -57,4 +57,80 @@ export class OfficeHolidaylistComponent implements OnInit {
     this.router.navigate(['/officeholidayadd/' + row.holidayId]);
   }
 
+  clearfilter(){
+    this.model.FromDate = null;
+    this.model.ToDate = null;
+    this.model.HolidayName = null;
+
+    this.officeHolidaylist();
+  }
+
+  filter(){
+    
+    if(this.model.FromDate?.toString() == "")
+    {
+      this.model.FromDate = null;
+    }
+
+    if(this.model.ToDate?.toString() == "")
+    {
+      this.model.ToDate = null;
+    }
+
+    if(this.model.HolidayName == "")
+    {
+      this.model.HolidayName = null;
+    }
+
+    this.officeHolidaylist();
+
+  }
+
+  export(){
+
+    if(this.model.FromDate?.toString() == "")
+    {
+      this.model.FromDate = null;
+    }
+
+    if(this.model.ToDate?.toString() == "")
+    {
+      this.model.ToDate = null;
+    }
+
+    if(this.model.HolidayName == "")
+    {
+      this.model.HolidayName = null;
+    }
+
+    const Token = localStorage.getItem("Token");
+    const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Token}`
+    });
+  
+    const apiUrl = `http://localhost:7182/api/Holiday/ExportPdf`;
+  
+    this.com.post(apiUrl, this.model,{headers: headers, responseType: 'blob' }).subscribe(
+      (response: Blob) => {
+        this.downloadImage(response, "Holidaylist");
+      },
+      (error) => {
+        console.error('Error loading image:', error);
+      }
+    );
+  }
+  
+  downloadImage(blobData: Blob, imageName: string): void {
+    const url = window.URL.createObjectURL(blobData);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = imageName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }
+
+
 }

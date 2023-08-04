@@ -1,0 +1,130 @@
+<mat-drawer-container style="height: 100%;">
+    <mat-drawer mode="side" [opened]="true" style="background-color: #100C08;" >
+        <app-sidenav></app-sidenav> 
+    </mat-drawer> 
+   <mat-drawer-content>
+
+    <div>
+      <div class="mt-4">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="col-sm-6" style="text-align: left;"> 
+            <h4 class="fa_managementheading" style="font-weight: 600;font-size:25px">
+              <strong>Task Management</strong>
+            </h4>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3" style="text-align:right;width:60%;"> 
+              <button class="_fa_log-accident pull-right ng-star-inserted" style="padding:10px 30px;" 
+              [routerLink]="['/task']">
+              <i class="glyphicon glyphicon-plus" style="padding-right:10px;">
+              </i>
+              Add Task
+              </button>
+              </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  <div>
+    <div class="row mt-4 p-2">
+    <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select">
+      <div class="form-floating">
+        <select class="form-select" aria-label="Default select example" placeholder = "Name"
+        style="border:1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;"   
+        [(ngModel)]="this.model.Status" >
+        <option selected disabled [value]="1">task status</option>
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+        </select>
+        <label>Task Status</label>
+      </div>
+    </div>
+
+   <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select">
+      <div class="form-floating">
+          <input type="date" class="form-control"
+          [(ngModel)]="this.model.FromDate" style="border: 1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;" id="floatingInput" placeholder="@">
+          <label>Assessment date</label>
+        </div>
+    </div> 
+
+    <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select">
+      <div class="form-floating">
+        <input type="date" class="form-control"
+         style="border:1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;"
+          [(ngModel)]="this.model.ToDate" id="floatingInput" placeholder="@">
+        <label>Due Date</label>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row mt-4" style="text-align: right;">
+  <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select" style="width: 95%;">
+
+  <button type="submit" class="button"
+  style="border:none;background:none; font-weight: 600; font-size: 17px;
+   margin-right:20px; padding-top:15px;" (click)="clearfilter()">Clear Filter</button>
+      <button type="submit" class=" login100-form-btn" style="padding:12px 30px;"
+      (click)="filter()">Search</button>
+      <button type="submit" class=" login100-form-btn" style="padding:12px 30px;" (click)="export()">
+        <i class="fa fa-download" style="padding-right: 10px;"></i>
+        Export</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="card" style="font-size: larger; margin: 10px 50px;">
+      <div>
+      <ngx-datatable class="bootstrap" [limit]="20" [rows]="tasklist" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto">  
+
+        <ngx-datatable-column [width]="140" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+        [resizeable]="false" style="font-size: larger;">
+        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+        let-row="row">
+        <div style="text-align: center;display: inline-flex;">
+
+          <button type="button" class="btn btn-outline-danger" (click)="delete(row)" style="border: 0px;font-size: 8px;" matTooltip="DELETE"
+          matTooltipPosition="below"><i class="material-icons">delete</i><br></button>
+          <button type="button" class="btn btn-outline-success" (click)="loandetail(row)" style="border: 0px;font-size: 8px;" matTooltip="DETAIL LIST"
+          matTooltipPosition="below"><i class="material-icons">filter_list</i><br></button>
+        <!-- <button type="button" class="btn btn-datatable crud-icon-add btn-outline-success"
+        (click)="update(row)" matTooltip="UPDATE">
+       <span class="fa fa-edit ml-1 font-size-large" style="font-size: larger;"></span>
+        </button> -->
+        </div>
+       
+        </ng-template>
+        </ngx-datatable-column>  
+
+        <ngx-datatable-column name="Task Name" prop="taskName">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.taskName}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Description" prop="description" [width]="250">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.description}}
+            </ng-template>
+        </ngx-datatable-column>
+
+    <ngx-datatable-column name="To Date" prop="toDate">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row?.toDate | date:'longDate'}}
+        </ng-template>
+    </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div> 
+  </div>
+</div>
+
+</mat-drawer-content>
+</mat-drawer-container>

@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from 'src/app/employee.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 import {  SearchCriteria } from 'src/app/Model';
-import {MatDialog} from '@angular/material/dialog';
-import { HostListener} from "@angular/core";
 import { Buffer } from 'buffer';
+import {Ng4LoadingSpinnerService} from 'src/app/Services/ng4-loading-spinner-service.service';
 
 const data = "";
 
@@ -17,9 +15,7 @@ const data = "";
   styleUrls: ['./employee-dashboard.component.css']
 })
 export class EmployeeDashboardComponent implements OnInit {
-  side=false;
-  getScreenWidth: any;
-  width:any;
+
   Present:number = 1;
   Absent:number = 1;
   Late:number = 1;
@@ -38,20 +34,13 @@ export class EmployeeDashboardComponent implements OnInit {
   dataSource :any= data;
   DataSource:any= data;
 
-  constructor(private com:HttpClient,private Services:EmployeeService,private router: Router,private toast:ToastrService,private dialog:MatDialog) { 
+  constructor(private com:HttpClient,
+    private router: Router,private service:Ng4LoadingSpinnerService
+    ) { 
       this.model = new SearchCriteria();
   }
 
   ngOnInit(): void {
-    this.getScreenWidth = window.innerWidth;
-
-    if(this.getScreenWidth <= 1500)
-    {
-      this.width = '18%';
-    }
-    else{
-      this.width = '15%';
-    }
 
     this.GetEmployeeTime();
     const token = localStorage.getItem('Token');
@@ -66,7 +55,6 @@ export class EmployeeDashboardComponent implements OnInit {
         const decodedString = Buffer.from(base64String, 'base64').toString('utf-8');
         const decode = decodeURI(decodedString);
     
-        debugger
         const startingCharacter = '/';
         const stoppingString = '"';
         const startingIndex = decode.indexOf(startingCharacter);
@@ -75,24 +63,6 @@ export class EmployeeDashboardComponent implements OnInit {
 
         this.imageUrl = substring;
       }
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onWindowResize() {
-    this.getScreenWidth = window.innerWidth;
-    if(this.getScreenWidth <= 1500)
-    {
-      this.width = '18%';
-    }
-   else if(this.getScreenWidth > 1500)
-    {
-      this.width = '15%';
-    }
-    
-  }
-  sidebartog()
-  {
-    this.side = !this.side; 
   }
   
   GetEmployeeTime(){
@@ -109,7 +79,13 @@ export class EmployeeDashboardComponent implements OnInit {
 
               this.com.post(url, null,{ headers }).subscribe((response: any) => {
                 debugger;
-                this.Monthlylist = response.responseData.item2;
+                 this.Monthlylist = response.responseData.item2;
+
+             if(response.responseData.item2 == null)
+             {
+              this.Monthlylist = null;
+             }
+
                 this.Present = response.responseData.item1[0].presentPercent;
                 this.Absent = response.responseData.item1[0].absentPercent;
                 this.Late = response.responseData.item1[0].latePercent;
@@ -174,8 +150,6 @@ export class EmployeeDashboardComponent implements OnInit {
                this.DataSource = Chartdata
              });
                });
-
-          
 
   }
 

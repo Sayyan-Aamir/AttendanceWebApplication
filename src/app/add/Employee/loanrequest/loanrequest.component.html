@@ -1,0 +1,55 @@
+<mat-drawer-container style="height: 100%;">
+    <mat-drawer mode="side" [opened]="true" style="background-color: #100C08;">
+      <app-employee-navbar></app-employee-navbar>
+    </mat-drawer> 
+   <mat-drawer-content>
+  
+  
+    <div class="d-flex align-items-center  justify-content-between " style="height: 100vh;padding: 10;background-color: whitesmoke;">
+        <div class=" d-flex flex-column justify-content-center gap-2"  style="margin-left: 60px;padding: 0 40px 0;"> 
+          <img src="./assets/img/auszogo.png" class="img-fluid"
+         style="width: 200px;height: auto;">
+         <h2 style="width:450px;font-weight: normal;font-size: 25px;font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif">
+        Submit your loan request at least ten days before you want amount </h2>
+     </div>
+     <div class="border d-flex flex-column gap-3 p-3 card"
+     style="height: auto; width: 500px; margin-right: 100px; background-color: white;border-radius: 10px;">
+     <h2 style="font-weight: 700;text-align: center;">Submit loan request</h2>
+    
+    
+     <div>
+    
+       <div class="form-floating">
+         <input [(ngModel)]="this.model.LoanAmount" type="number" class="form-control"
+           style="border:none; box-shadow: none; border-radius:0px ;  border-bottom: 1px solid #ccc;">
+         <label for="floatingInput">Loan Amount</label>
+       </div>
+     </div>
+    
+     <div>
+    
+       <div class="form-floating">
+         <input type="date" class="form-control"
+           style="border:none; box-shadow: none; border-radius:0px ;  border-bottom: 1px solid #ccc;"
+           [(ngModel)]="this.model.LoanDate" id="floatingInput">
+         <label for="floatingInput">LoanDate</label>
+       </div>
+     </div>
+
+     <div>
+    
+        <div class="form-floating">
+          <textarea class="form-control"
+            style="border:none; box-shadow: none; border-radius:0px ;  border-bottom: 1px solid #ccc;"
+            [(ngModel)]="this.model.LoanReason" rows="2"></textarea>
+            <label style="color: grey;font-weight: 600;">Loan Reason</label>
+        </div>
+      </div>
+    
+     <button class="btn btn-success" (click)="add()" *ngIf="requestId == 0">Request Loan</button>
+     <button class="btn btn-success" (click)="Update()" *ngIf="requestId != 0">Update Loan</button>
+    </div>
+       </div>
+  
+   </mat-drawer-content>
+  </mat-drawer-container>

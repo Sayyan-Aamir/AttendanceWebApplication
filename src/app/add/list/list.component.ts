@@ -1,16 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { SpinnerComponent } from '../spinner/spinner.component';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/employee.service';
-import {MatDialog} from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { HostListener} from "@angular/core";
-import { LeaveDetails } from 'src/app/leave-details';
 import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 import {  SearchCriteria } from '../../Model';
 import {  SiteSearchDto } from '../../Model/site-search-dto';
+
 
 @Component({
   selector: 'app-list',
@@ -18,27 +14,18 @@ import {  SiteSearchDto } from '../../Model/site-search-dto';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  resultGridList:any;
-  side=false;
-  item:any="";
-  Name:any;
+
+
   EmployeeId:number = 0;
-  width:any;
-  RoleId:any = 0;
-  RoleList:any[] = [];
-  Company:any[]=[];
-  CompanyId:any;
-  Names:string="";
-  getScreenWidth: any;
-  Details = new LeaveDetails();
   allemployees:any[]=[];
   Sitelist:any[]=[];
   model = new SearchCriteria();
   Sitemodel = new SiteSearchDto();
 
-  constructor(private data:EmployeeService,private router: Router,private sanitizer: DomSanitizer,private toast:ToastrService,private dialog:MatDialog,
+  constructor(private data:EmployeeService,private router: Router,
+    private toast:ToastrService,
     private com:HttpClient) {
-    this.Details = new LeaveDetails();
+
     this.model = new SearchCriteria();
     this.Sitemodel = new SiteSearchDto();
    }
@@ -47,34 +34,12 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
 
     this.model.FromDate = null;
-    this.model.ToDate = null; 
+    this.model.ToDate = null;
 
+    this.SiteList();
     this.EmployeeList();
-    this.SiteList()
 
-    this.getScreenWidth = window.innerWidth;
-
-    if(this.getScreenWidth <= 1500)
-    {
-      this.width = '18%';
-    }
-    else{
-      this.width = '15%';
-    }
-  }
-  
-  @HostListener('window:resize', ['$event'])
-  onWindowResize() {
-    this.getScreenWidth = window.innerWidth;
-    if(this.getScreenWidth <= 1500)
-    {
-      this.width = '15%';;
-    }
-   else if(this.getScreenWidth > 1500)
-    {
-      this.width = '13%';
-    }
-    
+    this.model.SiteId = 1;
   }
 
   EmployeeList(){
@@ -100,19 +65,8 @@ export class ListComponent implements OnInit {
      });
   }
 
-  opendialog(){
-      this.dialog.open(SpinnerComponent, {data: {LeaveId: this.Details.LeaveId}});
-  }
-  transform(base64ImageNew: any) {
-
-    base64ImageNew = "data:image/jpg/png/jpeg;base64," + base64ImageNew;
-
-    return this.sanitizer.bypassSecurityTrustResourceUrl(base64ImageNew);
-}
-
   delete(emp:any)
   {
- 
     const Token = localStorage.getItem("Token");
     const headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -131,17 +85,33 @@ export class ListComponent implements OnInit {
   {
     this.router.navigate(['/addemployee/' + emp.employeeId]);
   }
-  sidebartog()
-  {
-    this.side = !this.side; 
-  }
+
+
  updateeemp(employeeId: number){
   this.router.navigate(['/addemp/' + employeeId]);
   }
 
   filter(){
+
+  if(this.model.SiteId == 1)
+  {
+    this.model.SiteId = null;
+  }
+
+  if(this.model.FromDate?.toString() == "")
+  {
+    this.model.FromDate = null;
+  }
+
+  if(this.model.ToDate?.toString() == "")
+  {
+    this.model.ToDate = null;
+  }
+
     this.EmployeeList();
-    this.toast.success('Employee list displayed successfully');
+
+    this.toast.success('Employee list Displayed Successfully');
+    this.model.SiteId = 1;
   }
   clearfilter(){
   this.model.FromDate = null;
@@ -150,10 +120,56 @@ export class ListComponent implements OnInit {
   this.model.SiteId = null;
 
   this.EmployeeList();
+  this.model.SiteId = 1;
   }
-  leave(){
- this.opendialog();
+
+  export(){
+
+    if(this.model.FromDate?.toString() == "")
+    {
+      this.model.FromDate = null;
+    }
+
+    if(this.model.ToDate?.toString() == "")
+    {
+      this.model.ToDate = null;
+    }
+
+    if(this.model.SiteId == 1)
+    {
+      this.model.SiteId = null;
+    }
+
+    const Token = localStorage.getItem("Token");
+    const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Token}`
+    });
+  
+    const apiUrl = `http://localhost:7182/api/Employee/ExportEmployee`;
+  
+    this.com.post(apiUrl, this.model,{headers: headers, responseType: 'blob' }).subscribe(
+      (response: Blob) => {
+        this.downloadImage(response, "Employeelist");
+      },
+      (error) => {
+        console.error('Error loading image:', error);
+      }
+    );
+    this.model.SiteId = 1;
   }
- }
+  
+  downloadImage(blobData: Blob, imageName: string): void {
+    const url = window.URL.createObjectURL(blobData);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = imageName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }
+
+}
 
 

@@ -65,7 +65,18 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
-
+import { LoanrequestComponent } from './add/Employee/loanrequest/loanrequest.component';
+import { EmployeeLoanlistComponent } from './add/Employee/employee-loanlist/employee-loanlist.component';
+import { LoandetaillistComponent } from './add/Employee/loandetaillist/loandetaillist.component';
+import { UserLoanlistComponent } from './add/User/user-loanlist/user-loanlist.component';
+import { AddTaskComponent } from './add/Task/add-task/add-task.component';
+import { TaskListComponent } from './add/Task/task-list/task-list.component';
+import { TaskDetailListComponent } from './add/Task/task-detail-list/task-detail-list.component';
+import { MatSelectModule } from '@angular/material/select';
+import { EmployeeTasklistComponent } from './add/Employee/employee-tasklist/employee-tasklist.component';
+import { EmployeeTaskdetaillistComponent } from './add/Employee/employee-taskdetaillist/employee-taskdetaillist.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { LoadingSpinnerComponent } from './Services/loading-spinner/loading-spinner.component';
 
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
 @NgModule({
@@ -100,7 +111,17 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     EmployeeLeavelistComponent,
     AbsentListComponent,
     OfficeHolidaylistComponent,
-    OfficeHolidayaddComponent
+    OfficeHolidayaddComponent,
+    LoanrequestComponent,
+    EmployeeLoanlistComponent,
+    LoandetaillistComponent,
+    UserLoanlistComponent,
+    AddTaskComponent,
+    TaskListComponent,
+    TaskDetailListComponent,
+    EmployeeTasklistComponent,
+    EmployeeTaskdetaillistComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -123,6 +144,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     FusionChartsModule,
     MatProgressSpinnerModule,
     MatSidenavModule,
+    MatExpansionModule,
+    MatSelectModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       // positionClass:'toast-bottom-right',

@@ -1,29 +1,86 @@
 <mat-drawer-container style="height: 100%;">
-<mat-drawer mode="side" [opened]="true" style="background-color: #263238;">
+<mat-drawer mode="side" [opened]="true" style="background-color: #100C08;">
     <app-sidenav></app-sidenav> 
 </mat-drawer>   
-<mat-drawer-content class="width-control">
-    <!-- <app-header (togglesidebarForMe)="sidebartog()"></app-header> -->
- <div class="border-top" style="margin-bottom: 1rem !important;">
- </div>
+<mat-drawer-content>
 
- <div class="container">
-    <div class="row justify-content-center mb-3">
-      <div class="col-md-3" style="margin-top: 2.5%">
-      <div class="btn-group">
-        <button  type="button" class="btn btn-navbar crud-icon crud-icon-add-plus" [routerLink]="['/official_holiday']">
-     Add Employee Leave
-    <span class="fa fa-plus "></span>
-</button>
-      </div>
+  <div>
+    <div class="mt-4">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="col-sm-6" style="text-align: left;"> 
+          <h4 class="fa_managementheading" style="font-weight: 600;font-size:25px">
+            <strong>Leave Management</strong>
+          </h4>
+          </div>
+
+          <div class="col-xs-12 col-sm-3 col-md-3" style="text-align:right;width:50%;"> 
+            <button class="_fa_log-accident pull-right ng-star-inserted" style="padding:10px 30px;" 
+            [routerLink]="['/official_holiday']">
+            <i class="glyphicon glyphicon-plus" style="padding-right:10px;">
+            </i>
+            Add Leave
+            </button>
+            </div>
+        </div>
+
       </div>
     </div>
   </div>
 
+  <div>
+    <div class="row mt-4 p-2">
+      <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select">
+        <div class="form-floating">
+          <select class="form-select" aria-label="Default select example" placeholder = "Name"
+          style="border:1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;"   
+          [(ngModel)]="this.model.Status" >
+          <option selected disabled [value]="1">leave status</option>
+          <option value="Half Day Leave">Half Day Leave</option>
+          <option value="Full Day Leave">Full Day Leave</option>
+          </select> 
+          <label>Leave Status</label>
+        </div>
+      </div>
 
-<div class="col-md-12" style="margin-left: 10%;width: 80%;font-size: larger;">
-    <div style="width: 100%">
-      <ngx-datatable class="bootstrap" [limit]="40" [rows]="LeaveList" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
+       <div class="col-xs-12 col-sm-3 col-md-3 fa_mrgbtm20 singlSelect">
+        <div class="form-floating">
+            <input type="date" class="form-control"  [(ngModel)]="this.model.FromDate"
+            style="border: 1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;" id="floatingInput" placeholder="@">
+            <label>From Date</label>
+          </div>
+      </div> 
+
+      <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select">
+        <div class="form-floating">
+          <input type="date" class="form-control"  [(ngModel)]="this.model.ToDate"
+          style="border:1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;" id="floatingInput" placeholder="@">
+          <label >ToDate</label>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row mt-4" style="text-align: right;">
+      <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select" style="width: 95%;">
+
+      <button type="submit" class="button"
+      style="border:none;background:none; font-weight: 600; font-size: 17px;
+       margin-right:20px; padding-top:15px;" (click)="clearfilter()">Clear Filter</button>
+          <button type="submit" class=" login100-form-btn" style="padding:12px 30px;" (click)="filter()"
+          >Search</button>
+          <button type="submit" class=" login100-form-btn" style="padding:12px 30px;" (click)="export()">
+            <i class="fa fa-download" style="padding-right: 10px;"></i>
+            Export</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="card" style="font-size: larger; margin: 10px 10px;">
+        <div>
+      <ngx-datatable class="bootstrap" [limit]="20" [rows]="LeaveList" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
           <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
         [resizeable]="false" style="font-size: larger;">
         </ngx-datatable-column>  
@@ -47,9 +104,17 @@
                <span style="color:green;">   {{row?.status}}</span>
               </ng-template>
           </ngx-datatable-column>
+          <ngx-datatable-column name="Status" [flexGrow]="2" prop="isLeave">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+             <span style="color:green;" *ngIf='row.isLeave == 1'>On Going</span>
+             <span style="color:red;" *ngIf='row.isLeave == 0'>Date Crossed</span>
+            </ng-template>
+        </ngx-datatable-column>
       </ngx-datatable>
     </div>
   </div>
+</div>
+</div>
 </mat-drawer-content>
 </mat-drawer-container> 
 

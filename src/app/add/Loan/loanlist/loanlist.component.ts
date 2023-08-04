@@ -29,11 +29,14 @@ export class LoanlistComponent implements OnInit {
   employeeIdupdate=null;
 
   ngOnInit(): void {
+    this.model.LoanDate = null;
     this.model.FromDate = null;
     this.model.ToDate = null; 
 
     this.EmployeeList();
     this.LoanList();
+
+    this.loanModel.EmployeeName = "1";  
   }
 
   EmployeeList(){
@@ -49,6 +52,12 @@ export class LoanlistComponent implements OnInit {
   }
 
   LoanList(){
+
+   if(this.loanModel.EmployeeName == "1")
+   {
+    this.loanModel.EmployeeName = null;
+   }
+
     const Token = localStorage.getItem("Token");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -57,21 +66,23 @@ export class LoanlistComponent implements OnInit {
      this.com.post('http://localhost:7182/api/Loan/LoanList',this.loanModel, {headers}).subscribe((response:any) =>{
      this.loanList = response.responseData;
      });
+
+     this.loanModel.EmployeeName = "1";  
   }
 
   delete(loanId:any)
   {
 
-    const Token = localStorage.getItem("Token");
-    const headers = new HttpHeaders({
-          'Content-Type': 'application/json',
-           'Authorization': `Bearer ${Token}`
-         });
+  const Token = localStorage.getItem("Token");
+  const headers = new HttpHeaders({
+  'Content-Type': 'application/json',
+  'Authorization': `Bearer ${Token}`
+  });
 
-         this.LoanId = loanId;
-         const url = `http://localhost:7182/api/Loan/DeleteLoan?LoanId=${loanId}`;
+    this.LoanId = loanId;
+    const url = `http://localhost:7182/api/Loan/DeleteLoan?LoanId=${loanId}`;
 
-     this.com.post(url, null,{ headers }).subscribe((response: any) => {
+    this.com.post(url, null,{ headers }).subscribe((response: any) => {
     this.toast.success('Loan Deleted Successfully');
     this.LoanList();
   });
@@ -83,7 +94,16 @@ export class LoanlistComponent implements OnInit {
 
   filter(){
 
-    debugger;
+    if(this.loanModel.LoanDate?.toString() == "")
+    {
+      this.loanModel.LoanDate = null;
+    }
+
+    if(this.loanModel.EmployeeName == "1")
+    {
+      this.loanModel.EmployeeName = null;
+    }
+
     const Token = localStorage.getItem("Token");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -92,12 +112,18 @@ export class LoanlistComponent implements OnInit {
      this.com.post('http://localhost:7182/api/Loan/LoanList',this.loanModel, {headers}).subscribe((response:any) =>{
      this.loanList = response.responseData;
      });
-
-    this.toast.success('Loan list displayed successfully');
+     this.loanModel.EmployeeName = "1";
+     this.toast.success('Loan list displayed successfully');
   }
   clearfilter(){
+    
+  this.model.LoanDate = null;
+  this.model.EmployeeName = null;
 
-  this.EmployeeList();
+  this.loanModel.LoanDate = null;
+  this.loanModel.EmployeeName = null;
+
+  this.LoanList();
   }
 
   update(loan:any){
@@ -106,5 +132,43 @@ export class LoanlistComponent implements OnInit {
 
   listPage(id:any){
     this.router.navigate(['/loandetail/' + id]);
+  }
+
+  export(){
+
+    if(this.loanModel.LoanDate?.toString() == "")
+    {
+      this.loanModel.LoanDate = null;
+    }
+
+    const Token = localStorage.getItem("Token");
+    const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Token}`
+    });
+  
+    const apiUrl = `http://localhost:7182/api/Loan/ExportLoan`;
+  
+    this.com.post(apiUrl, this.loanModel,{headers: headers, responseType: 'blob' }).subscribe(
+      (response: Blob) => {
+        this.downloadImage(response, "Loanlist");
+      },
+      (error) => {
+        console.error('Error loading image:', error);
+      }
+    );
+
+    this.model.Employee_Name = "1";
+  }
+  
+  downloadImage(blobData: Blob, imageName: string): void {
+    const url = window.URL.createObjectURL(blobData);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = imageName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
   }
 }

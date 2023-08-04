@@ -1,63 +1,101 @@
 <mat-drawer-container>
-    <mat-drawer mode="side" [opened]="true" style="background-color: #263238">
+    <mat-drawer mode="side" [opened]="true" style="background-color: #100C08;">
          <app-sidenav></app-sidenav> 
     </mat-drawer>
     <mat-drawer-content>
 
-             <div class="row mt-4" style="text-align: center; border:none;margin-left:auto;">
+    <div>
+      <div class="mt-4">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="col-sm-6" style="text-align: left;"> 
+            <h4 class="fa_managementheading" style="font-weight: 600;font-size:25px">
+              <strong>Employee Management</strong>
+            </h4>
+            </div>
 
-              <div class="col-lg-3 col-md-3">
-                <select class="form-select" aria-label="Default select example" placeholder = "Name"
-                style="height: 55px;border-radius: 5px;" [(ngModel)]="this.model.SiteId" >
-                  <option *ngFor="let option of Sitelist" [value]="option.siteId">{{ option.siteName }}</option>
-                </select> 
-                </div> 
-
-              <div class="col-md-3">
-
-              <div class="form-floating">
-                <input type="email" class="form-control" style="border-radius: 10px;" [(ngModel)]="this.model.Employee_Name" id="floatingInput" placeholder="@">
-                <label for="floatingInput">Employee Name</label>
+            <div class="col-xs-12 col-sm-3 col-md-3" style="text-align:right;width:50%;"> 
+              <button class="_fa_log-accident pull-right ng-star-inserted" style="padding:10px 30px;" 
+              [routerLink]="['/addemployee/:0']">
+              <i class="glyphicon glyphicon-plus" style="padding-right:10px;">
+              </i>
+              Add Employee
+              </button>
               </div>
-              </div>        
+          </div>
 
-              <div class="col-lg-3 col-md-3">
-
-                <div class="form-floating" >
-                  <input type="date" class="form-control" style="border-radius: 10px;" [(ngModel)]="this.model.FromDate" id="floatingInput">
-                  <label for="floatingInput">FromDate</label>
-                </div>
-                </div> 
-         
         </div>
-
-        <div class="row mt-4" style="border:none;margin-left:auto;">   
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-
-                  <div class="form-floating mb-3">
-                    <input type="date" class="form-control" style="border-radius: 10px;" [(ngModel)]="this.model.ToDate" id="floatingInput">
-                    <label for="floatingInput">ToDate</label>
-                  </div>
-
-                </li>
-                <li class="breadcrumb-item" >
-                  <button type="submit" class="login100-form-btn" (click)="filter()">FILTER</button>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  <button type="submit" class="login100-form-btn" (click)="clearfilter()">
-                    CLEAR FILTER</button>
-                </li>
-              </ol>
-            </nav>
-     
+      </div>
     </div>
 
-          <div class="card" style="font-size:larger;margin: 50px 20px 10px 20px">
-            <div>
+    <div class="p-3">
+      <div class="row mt-4">
+        <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select">
+          <div class="form-floating">
+            <select class="form-select" aria-label="Default select example" placeholder = "Name"
+            style="border:1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;"   
+            [(ngModel)]="this.model.SiteId" >
+            <option selected disabled [value]="1">select site</option>
+              <option *ngFor="let option of Sitelist"
+              [value]="option.siteId">{{ option.siteName }}</option>
+            </select> 
+            <label>Site</label>
+          </div>
+        </div>
+  
+         <div class="col-xs-12 col-sm-3 col-md-3 fa_mrgbtm20 singlSelect">
+          <div class="form-floating">
+              <input type="text" class="form-control" [(ngModel)]="this.model.Employee_Name"
+              style="border: 1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;" id="floatingInput" placeholder="@">
+              <label>Employee</label>
+            </div>
+        </div> 
+  
+  
+      </div>
+
+      <div class="row mt-4">
+
+        <div class="col-xs-12 col-sm-3 col-md-3 fa_mrgbtm20 singlSelect">
+          <div class="form-floating">
+              <input type="date" class="form-control" [(ngModel)]="this.model.FromDate"
+              style="border: 1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;" id="floatingInput" placeholder="@">
+              <label>From Date</label>
+            </div>
+        </div> 
+  
+        <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select">
+          <div class="form-floating">
+            <input type="date" class="form-control" [(ngModel)]="this.model.ToDate"
+            style="border:1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;" id="floatingInput" placeholder="@">
+            <label >ToDate</label>
+          </div>
+        </div>
+  
+      </div>
+      
+
+      <div class="row mt-4" style="text-align: right;">
+        <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select" style="width: 95%;">
+
+        <button type="submit" class="button"
+        style="border:none;background:none; font-weight: 600; font-size: 17px;
+         margin-right:20px; padding-top:15px;" (click)="clearfilter()">Clear Filter</button>
+            <button type="submit" class=" login100-form-btn" style="padding:12px 30px;"
+            (click)="filter()">Search</button>
+            <button type="submit" class=" login100-form-btn" style="padding:12px 30px;" (click)="export()">
+              <i class="fa fa-download" style="padding-right: 10px;"></i>
+              Export</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="card" style="font-size: larger; margin: 10px 10px;">
+          <div>
               <ngx-datatable class="bootstrap" [limit]="20" [rows]="allemployees" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
-                  <ngx-datatable-column [width]="100" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+                  <ngx-datatable-column hidden="side" [width]="105" [sortable]="false" [canAutoResize]="false" [draggable]="false"
                 [resizeable]="false" style="font-size: larger;">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
                 let-row="row">
@@ -65,9 +103,7 @@
 
                   <button type="button" class="btn btn-outline-danger" (click)="delete(row)" style="border: 0px;font-size: 8px;" matTooltip="DELETE"
                   matTooltipPosition="below"><i class="material-icons">delete</i><br></button>
-                  <!-- <button type="button" class="btn btn-outline-success" (click)="update(row)" style="margin-right: 100%;border: 0px;" matTooltip="UPDATE"
-                  matTooltipPosition="below"><i class="material-icons">update</i></button> -->
-                  <button type="button" (click)="update(row)" class="btn btn-datatable  crud-icon crud-icon-add btn-outline-success" matTooltip="UPDATE">
+                  <button type="button" (click)="update(row)" class="btn crud-icon-add btn-outline-success" matTooltip="UPDATE">
                     <span class="fa fa-edit ml-1 font-size-large" style="font-size: larger;"></span>
                 </button>
                 </div>
@@ -116,5 +152,8 @@
               </ngx-datatable>
             </div>
           </div> 
+      </div>
+    </div>
+
     </mat-drawer-content>
     </mat-drawer-container>

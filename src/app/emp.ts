@@ -1,6 +1,6 @@
 export class Emp {
     EmployeeId: string="";
-    StartDate: string="";
-    EndDate:string="";
-    holiday:string="";
+    FromDate: Date | null= null;
+    ToDate: Date | null= null;
+    Status: string | null = null;
 }

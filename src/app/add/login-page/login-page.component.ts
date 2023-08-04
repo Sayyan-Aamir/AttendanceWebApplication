@@ -32,9 +32,6 @@ export class LoginPageComponent implements OnInit {
     // this.opendialog();
 }
 
-// opendialog(){
-//   this.dialog.open(AddempComponent);
-// }
 
 valuechange(s:any){
   if(this.Login != null || this.Login != "")

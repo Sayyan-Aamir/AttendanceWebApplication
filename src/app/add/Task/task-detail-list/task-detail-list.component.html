@@ -1,0 +1,47 @@
+<mat-drawer-container style="height: 100%;">
+    <mat-drawer mode="side" [opened]="true" style="background-color: #100C08;" >
+        <app-employee-navbar></app-employee-navbar>
+    </mat-drawer> 
+   <mat-drawer-content>
+
+    <div class="card" style="font-size:larger;margin: 50px 50px 10px 50px">
+        <div >
+            <ngx-datatable class="bootstrap" [limit]="20" [rows]="tasklist" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" rowHeight="auto">
+                <ngx-datatable-column [width]="100" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+                    [resizeable]="false" style="font-size: larger;">
+                </ngx-datatable-column>
+              
+                <ngx-datatable-column name="First Name" [flexGrow]="3" prop="firstName">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{ row?.firstName}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Status" prop="status">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span style="color: green;" *ngIf="row?.status == 'completed'">Completed</span>
+                    <span style="color: red;" *ngIf="row?.status == 'pending'"> Pending</span>
+                    </ng-template>
+                </ngx-datatable-column>
+
+                 <ngx-datatable-column name="Complete" prop="status">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <div class="form-check form-switch" *ngIf="row?.status == 'completed'" (click)="Status(row)">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                            <label style="color: green;" class="form-check-label" for="flexSwitchCheckChecked">{{row?.status}}</label>
+                          </div>
+                        <div class="form-check form-switch" *ngIf="row?.status == 'pending'">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" (click)="Status(row)">
+                            <label style="color: red;" class="form-check-label" for="flexSwitchCheckChecked">Pending</label>
+                          </div>
+                    </ng-template>
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+    
+        </div>
+    
+    </div>
+
+</mat-drawer-content>
+</mat-drawer-container>

@@ -8,15 +8,6 @@ mat-icon{
     margin-right: 1rem;
 }
 
-.responsive{
-    max-width: 200px;
-}
-
-mat-divider{
-    border-top-width: 2px;
-    border-color: white;
-}
-
 mat-list-item{
     color:white;
     font-size: 0.8rem;
@@ -25,22 +16,21 @@ mat-list-item{
     border-radius: 5px;
     margin:0 8px;
 }
-
-mat-subheader{
-    color:white;
-    font-size: 0.8rem;
-    font-weight: 100;
-    letter-spacing: 1px;
-}
 .list-item {
     margin-bottom: 3%;
     display: flex;
     align-items: center;
 }
 
+.mat-list-item:hover{
+  background: linear-gradient(90deg, rgba(234,21,26,1) -20%, rgba(255,104,40,1) 68%)
+}
+
+
 .list-item mat-icon {
     margin-right: 5px;
-  }
+}
+
 .dropdown-container {
     display: none;
     background-color: #262626;
@@ -49,8 +39,6 @@ mat-subheader{
 
 .sidenav{
   transition: all .5s ease;
-  position: fixed;
-  /* box-shadow: 0.63rem 0 1.25rem 0 #8690a3; */
 }
 
 .scroller {
@@ -61,19 +49,6 @@ mat-subheader{
   
 ::-webkit-scrollbar {
     width: 2px;
-}
-  
-/* ::-webkit-scrollbar-track {
-    background: #eee;
-}
-   */
-
-/* ::-webkit-scrollbar-thumb {
-    background:#eee;
-} */
-  
-::-webkit-scrollbar-thumb:hover {
-    background: #eee;
 }
 
 @media (min-width: 1700px) {

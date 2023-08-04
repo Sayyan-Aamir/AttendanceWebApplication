@@ -26,6 +26,11 @@ mat-drawer-container{
     font-weight: bold !important;
 }
 
+.card{
+    box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+    -webkit-box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+}
 
 .crud-icon-add {
     color: #3ABDAA !important;
@@ -55,13 +60,13 @@ mat-drawer-container{
   
 @media (max-width: 1600px) and (min-width: 1300px) {
     .mat-drawer {
-      width: 15%; /* Increase margin-right for larger screens */
+      width: 17%; /* Increase margin-right for larger screens */
     }
 }
   
 @media (max-width: 1300px) and (min-width: 1000px) {
     .mat-drawer {
-      width: 16%; /* Increase margin-right for larger screens */
+      width: 17%; /* Increase margin-right for larger screens */
     }
 }
 

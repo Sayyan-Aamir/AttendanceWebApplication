@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/employee.service';
 import { ToastrService } from 'ngx-toastr';
 import {HttpClient} from '@angular/common/http';
-import { HostListener} from "@angular/core";
 import {Attendancelist} from '../../Model/attendancelist';
 import {  SearchCriteria } from '../../Model';
 import {HttpHeaders} from '@angular/common/http';
@@ -15,19 +14,13 @@ import {HttpHeaders} from '@angular/common/http';
   styleUrls: ['./attendencelist.component.css']
 })
 export class AttendencelistComponent implements OnInit {
-  side=false;
+
   employees:any;
   employeesName:any;
   attendanceList = new Attendancelist();
-  row:any[]=[];
-  Startdate:any;
-  width:any;
-  getScreenWidth: any;
-  Enddate:any;
   value:any=0;
   EmployeeId:any;
   Employeeparam = new Emp;   
-  BackgroundColor:any;
 
   model = new SearchCriteria();
   constructor(private data:EmployeeService,private router:Router,private toast:ToastrService,
@@ -38,7 +31,7 @@ export class AttendencelistComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadAttendance();
+    this.loadAttendance();  
     this.model.Employee_Name = null;  
     this.model.FromDate = null;
     this.model.ToDate = null; 
@@ -52,14 +45,7 @@ export class AttendencelistComponent implements OnInit {
 
          this.employeesName = response.responseData;
          });
-
-    if(this.getScreenWidth <= 1500)
-    {
-      this.width = '18%';
-    }
-    else{
-      this.width = '18%';
-    }
+         this.model.Employee_Name = "1"
   }
 
   loadAttendance(){
@@ -72,30 +58,11 @@ export class AttendencelistComponent implements OnInit {
           this.employees = response.responseData;
             if(this.employees != null || this.employees != undefined)
             {
-              this.toast.success('Employee List Displayed Successfully','Success');
             }
             else{
-              this.toast.error('Employee List Cannot be Displayed','Failed');
+              this.toast.error('Attendance List Cannot be Displayed','Failed');
             }
           });
-  }
-
-  sidebartog()
-  {
-    this.side = !this.side; 
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onWindowResize() {
-    this.getScreenWidth = window.innerWidth;
-    if(this.getScreenWidth <= 1500)
-    {
-      this.width = '18%';
-    }
-   else if(this.getScreenWidth > 1500)
-    {
-      this.width = '16%';
-    }
   }
   
   add()
@@ -104,16 +71,32 @@ export class AttendencelistComponent implements OnInit {
   }
   filter()
   {
-    console.log(this.model.Employee_Name);
+    if(this.model.FromDate?.toString() == "")
+    {
+      this.model.FromDate = null;
+    }
+
+    if(this.model.ToDate?.toString() == "")
+    {
+      this.model.ToDate = null;
+    }
+
+    if(this.model.Employee_Name == "1")
+    {
+      this.model.Employee_Name = null;
+    }
+
     this.loadAttendance();
+    this.toast.success('Attendance list Displayed Successfully');
+  }
 
-}
-
-  Clearfilter(){
-    this.model.FromDate = new Date();
-    this.model.ToDate = new Date();
+  clearfilter(){
+    this.model.FromDate = null;
+    this.model.ToDate = null;
     this.model.Employee_Name = null;
     this.loadAttendance();
+
+    this.model.Employee_Name = "1"
   }
   signup(){
     debugger;
@@ -123,6 +106,54 @@ export class AttendencelistComponent implements OnInit {
     debugger;
       let url = "http://www.google.com/maps/place/"+emp.latitude + "," + emp.longitude;
       window.open(url, "_blank");
+  }
+
+  export(){
+
+    if(this.model.FromDate?.toString() == "")
+    {
+      this.model.FromDate = null;
+    }
+
+    if(this.model.ToDate?.toString() == "")
+    {
+      this.model.ToDate = null;
+    }
+
+    if(this.model.Employee_Name == "1")
+    {
+      this.model.Employee_Name = null;
+    }
+
+    const Token = localStorage.getItem("Token");
+    const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Token}`
+    });
+  
+    const apiUrl = `http://localhost:7182/api/Attendance/ExportPdf`;
+  
+    this.com.post(apiUrl, this.model,{headers: headers, responseType: 'blob' }).subscribe(
+      (response: Blob) => {
+        this.downloadImage(response, "Attendancelist");
+      },
+      (error) => {
+        console.error('Error loading image:', error);
+      }
+    );
+
+    this.model.Employee_Name = "1";
+  }
+  
+  downloadImage(blobData: Blob, imageName: string): void {
+    const url = window.URL.createObjectURL(blobData);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = imageName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
   }
   
 }

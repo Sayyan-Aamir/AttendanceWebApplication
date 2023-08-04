@@ -27,7 +27,9 @@ export class DashboardComponent implements OnInit {
   Leave:number = 1;
   CompanyId : number = 0;
   Leavelist :any = [];
+  loanlist :any = [];
   Requestsnumber : number = 0;
+  loanRequests: number = 0;
 
   model = new SearchCriteria();
   imageUrl:string = "";
@@ -44,16 +46,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getScreenWidth = window.innerWidth;
-    this.GetUserLeaveList();
 
-    if(this.getScreenWidth <= 1500)
-    {
-      this.width = '18%';
-    }
-    else{
-      this.width = '15%';
-    }
+    this.GetUserLeaveList();
+    this.GetUserLoanList();
 
     this.GetEmployeeTime();
     const token = localStorage.getItem('Token');
@@ -78,20 +73,6 @@ export class DashboardComponent implements OnInit {
       }
   }
 
-  @HostListener('window:resize', ['$event'])
-  onWindowResize() {
-    this.getScreenWidth = window.innerWidth;
-    if(this.getScreenWidth <= 1500)
-    {
-      this.width = '18%';
-    }
-   else if(this.getScreenWidth > 1500)
-    {
-      this.width = '15%';
-    }
-    
-  }
-
   GetUserLeaveList(){
     const Token = localStorage.getItem("Token");
      const headers = new HttpHeaders({
@@ -102,6 +83,19 @@ export class DashboardComponent implements OnInit {
 
        this.Leavelist = response.responseData;
        this.Requestsnumber =  this.Leavelist.length;
+        });
+  }
+
+  GetUserLoanList(){
+    const Token = localStorage.getItem("Token");
+     const headers = new HttpHeaders({
+           'Content-Type': 'application/json',
+            'Authorization': `Bearer ${Token}`
+          });
+       this.com.post('http://localhost:7182/api/Loan/EmployeeLoanList',null, {headers}).subscribe((response:any) =>{
+
+       this.loanlist = response.responseData;
+       this.loanRequests =  this.loanlist.length;
         });
   }
 

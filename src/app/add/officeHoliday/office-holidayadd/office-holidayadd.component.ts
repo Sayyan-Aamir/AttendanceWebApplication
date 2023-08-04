@@ -4,10 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router,ActivatedRoute } from '@angular/router';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatNativeDateModule} from '@angular/material/core';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -18,15 +15,18 @@ import {MatNativeDateModule} from '@angular/material/core';
 export class OfficeHolidayaddComponent implements OnInit {
   model = new HolidayModel();
   holidayId : any = 0;
+  buttonvalue : number = 0;
 
   constructor(private com:HttpClient,private router: Router,private toast:ToastrService,
-    public route: ActivatedRoute) { 
+    public route: ActivatedRoute,public datepipe: DatePipe) { 
     this.model = new HolidayModel();
 
     this.route.params.subscribe(id => {this.holidayId = id});
   }
 
   ngOnInit(): void {
+    
+  this.buttonvalue = this.convertStringToInt(this.holidayId.id);
 
     if(this.holidayId.id > 0)
     {  
@@ -45,12 +45,32 @@ export class OfficeHolidayaddComponent implements OnInit {
   this.model.Description = response.responseData[0].description;
   this.model.FromDate = response.responseData[0].fromDate;
   this.model.ToDate = response.responseData[0].toDate;
+
+  let yesterday = new Date(response.responseData[0].toDate);
+  yesterday.setDate(yesterday.getDate()-1);
+  this.model.ToDate = this.datepipe.transform(yesterday, 'yyyy-MM-dd');
+
+  yesterday = new Date(response.responseData[0].fromDate);
+  yesterday.setDate(yesterday.getDate()-1);
+  this.model.FromDate = this.datepipe.transform(yesterday, 'yyyy-MM-dd');
   });
     }
    
   }
 
+
+  convertStringToInt(inputString: string): number {
+    // Remove the colon ":" from the inputString
+    const numericString = inputString.replace(':', '');
+
+    // Parse the numericString into an integer using parseInt
+    const integerValue = parseInt(numericString, 10); // The second argument (10) is the radix/base, and it should always be 10 for decimal numbers.
+
+    return integerValue;
+  }
+
   add(){ 
+    debugger;
 
     if(parseInt(this.holidayId.id) > 0)
     {

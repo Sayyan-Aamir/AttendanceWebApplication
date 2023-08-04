@@ -9,105 +9,113 @@
     }
 }
   
-  @media (max-width: 1600px) and (min-width: 1300px) {
-    .mat-drawer {
-      width: 15%; /* Increase margin-right for larger screens */
-    }
-}
-  
-  @media (max-width: 1300px) and (min-width: 1000px) {
+@media (max-width: 1600px) and (min-width: 1300px) {
     .mat-drawer {
       width: 17%; /* Increase margin-right for larger screens */
+}
+}
+  
+@media (max-width: 1300px) and (min-width: 1000px) {
+    .mat-drawer {
+      width: 17%; /* Increase margin-right for larger screens */
+}
+}
+
+@media (min-width: 992px){
+    .col-md-3 {
+        width: 33%;
     }
 }
-
-.listoptions
-{
-    background-color: white;
-    padding-left: 0px;
-    padding-right: 0px;
-    display: inline-block;
-    border-radius: 30px;
-    border: 1px solid #100c08;
+.button{
+      color: #EA151A;
+}
+    
+.button:hover{
+       color: #100C08;
+}
+    
+.pull-right {
+       float: right!important; 
+}
+    
+._fa_log-accident {
+      background: linear-gradient(25deg, rgba(94,99,173,1) 0%, rgba(145,40,141,1) 70%);
+      border: 1px solid rgba(94,99,173,1);
+      border-radius: 35px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: normal;
+      padding: 10px 25px;
+      box-shadow: -1px 5px 6px -3px rgba(0, 0, 0, 0.176);
+      -webkit-box-shadow: -1px 5px 6px -3px rgba(0, 0, 0, 0.176);
+      -moz-box-shadow: -1px 5px 6px -3px rgba(0, 0, 0, 0.176);
 }
 
-.listoptions li{
-    list-style: none;
-    float: left;
-    line-height: 40px;
-    height: 40px;
-    padding: 0px 12px 0px 12px;
+button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      overflow: visible;
+      margin: 0;
+      font: inherit;
+      text-transform: none;
 }
 
-.listoptions_active
-{
-    background:#100c08;
-    color: wheat;
-    border-radius: 29px;
-    display: inline-block;
-}
 
-.listoptions li:hover
-{
-    border-radius: 20px;
-    background-color:rgba(145,40,141,1);
-    color:white;
-}
-
-.inner-addon { 
-    position: relative; 
-}
-
-.button {
-    float: right;
-    border-radius: 25px;
-    width:158px;
-    height: 45px;
-    font-size: large;
-    margin-left: 35px;
-    background-color: #0a2641;
-    color: white;
-    border: none;
-    text-align: center;
-    margin: 5px;
-}
-
-.button:hover
-{
-    background-color: #fff;
-    color: rgba(145,40,141,1);
-} 
-
-.buttons {
-    float: right;
-    border-radius: 25px;
-    width:120px;
-    height: 45px;
-    font-size: large;
-    background-color: #0a2641;
-    color: white;
-    border: none;
-    text-align: center;
-    margin: 5px;
-}
-
-.buttons:hover
-{
-    background-color: #fff;
-    color: rgba(145,40,141,1);  
-} 
-
-.toast-top-center {
-top: 12px;
-margin: 0 auto;
-left: 50%;
-}
 .crud-icon {
     font-size: 16px !important;
     padding: 7px 8px !important;
     cursor: pointer;
     font-weight: bold !important;
 }
+
+.card{
+    box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+    -webkit-box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: -1px 4px 5px 0px rgba(0,0,0,0.4);
+}
+
+.fa_managementheading {
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+  margin-bottom: 0px;
+  font-weight: 600;
+  font-size: 25px;
+}
+@media (min-width: 768px){
+.col-sm-6 {
+    width: 50%;
+}
+}
+
+.ng-select {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+}
+
+.fa_mrgbtm20 {
+  margin-bottom: 20px;
+}
+
+.login100-form-btn {
+  padding: 0 15px;
+  margin-left: 10px;
+  height: 46px;
+  border: none;
+  border-radius: 25px;
+  background: #fff;
+  font-size: 20px;
+  color: #fff;
+  background-color: #100C08;
+  /* background: linear-gradient(25deg, #100C08 0%, rgba(145,40,141,1) 70%); */
+}
+
+.login100-form-btn:hover{
+background: linear-gradient(90deg, rgba(234,21,26,1) -20%, rgba(255,104,40,1) 68%);
+}
+
 
 
 .crud-icon-add {

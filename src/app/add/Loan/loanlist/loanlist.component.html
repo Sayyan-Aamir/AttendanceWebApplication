@@ -1,33 +1,77 @@
 <mat-drawer-container>
-    <mat-drawer mode="side" [opened]="true" style="background-color: #263238">
+    <mat-drawer mode="side" [opened]="true" style="background-color: #100C08;">
          <app-sidenav></app-sidenav> 
     </mat-drawer>
     <mat-drawer-content>
-       <div class="border-top" style="margin-bottom: 1rem !important;">
-      </div>
-        <div class="header mt-4" style="margin-left: 5%;width: 90%;" >
-             <div class="row" style="text-align: center; border:none;">
 
-              <div class="col-lg-4">
-
-              <div class="form-floating " >
-                <select class="form-select" aria-label="Default select example" placeholder = "Name"
-            style="border-radius: 5px;" [(ngModel)]="this.loanModel.EmployeeId" >
-              <option *ngFor="let option of allemployees" [value]="option.employeeId">{{ option.firstName }}</option>
-            </select> 
-                <label for="floatingInput">Employee Name</label>
+        <div>
+          <div class="mt-4">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="col-sm-6" style="text-align: left;"> 
+                <h4 class="fa_managementheading" style="font-weight: 600;font-size:25px">
+                  <strong>Loan Management</strong>
+                </h4>
+                </div>
+    
+                <div class="col-xs-12 col-sm-3 col-md-3" style="text-align:right;width:60%;"> 
+                  <button class="_fa_log-accident pull-right ng-star-inserted" style="padding:10px 30px;" 
+                  [routerLink]="['/addloan']">
+                  <i class="glyphicon glyphicon-plus" style="padding-right:10px;">
+                  </i>
+                  Add Loan
+                  </button>
+                  </div>
               </div>
-              </div>        
-
-              <div class="col-lg-6" style="text-align: left;">  
-                <button type="submit" class="login100-form-btn" (click)="filter()">FILTER</button>
-                     
-              <button type="submit" class="login100-form-btn" style="margin-left: 10px;" (click)="clearfilter()">CLEAR FILTER</button>
-              </div>
+    
             </div>
-         
+          </div>
         </div>
-          <div class="col-md-12" style="margin-left: 5%;width: 90%;font-size: larger;">
+    
+          <div class="row mt-4" style="margin-left:auto;">
+            <nav aria-label="breadcrumb">
+            <div class="col-xs-12 col-sm-6 fa_mrgbtm20">
+    
+            <div class="form-floating">
+              <select class="form-select" aria-label="Default select example" placeholder = "Name"
+              style="border:1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;" 
+              [(ngModel)]="this.loanModel.EmployeeName" >
+              <option selected disabled [value]="1">employee list</option>
+                <option *ngFor="let option of allemployees" [value]="option.firstName">{{ option.firstName }}</option>
+              </select> 
+              <label>Employee</label>
+            </div>
+            </div>        
+    
+            <div class="col-xs-12 col-sm-6 fa_mrgbtm20">
+    
+              <div class="form-floating" >
+                <input type="date" class="form-control"
+                style="border:1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;"
+                [(ngModel)]="this.loanModel.LoanDate" id="floatingInput">
+                <label>Loan date</label>
+              </div>
+              </div>
+              </nav>
+       
+      </div>
+
+      <div class="row mt-4" style="text-align: right;">
+        <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select" style="width: 95%;">
+        <button type="submit" class="button"
+        style="border:none;background:none; font-weight: 600; font-size: 17px;
+         margin-right:20px; padding-top:15px;" (click)="clearfilter()">Clear Filter</button>
+            <button type="submit" class=" login100-form-btn" style="padding:12px 30px;"
+            (click)="filter()">Search</button>
+            <button type="submit" class=" login100-form-btn" style="padding:12px 30px;" (click)="export()">
+              <i class="fa fa-download" style="padding-right: 10px;"></i>
+              Export</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="card" style="font-size:larger; margin:10px;">
             <div>
               <ngx-datatable class="bootstrap" [limit]="20" [rows]="loanList" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto"> 
                   <ngx-datatable-column [width]="150" [sortable]="false" [canAutoResize]="false" [draggable]="false"
@@ -75,5 +119,9 @@
               </ngx-datatable>
             </div>
           </div> 
+        </div>
+      </div>
+
+
     </mat-drawer-content>
     </mat-drawer-container>

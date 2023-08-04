@@ -1,0 +1,137 @@
+<mat-drawer-container style="height: 100%;">
+  <mat-drawer mode="side" [opened]="true"  style="background-color: #100C08;">
+    <app-employee-navbar></app-employee-navbar>
+  </mat-drawer>
+  <mat-drawer-content>
+
+    <div>
+      <div class="mt-4">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="col-xs-6 col-sm-6 mobile-width" style="text-align: left;"> 
+            <h4 class="fa_managementheading" style="font-weight: 600;font-size:25px">
+              <strong>Loan Management</strong>
+            </h4>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3" style="text-align:right;width:50%;"> 
+              <button class="_fa_log-accident pull-right ng-star-inserted" style="padding:10px 30px;" 
+              [routerLink]="['/loanrequest/0']">
+              <i class="glyphicon glyphicon-plus" style="padding-right:10px;">
+              </i>
+              Request Loan
+              </button>
+              </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+      <div class="row mt-4" style="margin-left:auto;">
+        <nav aria-label="breadcrumb">
+        <div class="col-xs-12 col-sm-6 fa_mrgbtm20">
+
+        <div class="form-floating">
+          <select class="form-select" aria-label="Default select example" placeholder = "Name"
+          style="border:1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;" 
+          [(ngModel)]="this.model.LoanStatus" >
+          <option selected disabled [value]="1">loan status</option>
+          <option value="Pending">Pending</option>
+          <option value="Reject">Rejected</option>
+          <option value="Approved">Approved</option>
+          </select> 
+          <label>Loan Status</label>
+        </div>
+        </div>        
+
+        <div class="col-xs-12 col-sm-6 fa_mrgbtm20">
+
+          <div class="form-floating" >
+            <input type="date" class="form-control"
+            style="border:1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;"
+             [(ngModel)]="this.model.LoanDate" id="floatingInput">
+            <label>Loan date</label>
+          </div>
+          </div>
+          </nav>
+   
+  </div>
+
+  <div class="row mt-4" style="text-align: right;">
+    <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select" style="width: 98%;">
+    <button type="submit" class="button"
+    style="border:none;background:none; font-weight: 600; font-size: 17px;
+     margin-right:20px; padding-top:15px;" (click)="clearfilter()">Clear Filter</button>
+        <button type="submit" class=" login100-form-btn" style="padding:12px 30px;"
+        (click)="filter()">Search</button>
+        <button type="submit" class=" login100-form-btn" style="padding:12px 30px;" (click)="export()">
+          <i class="fa fa-download" style="padding-right: 10px;"></i>
+          Export</button>
+    </div>
+  </div>
+
+      <!-- NGX Datatable -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="card" style="font-size:larger; margin:10px;">
+            <div>
+              <ngx-datatable class="bootstrap" [limit]="20" [rows]="loanlist" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" rowHeight="auto">  
+
+                <ngx-datatable-column [width]="150" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+                [resizeable]="false" style="font-size: larger;">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                let-row="row">
+                <div style="text-align: center;display: inline-flex;">
+        
+                  <button type="button" class="btn btn-outline-danger" style="border: 0px;font-size: 8px;" matTooltip="CANNOT DELETE" *ngIf="row.loanStatus != 'Pending'"
+                  matTooltipPosition="below"><i class="material-icons">delete</i><br></button>
+                  <button type="button" class="btn btn-outline-danger" (click)="delete(row)" style="border: 0px;font-size: 8px;" matTooltip="DELETE" *ngIf="row.loanStatus == 'Pending'"
+                  matTooltipPosition="below"><i class="material-icons">delete</i><br></button>
+                  <button type="button" class="btn btn-outline-success" (click)="loandetail(row)" style="border: 0px;font-size: 8px;" matTooltip="DETAIL LIST"
+                  matTooltipPosition="below"><i class="material-icons">filter_list</i><br></button>
+                    <button type="button" class="btn crud-icon-add btn-outline-success" *ngIf="row.loanStatus != 'Pending'" matTooltip="CANNOT UPDATE">
+                    <span class="fa fa-edit ml-1 font-size-large" style="font-size: larger;"></span>
+                </button>
+                <button type="button" class="btn crud-icon-add btn-outline-success" *ngIf="row.loanStatus == 'Pending'"
+                (click)="update(row)" matTooltip="UPDATE">
+               <span class="fa fa-edit ml-1 font-size-large" style="font-size: larger;"></span>
+           </button>
+                </div>
+               
+                </ng-template>
+                </ngx-datatable-column>  
+        
+                <ngx-datatable-column name="Loan Amount" prop="loanAmount">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.loanAmount}}
+                    </ng-template>
+                </ngx-datatable-column>
+        
+            <ngx-datatable-column name="Loan Date" prop="loanDate">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.loanDate | date:'longDate'}}
+                </ng-template>
+            </ngx-datatable-column>
+        
+            <ngx-datatable-column name="Loan Reason" prop="loanReason">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row?.loanReason}}
+                </ng-template>
+            </ngx-datatable-column>
+        
+            <ngx-datatable-column name="Loan Status" prop="loanStatus">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+            <span *ngIf="row.loanStatus == 'Pending'"> {{row?.loanStatus}}</span>
+            <span *ngIf="row.loanStatus == 'Reject'" style="color: red;">Rejected</span>
+            <span *ngIf="row.loanStatus == 'Approved'" style="color: green;"> {{row?.loanStatus}}</span>
+                </ng-template>
+            </ngx-datatable-column>
+              </ngx-datatable>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </mat-drawer-content>
+</mat-drawer-container>

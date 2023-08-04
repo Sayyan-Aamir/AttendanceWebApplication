@@ -9,7 +9,7 @@ export class LeaveModel {
     RequestLeave: string = "request";
     LeaveStatus: number = 0;
     LeaveReason:string = "";
-    Status: string = "";
-    FromDate: Date = new Date();
-    ToDate: Date = new Date();
+    Status: string | null = "";
+    FromDate: Date | null = new Date();
+    ToDate: Date | null = new Date();
 }

@@ -30,12 +30,12 @@
   
 @media (max-width: 1600px) and (min-width: 1300px) {
 .mat-drawer {
-      width: 16%; /* Increase margin-right for larger screens */
+      width: 17%; /* Increase margin-right for larger screens */
 }
 }
   
 @media (max-width: 1300px) and (min-width: 1000px) {
 .mat-drawer {
-      width: 16%; /* Increase margin-right for larger screens */
+      width: 17%; /* Increase margin-right for larger screens */
 }
 }

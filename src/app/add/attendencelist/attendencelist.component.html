@@ -1,114 +1,103 @@
 <mat-drawer-container>
-  <mat-drawer mode="side" [opened]="true" style="background-color: #263238;" >
+  <mat-drawer mode="side" [opened]="true" style="background-color: #100C08;" >
     <app-sidenav></app-sidenav>
   </mat-drawer>
   <mat-drawer-content>
-     <!-- <app-header (togglesidebarForMe)="sidebartog()"></app-header> -->
-    <div class="container">
-      <div style="margin-top: 20px;">
-        <div class="col-md-3">
-          <label class="form-label" for="form3Example1q">EMPLOYEE NAME</label>
-          <div class="">
-             <select class="form-select" aria-label="Default select example" placeholder = "Name"
-            style="height: 45px;border-radius: 5px;" [(ngModel)]="this.model.Employee_Name" >
-              <option *ngFor="let option of employeesName" [value]="option.firstName">{{ option.firstName }}</option>
+
+    <div>
+      <div class="row mt-4 p-4">
+        <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select">
+          <div class="form-floating">
+            <select class="form-select" aria-label="Default select example" placeholder = "Name"
+            style="border:1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;"   
+            [(ngModel)]="this.model.Employee_Name" >
+            <option selected disabled [value]="1">employee list</option>
+              <option *ngFor="let option of employeesName"
+              [value]="option.firstName">{{ option.firstName }}</option>
             </select> 
-             <!-- <input style="height: 45px;border-radius: 30px;" [(ngModel)]="this.model.Employee_Name" type="email" class="form-control" id="floatingPassword"
-              placeholder="Name"> -->
+            <label>Employee</label>
           </div>
         </div>
-        <div class="col-md-2" >
-          <div class="form-group has-success">
-            <label class="form-label" for="form3Example1q">FROM DATE</label>
-            <input type="date" [(ngModel)]="this.model.FromDate" id="form3Example1w" class="form-control"
-              style="height: 45px;border-radius: 10px;" />
-
+  
+         <div class="col-xs-12 col-sm-3 col-md-3 fa_mrgbtm20 singlSelect">
+          <div class="form-floating">
+              <input type="date" class="form-control" [(ngModel)]="this.model.FromDate"
+              style="border: 1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;" id="floatingInput" placeholder="@">
+              <label>From Date</label>
+            </div>
+        </div> 
+  
+        <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select">
+          <div class="form-floating">
+            <input type="date" class="form-control" [(ngModel)]="this.model.ToDate"
+            style="border:1px solid #100C08;box-shadow: none; border-radius:10px ;  border-bottom: 1px solid #100C08;" id="floatingInput" placeholder="@">
+            <label >ToDate</label>
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="form-group has-success">
-            <label class="form-label" for="form3Example1q">TO DATE</label>
-            <input type="date" [(ngModel)]="this.model.ToDate" id="form3Example1w" class="form-control"
-              style="height: 45px;border-radius: 10px;" />
+  
+      </div>
 
-          </div>
-        </div>
-        <div>
-          <button class="buttons" (click)="filter();" style="margin-top: 28px;border-radius: 20px;">FILTER
-            <span class="glyphicon glyphicon-filter"></span></button>
+      <div class="row mt-4" style="text-align: right;">
+        <div class="col-xs-12 col-sm-3 col-md-3 singlSelect fa_actions-select" style="width: 95%;">
 
-            <button class="button" (click)="Clearfilter();"
-            style="margin-top: 28px;border-radius: 20px;">CLEAR FILTER
-            <span class="glyphicon glyphicon-filter"></span></button>
+        <button type="submit" class="button"
+        style="border:none;background:none; font-weight: 600; font-size: 17px;
+         margin-right:20px; padding-top:15px;" (click)="clearfilter()">Clear Filter</button>
+            <button type="submit" class=" login100-form-btn" style="padding:12px 30px;"
+            (click)="filter()">Search</button>
+            <button type="submit" class=" login100-form-btn" style="padding:12px 30px;" (click)="export()">
+              <i class="fa fa-download" style="padding-right: 10px;"></i>
+              Export</button>
         </div>
       </div>
     </div>
 
-    <div class="col-md-12">
-      <div style="width: 100%;padding-left: 30px;padding-right: 30px;margin-top: 20px;">
-        <ngx-datatable class="bootstrap" [limit]="30" [rows]="employees" [columnMode]="'force'" [headerHeight]="50"
-          [footerHeight]="50" rowHeight="auto">
-          <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
-            [resizeable]="false" style="font-size: larger;">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
-              let-row="row"></ng-template>
-          </ngx-datatable-column>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="card" style="font-size: larger; margin: 10px 10px;">
+          <div>
+          <ngx-datatable class="bootstrap" [limit]="30" [rows]="employees" [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="50" rowHeight="auto">
+            <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false"
+              [resizeable]="false" style="font-size: larger;">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                let-row="row"></ng-template>
+            </ngx-datatable-column>
+  
+            <ngx-datatable-column name="Employee Name" prop="employeeName" [width]="120">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row?.employeeName}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Email" [flexGrow]="1" prop="emailEmployee" [width]="160">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.emailEmployee}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Check In Time" [flexGrow]="2" prop="checkInTime" [width]="130">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.checkInTime | date:'medium'}}
+              </ng-template>
+            </ngx-datatable-column>
 
-          <ngx-datatable-column name="Employee Name" prop="employeeName" [width]="120">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              {{ row?.employeeName}}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Email" [flexGrow]="1" prop="emailEmployee" [width]="160">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              {{row?.emailEmployee}}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Check In Time" [flexGrow]="2" prop="checkInTime" [width]="130">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              {{row?.checkInTime | date:'medium'}}
-            </ng-template>
-          </ngx-datatable-column>
-          <!-- <ngx-datatable-column name="checkInLatitude" [flexGrow]="2" prop="checkInLatitude">
-            <ng-template let-row="row" ngx-datatable-cell-template>
-              {{row?.checkInLatitude}}
-            </ng-template>
-          </ngx-datatable-column> -->
+            <ngx-datatable-column name="CheckOut" [flexGrow]="2" prop="checkOut" [width]="130">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{row?.checkOutTime | date:'mediumTime'}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="WorkingTime" [flexGrow]="2" prop="workingTime">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                {{row?.workingTime }}
+              </ng-template>
+            </ngx-datatable-column>
 
-          <!-- <ngx-datatable-column name="checkInLatitude" [flexGrow]="2" prop="checkInLongitude">
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-               <span *ngIf="row.CheckinTime == 1" style="color: red;">{{row?.CheckIn}}</span>
-              <span *ngIf="row.CheckinTime == 0" style="color: black;">{{row?.CheckIn}}</span> 
-              {{row?.checkInLongitude}}
-            </ng-template>
-          </ngx-datatable-column> -->
-          <ngx-datatable-column name="CheckOut" [flexGrow]="2" prop="checkOut" [width]="130">
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              {{row?.checkOutTime | date:'mediumTime'}}
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="WorkingTime" [flexGrow]="2" prop="workingTime">
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              {{row?.workingTime }}
-            </ng-template>
-          </ngx-datatable-column>
-
-          <!-- <ngx-datatable-column name="OverTime" [flexGrow]="2" prop="OverTime">
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-              <span>{{row?.WorkingTime}}</span>
-            </ng-template>
-          </ngx-datatable-column> -->
-          <!-- <ngx-datatable-column name="Location" [flexGrow]="2" prop="Location" style="text-align: center;">
-            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template style="text-align:center">
-              <button class="icon-hover" (click)="Location(row);"
-                style="background: none; border: none; font-size: 35px; cursor: pointer; padding-left: 15px;">
-                <span class="glyphicon glyphicon-map-marker"></span></button>
-            </ng-template>
-          </ngx-datatable-column> -->
-        </ngx-datatable>
+          </ngx-datatable>
+        </div>
+  
       </div>
-
     </div>
+    </div>
+
 
   </mat-drawer-content>
 </mat-drawer-container>

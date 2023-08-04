@@ -27,6 +27,15 @@ import { UserLeavelistComponent } from './add/User/user-leavelist/user-leavelist
 import { EmployeeListComponent } from './add/Dashboard list/employee-list/employee-list.component';
 import { OfficeHolidaylistComponent } from './add/officeHoliday/office-holidaylist/office-holidaylist.component';
 import { OfficeHolidayaddComponent } from './add/officeHoliday/office-holidayadd/office-holidayadd.component';
+import {  EmployeeLoanlistComponent} from './add/Employee/employee-loanlist/employee-loanlist.component';
+import {  LoanrequestComponent} from './add/Employee/loanrequest/loanrequest.component';
+import { LoandetaillistComponent } from './add/Employee/loandetaillist/loandetaillist.component';
+import { UserLoanlistComponent } from './add/User/user-loanlist/user-loanlist.component';
+import { AddTaskComponent } from './add/Task/add-task/add-task.component';
+import { TaskListComponent } from './add/Task/task-list/task-list.component';
+import { TaskDetailListComponent } from './add/Task/task-detail-list/task-detail-list.component';
+import {EmployeeTasklistComponent} from './add/Employee/employee-tasklist/employee-tasklist.component';
+import {EmployeeTaskdetaillistComponent} from './add/Employee/employee-taskdetaillist/employee-taskdetaillist.component';
 
 
 const routes: Routes = [
@@ -35,6 +44,16 @@ const routes: Routes = [
   },
   {
     path:'empList/:id',component:EmployeeListComponent
+  },
+  {
+    path:'loanrequest/:id',component:LoanrequestComponent
+  },
+  {
+    path:'empLoanlist',component:EmployeeLoanlistComponent
+  },
+  {
+    path:'emploandetail/:id',component:LoandetaillistComponent 
+     //,canActivate:[ActguardGuard]
   },
   {
     path:'Ablist/:id',component:AbsentListComponent
@@ -49,6 +68,10 @@ const routes: Routes = [
   },
   {
     path:'userlist',component:UserLeavelistComponent 
+     //,canActivate:[ActguardGuard]
+  },
+  {
+    path:'userloanlist',component:UserLoanlistComponent 
      //,canActivate:[ActguardGuard]
   },
   {
@@ -127,6 +150,26 @@ const routes: Routes = [
   },
   {
     path:'dashboard' , component: DashboardComponent  
+    //  ,canActivate:[ActguardGuard]
+  },
+  {
+    path:'task' , component: AddTaskComponent  
+    //  ,canActivate:[ActguardGuard]
+  },
+  {
+    path:'taskdetaillist/:id' , component: TaskDetailListComponent  
+    //  ,canActivate:[ActguardGuard]
+  },
+  {
+    path:'emptasklist' , component: EmployeeTasklistComponent  
+    //  ,canActivate:[ActguardGuard]
+  },
+  {
+    path:'emptaskdetaillist/:id' , component: EmployeeTaskdetaillistComponent  
+    //  ,canActivate:[ActguardGuard]
+  },
+  {
+    path:'tasklist' , component: TaskListComponent  
     //  ,canActivate:[ActguardGuard]
   }
 ];

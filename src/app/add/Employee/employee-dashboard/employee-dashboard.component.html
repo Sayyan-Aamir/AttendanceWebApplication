@@ -1,28 +1,9 @@
 <mat-drawer-container style="height: 100%;">
-   <mat-drawer mode="side" [opened]="true" style="background-color: #263238">
+   <mat-drawer mode="side" [opened]="true" style="background-color: #100C08;">
      <app-employee-navbar></app-employee-navbar>
    </mat-drawer> 
   <mat-drawer-content>
-     <!-- <app-header (togglesidebarForMe)="sidebartog()"></app-header>   -->
-    <!-- <div>
-      <nav class="mt-4" >
-        <ul class="d-flex justify-content-around">
-          <li style="list-style: none;">
-            <div class="btn-group">
-              <button type="button" class="btn btn-navbar crud-icon crud-icon-add-plus" [routerLink]="['/reqLeave']">
-                REQUEST LEAVE
-                <span class="fa fa-plus-square "></span>
-              </button>
-            </div>
-          </li>
-           <li><a href=""></a>
-          </li>
-          <li><a href=""></a></li>
-          <li><a href=""></a></li>
-        </ul>
-      </nav>
-    </div> -->
-
+    <app-loading-spinner *ngIf="false"></app-loading-spinner>
     <div class="container" style="background-color: #fdfdfd00;">
       <div class="row">
 
@@ -51,7 +32,7 @@
                   </div>
                   <br>
                   <div class="row" style="margin-top:5%;">
-                    <div class="col-md-12" style="margin-left: 5%;width: 90%;font-size: larger;">
+                    <div class="col-md-12 card" style="margin-left: 5%;width: 90%;font-size: larger;">
                       <div style="width: 100%">
                         <ngx-datatable class="bootstrap" [limit]="20" [rows]="Monthlylist" [columnMode]="'force'"
                           [headerHeight]="50" [footerHeight]="50" rowHeight="auto">
@@ -69,22 +50,22 @@
                           </ngx-datatable-column>
                           <ngx-datatable-column name="Present" prop="present">
                             <ng-template let-row="row" ngx-datatable-cell-template>
-                              {{row?.present}}
+                              <span style="color:green">{{row?.present}}</span>
                             </ng-template>
                           </ngx-datatable-column>
                           <ngx-datatable-column name="Late" prop="late">
                             <ng-template let-row="row" ngx-datatable-cell-template>
-                              {{row?.late}}
+                            {{row?.late}}
                             </ng-template>
                           </ngx-datatable-column>
                           <ngx-datatable-column name="Leave" prop="leaves">
                             <ng-template let-row="row" ngx-datatable-cell-template>
-                              {{row?.leaves}}
+                              <span style="color:purple">{{row?.leaves}}</span>
                             </ng-template>
                           </ngx-datatable-column>
                           <ngx-datatable-column name="Absents" prop="absents">
                             <ng-template let-row="row" ngx-datatable-cell-template>
-                              {{row?.absents}}
+                              <span style="color:red">{{row?.absents}}</span>
                             </ng-template>
                           </ngx-datatable-column>
                         </ngx-datatable>

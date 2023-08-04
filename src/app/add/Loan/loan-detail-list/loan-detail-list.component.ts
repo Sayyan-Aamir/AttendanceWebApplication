@@ -41,7 +41,7 @@ export class LoanDetailListComponent implements OnInit {
       this.com.post('http://localhost:7182/api/Loan/LoanDetailList',this.model, {headers}).subscribe((response:any) =>{
          debugger;
          this.Leavelist = response.responseData;
-         this.toast.success('Leave List Displayed Successfully');
+         this.toast.success('Loan Detail Displayed Successfully');
        });
   
   }

@@ -4,7 +4,6 @@ import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { HostListener} from "@angular/core";
 import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 import {  SiteSearchDto } from '../../Model/site-search-dto';
@@ -17,10 +16,10 @@ import { DatePipe, Time } from '@angular/common';
   styleUrls: ['./addemployee.component.css']
 })
 export class AddemployeeComponent implements OnInit {
-  resultGridList :any;
-  side=false;
-  width:any;
-  getScreenWidth: any;
+
+
+
+
   SiteName:any = null;
   StartTime: Date | null | Time  = null;
   Gender:any = null;
@@ -38,6 +37,7 @@ export class AddemployeeComponent implements OnInit {
   en:any='';
   file:any="";
   updatedImage:any="";
+  buttonvalue: number = 0;
   
   constructor(private data:EmployeeService, private serve:EmployeeService,
      private builder:FormBuilder, public route: ActivatedRoute,private router:Router
@@ -57,6 +57,8 @@ export class AddemployeeComponent implements OnInit {
       this.getUser();
     }
 
+    this.buttonvalue = this.convertStringToInt(this.userid.id);
+
     this.SiteList();
     this.employeeFormBuilder();
     this.GenderList = [
@@ -74,18 +76,14 @@ export class AddemployeeComponent implements OnInit {
 
   }
 
-  @HostListener('window:resize', ['$event'])
-  onWindowResize() {
-    this.getScreenWidth = window.innerWidth;
-    if(this.getScreenWidth <= 1500)
-    {
-      this.width = '18%';;
-    }
-   else if(this.getScreenWidth > 1500)
-    {
-      this.width = '18%';
-    }
-    
+  convertStringToInt(inputString: string): number {
+    // Remove the colon ":" from the inputString
+    const numericString = inputString.replace(':', '');
+
+    // Parse the numericString into an integer using parseInt
+    const integerValue = parseInt(numericString, 10); // The second argument (10) is the radix/base, and it should always be 10 for decimal numbers.
+
+    return integerValue;
   }
 
 
@@ -103,10 +101,7 @@ export class AddemployeeComponent implements OnInit {
       } 
      
     }
-  sidebartog()
-  {
-    this.side = !this.side; 
-  }
+
   getUser()
   {
     this.empId = parseInt(this.userid.id, 10);
@@ -192,54 +187,63 @@ export class AddemployeeComponent implements OnInit {
   this.create(employee);
  }
  create(employee:any){
-  debugger;
-          if(this.empId > 0)
-          {
-            this.Employeemodel.EmployeeId = this.empId;
-          }
+  
+  if(this.empId > 0)
+  {
+  this.Employeemodel.EmployeeId = this.empId;
+  }
 
-          if(this.Employeemodel.Gender == undefined || this.Employeemodel.Gender == "undefined" || this.Employeemodel.Gender == null)
-          this.Employeemodel.Gender = this.Gender;
+  if(this.Employeemodel.Gender == undefined || this.Employeemodel.Gender == "undefined" || this.Employeemodel.Gender == null)
+  this.Employeemodel.Gender = this.Gender;
 
-          const formData = new FormData();
-          formData.append('file', this.Employeemodel.files[0]); // Assuming you only want to send the first file in the array
-          
-          formData.append('Birth',String(this.Employeemodel.DateOfBirth));
-          formData.append('EmployeeIds',String(this.Employeemodel.EmployeeId));
-          formData.append('FirstName', this.Employeemodel.FirstName);
-          formData.append('LastName', this.Employeemodel.LastName);
-          formData.append('Email', this.Employeemodel.Email);
-          formData.append('Gender', this.Employeemodel.Gender);
-          formData.append('ContactNumber', this.Employeemodel.ContactNumber);
-          formData.append('Addresses', this.Employeemodel.Addresses);
-          formData.append('Site', String(this.Employeemodel.SiteId));
-          formData.append('EmployeeCode', this.Employeemodel.EmployeeCode);
-          formData.append('City', this.Employeemodel.City);
-          formData.append('StartTimes', String(this.Employeemodel.StartTime));
-          formData.append('WorkingHour',String(this.Employeemodel.WorkingHours));
-          formData.append('OverTime',String(this.Employeemodel.OverTimeAllowed));
+  const formData = new FormData();
+  formData.append('file', this.Employeemodel.files[0]); // Assuming you only want to send the first file in the array
+  
+  formData.append('Birth',String(this.Employeemodel.DateOfBirth));
+  formData.append('EmployeeIds',String(this.Employeemodel.EmployeeId));
+  formData.append('FirstName', this.Employeemodel.FirstName);
+  formData.append('LastName', this.Employeemodel.LastName);
+  formData.append('Email', this.Employeemodel.Email);
+  formData.append('Gender', this.Employeemodel.Gender);
+  formData.append('ContactNumber', this.Employeemodel.ContactNumber);
+  formData.append('Addresses', this.Employeemodel.Addresses);
+  formData.append('Site', String(this.Employeemodel.SiteId));
+  formData.append('EmployeeCode', this.Employeemodel.EmployeeCode);
+  formData.append('City', this.Employeemodel.City);
+  formData.append('StartTimes', String(this.Employeemodel.StartTime));
+  formData.append('WorkingHour',String(this.Employeemodel.WorkingHours));
+  formData.append('OverTime',String(this.Employeemodel.OverTimeAllowed));
 
-          const Token = localStorage.getItem("Token");
-          const headers = new HttpHeaders({
-                 'Authorization': `Bearer ${Token}`
-               });
-      
-               this.com.post('http://localhost:7182/api/Employee/UpdateEmployee',formData, {headers}).subscribe((response:any) =>{
-                this.toast.success("Employee Updated Successfully");
-                this.router.navigate(['/list']);
-           });
 
-        }
+  if(this.empId > 0)
+  {
+    debugger;
+  this.Employeemodel.EmployeeId = this.empId;
 
-   
-//   transform(base64ImageNew: any) {
+  const Token = localStorage.getItem("Token");
+  const headers = new HttpHeaders({
+  'Authorization': `Bearer ${Token}`
+  });
 
-//   base64ImageNew = "data:image/jpg/png/jpeg;base64," + base64ImageNew;
-//     // var reader = new FileReader();
-//     // reader.readAsDataURL(base64ImageNew);
-//   return this.sanitizer.bypassSecurityTrustResourceUrl(base64ImageNew);
-    
-// }
+  this.com.post('http://localhost:7182/api/Employee/UpdateEmployee',formData, {headers}).subscribe((response:any) =>{
+  this.toast.success("Employee Updated Successfully");
+  this.router.navigate(['/list']);
+   });
+  }
+  else
+  {
+    const Token = localStorage.getItem("Token");
+    const headers = new HttpHeaders({
+    'Authorization': `Bearer ${Token}`
+    });
+  
+    this.com.post('http://localhost:7182/api/Employee/AddEmployee',formData, {headers}).subscribe((response:any) =>{
+    this.toast.success("Employee Added Successfully");
+    this.router.navigate(['/list']);
+     });
+  }
+
+}
 
 }
 

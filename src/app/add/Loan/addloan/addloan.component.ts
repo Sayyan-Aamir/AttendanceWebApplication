@@ -26,6 +26,8 @@ export class AddloanComponent implements OnInit {
 
     this.Employee.FromDate = null;
     this.Employee.ToDate = null; 
+    this.model.EmployeeId = 1;
+    this.model.LoanStatus = "";
 
     this.EmployeeList();
 
@@ -39,6 +41,7 @@ export class AddloanComponent implements OnInit {
              
                this.LoanTitle = response.responseData
               });
+              this.model.LoanTitleId = 1;
   }
 
   EmployeeList(){

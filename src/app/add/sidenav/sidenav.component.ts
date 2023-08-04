@@ -8,9 +8,6 @@ import { HostListener} from "@angular/core";
 })
 export class SidenavComponent implements OnInit {
   width:any;
-  showHolidayList = false;
-  showLoanList = false;
-  showEmployeeList = false;
   getScreenWidth: any;
   imagesrc = 'assets/img/logoaud.png';
   constructor() { }
@@ -39,15 +36,4 @@ export class SidenavComponent implements OnInit {
     }
     
   }
-
-  toggleEmployeeList(){
-     this.showEmployeeList = !this.showEmployeeList;
-  }
-
-  toggleHolidayList(){
-    this.showHolidayList = !this.showHolidayList;
- }
-      toggleLoanList() {
-        this.showLoanList = !this.showLoanList;
-      }
 }
