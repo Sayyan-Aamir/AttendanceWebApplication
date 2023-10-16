@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Empclass } from './empclass';
 import { Emp } from './emp';
 import { Login } from './login';
 import {product} from 'src/app/product';
 import {environment} from 'src/environments/environment';
-import { SpinnerService } from './spinner.service';
 import { HolidayList } from './holiday-list';
 import { Mode } from './mode';
 import { Logincheck } from './logincheck';
@@ -23,7 +21,7 @@ export class EmployeeService {
   url=environment.baseurl;
   isAuthenticated = false;
 
-constructor(private com:HttpClient, private router:Router,private service:SpinnerService) { }
+constructor(private com:HttpClient) { }
    Authenticate(employee:number):boolean{
         if(employee==1)
         {

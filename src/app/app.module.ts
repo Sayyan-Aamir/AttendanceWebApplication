@@ -77,6 +77,9 @@ import { EmployeeTasklistComponent } from './add/Employee/employee-tasklist/empl
 import { EmployeeTaskdetaillistComponent } from './add/Employee/employee-taskdetaillist/employee-taskdetaillist.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { LoadingSpinnerComponent } from './Services/loading-spinner/loading-spinner.component';
+import { HomePageComponent } from './add/home-page/home-page.component';
+import { CompanySignUpComponent } from './add/Company/company-sign-up/company-sign-up.component';
+import { CompanyDetailComponent } from './add/Company/company-detail/company-detail.component';
 
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
 @NgModule({
@@ -121,7 +124,10 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     TaskDetailListComponent,
     EmployeeTasklistComponent,
     EmployeeTaskdetaillistComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    HomePageComponent,
+    CompanySignUpComponent,
+    CompanyDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -47,8 +47,6 @@ export class AddTaskComponent implements OnInit {
   add(){
 
 
-    if(this.file.length > 0)
-    {
       const formData = new FormData();
         
       formData.append('TaskName',this.model.TaskName);
@@ -70,11 +68,6 @@ export class AddTaskComponent implements OnInit {
         this.router.navigate(['/tasklist']);
         this.toast.success('Task Added Successfully');
     });
-    }
-
-    else{
-      this.toast.error('select at least one document');
-    }
 
   }
   

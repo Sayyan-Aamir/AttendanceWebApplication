@@ -5,11 +5,11 @@ import { ToastrService } from 'ngx-toastr';
 import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 import {  SearchCriteria } from '../../Model';
-import {MatDialog} from '@angular/material/dialog';
-import { HostListener} from "@angular/core";
 import { Buffer } from 'buffer';
+import { DatePipe } from '@angular/common';
 
 const data = "";
+const testSource = "";
 const Guagedata = "";
 
 @Component({
@@ -18,6 +18,12 @@ const Guagedata = "";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  tableDataYearly:any;
+  styleObject = {
+    color: 'red'
+  };
+
   side=false;
   getScreenWidth: any;
   width:any;
@@ -36,13 +42,22 @@ export class DashboardComponent implements OnInit {
   Width = 600;
   height = 400;
   type = "pie2d";
+  data:any = "";
+  item:any="";
   Charttype = "angulargauge";
+  Charttypes = "stackedcolumn2d";
+  LineChartName = "msspline";
   dataFormat = "json";
   dataSource :any= data;
   GuagedataSource :any= Guagedata;
+  StackedSource: any = testSource;
+  LineSource: any;
+  total: number;
+  
 
-  constructor(private com:HttpClient,private Services:EmployeeService,private router: Router,private toast:ToastrService,private dialog:MatDialog) { 
-      this.model = new SearchCriteria();
+  constructor(private com:HttpClient,private Services:EmployeeService,private router: Router,private toast:ToastrService,private datePipe: DatePipe) {
+  this.model = new SearchCriteria();
+  this.total = 11;
   }
 
   ngOnInit(): void {
@@ -53,7 +68,7 @@ export class DashboardComponent implements OnInit {
     this.GetEmployeeTime();
     const token = localStorage.getItem('Token');
       if (token) {
-    
+
         const parts = token.split('.');
         const header = parts[0];
         const payload = parts[1];
@@ -62,12 +77,12 @@ export class DashboardComponent implements OnInit {
         const base64String = payload;
         const decodedString = Buffer.from(base64String, 'base64').toString('utf-8');
         const decode = decodeURI(decodedString);
-    
+
         const startingCharacter = '/';
         const stoppingString = '"';
         const startingIndex = decode.indexOf(startingCharacter);
         const stoppingIndex = decode.indexOf(stoppingString, startingIndex + 1);
-        const substring = decode.substring(startingIndex + 1, stoppingIndex);      
+        const substring = decode.substring(startingIndex + 1, stoppingIndex);
 
         this.imageUrl = substring;
       }
@@ -101,9 +116,9 @@ export class DashboardComponent implements OnInit {
 
   sidebartog()
   {
-    this.side = !this.side; 
+    this.side = !this.side;
   }
-  
+
   GetEmployeeTime(){
 
     const Token = localStorage.getItem("Token");
@@ -185,7 +200,119 @@ export class DashboardComponent implements OnInit {
             this.GuagedataSource = Guage;
           });
 
-  }
+
+          const apiUrl = `http://localhost:7182/api/Dashboard/DashboardLineChart`
+          this.com.get(apiUrl, {headers: headers, responseType: 'json' }).subscribe(
+            (response: any) => {
+
+              const categories = [];
+              const dataset = [];
+
+              const propertyNames = ["present", "absent", "late"];
+
+              for (let i = 0; i < response.responseData.length; i++) {
+                const dateLabel = this.datePipe.transform(response.responseData[i].date, 'yyyy-MM-dd');
+                
+                // Add category label
+                categories.push({ "label": dateLabel });
+
+                const propertyName = propertyNames[i];
+                // Create dataset for present, absent, and late
+                const data = [
+                  { "value": response.responseData[0][propertyName] },
+                  { "value": response.responseData[1][propertyName] },
+                  { "value": response.responseData[2][propertyName] },
+                  { "value": response.responseData[3][propertyName] },
+                  { "value": response.responseData[4][propertyName] }
+                ];
+                
+                // Add dataset series
+                dataset.push({
+                  "seriesname": dateLabel + " Status",
+                  "data": data
+                });
+              }
+              
+              // Create the chart object
+              const dd = {
+                chart: {
+                  "caption": "Revenue split by product category",
+                  "subCaption": "Last 7 Days",
+                  "xAxisname": "Days",
+                  "yAxisName": "Number of Employees",
+                  "showSum": "1",
+                  "numberPrefix": "",
+                  "theme": "fusion"
+                },
+                categories: [{
+                  "category": categories
+                }],
+                dataset: dataset
+              };                                        
+
+  this.StackedSource = dd;
+  });
+
+  const api = `http://localhost:7182/api/Dashboard/DashboardChart`;
+  this.com.get(api, { headers: headers, responseType: 'json' }).subscribe(
+    (response: any) => {
+      
+      const category = [];
+      const datasets = [];
+
+      const propertyNames = ["leave", "absent", "present","present","present"];
+      const datasetColors = ["#800080", "#FF0000", "#008000", "#008000", "#008000"];
+      for (let i = 0; i < response.responseData.length; i++) {
+        const dateLabel = this.datePipe.transform(response.responseData[i].date, 'yyyy-MM-dd');
+        // Add category label
+        category.push({ "label": dateLabel });
+  
+        const propertyName = propertyNames[i];
+        const colors = datasetColors[i];
+        // Create dataset for present, absent, and late
+        const data = [
+          { "value": response.responseData[0][propertyName] },
+          { "value": response.responseData[1][propertyName] },
+          { "value": response.responseData[2][propertyName] },
+          { "value": response.responseData[3][propertyName]},
+          { "value": response.responseData[4][propertyName] }
+        ];
+
+          // Add dataset series
+          datasets.push({
+          "seriesname": dateLabel,
+          "data": data,
+          "color": datasetColors[i]
+          });
+      }
+
+      const lineChart = {
+        chart: {
+          "caption": "Last Week data of Employees",
+          "subCaption": "Last week",
+          "xAxisname": "Days",
+          "yAxisName": "Number of Employees",
+          "yAxisMinValue": "0",
+          "setAdaptiveYMin":"0",
+          "theme": "fusion"
+        },
+        categories: [{
+          "category": category
+        }],
+        dataset: datasets
+      };
+  
+      this.LineSource = lineChart;
+    }
+  );
+
+       const TabledataApi = `http://localhost:7182/api/Dashboard/DashboardTableDataYearly`;
+     this.com.get(TabledataApi, { headers: headers, responseType: 'json' }).subscribe(
+    (response: any) => {
+       this.tableDataYearly = response.responseData;
+    }
+  );
+}
 
   Navigate(emp:any){
     this.router.navigate(['/empList/' + emp]);

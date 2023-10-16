@@ -36,11 +36,16 @@ import { TaskListComponent } from './add/Task/task-list/task-list.component';
 import { TaskDetailListComponent } from './add/Task/task-detail-list/task-detail-list.component';
 import {EmployeeTasklistComponent} from './add/Employee/employee-tasklist/employee-tasklist.component';
 import {EmployeeTaskdetaillistComponent} from './add/Employee/employee-taskdetaillist/employee-taskdetaillist.component';
+import { HomePageComponent } from './add/home-page/home-page.component';
+import { CompanySignUpComponent } from './add/Company/company-sign-up/company-sign-up.component';
 
 
 const routes: Routes = [
   {
     path:'firstpage',component:FirstpageComponent
+  },
+  {
+    path:'',component:HomePageComponent
   },
   {
     path:'empList/:id',component:EmployeeListComponent
@@ -127,7 +132,7 @@ const routes: Routes = [
     // ,canActivate:[ActguardGuard]
    },
    {
-    path:'' , component: LoginPageComponent 
+    path:'Login' , component: LoginPageComponent 
    },
    {
     path:'weekdays' , component: WeekdaysComponent
@@ -170,6 +175,10 @@ const routes: Routes = [
   },
   {
     path:'tasklist' , component: TaskListComponent  
+    //  ,canActivate:[ActguardGuard]
+  },
+  {
+    path:'CompanySignUp' , component: CompanySignUpComponent  
     //  ,canActivate:[ActguardGuard]
   }
 ];

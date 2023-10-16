@@ -1,0 +1,707 @@
+
+
+    <style>
+.sociallinks{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.fa {
+
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  border-radius: 100%;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 10px 0px 0px;
+  border: 1px solid #fff;
+  
+}
+
+.fa:hover {
+    opacity: 0.7;
+    color: #fff;
+}
+
+.fa-facebook {
+  background: none;
+  color: white;
+}
+
+
+
+.fa-twitter {
+  background: none;
+  color: white;
+}
+
+
+
+.fa-linkedin {
+  background: none;
+  color: white;
+}
+
+
+      .circles {
+			display: block;
+			width: 20px;
+			height: 20px;
+			background:#fff;
+      border:8px solid blue;
+			border-radius: 50%;
+			position: absolute;
+			opacity: 0.5;
+			z-index: -1;
+      }
+      .circles2 {
+			display: block;
+			width: 20px;
+			height: 20px;
+			border:8px solid orangered;
+      background: #fff;
+			border-radius: 50%;
+			position: absolute;
+			opacity: 0.5;
+			z-index: -1;
+      }
+
+.button-wrap {
+  flex: 1 0 0%;
+  margin: 0 20px;
+  height: 540px;
+  overflow: scroll;
+  border: 1px solid #000;
+  margin: 10px;
+  border-radius: 20px;
+}
+.content-wrap {
+  margin: auto;
+  position: relative;
+  padding: 0;
+  list-style: none;
+  width: 280px;
+  height: 560px;
+  overflow: hidden;
+  border: 10px solid #000;
+  border-radius: 20px;
+}
+.content-wrap:before {
+  content: "";
+  position: absolute;
+  width: 170px;
+  height: 35px;
+  margin: auto;
+  top: -15px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background: #000;
+  border-radius: 20px;
+}
+
+
+
+.button {
+  background: none;
+  border: none;
+}
+.content img {
+  display: block;
+  object-fit: cover;
+}
+.hide {
+  transform: scale(0.0001);
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+}
+.show {
+  transform: scale(1);
+  position: relative;
+  opacity: 1;
+  z-index: 2;
+  top: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .wrap {
+    flex-direction: column;
+  }
+  .content-wrap {
+    order: 1;
+  }
+  .button-wrap {
+    max-width: 280px;
+    width: 100%;
+    margin: 10px auto;
+    height: 100px;
+    flex: auto;
+  }
+}
+
+    </style>
+
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+          <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+          </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+      </div> <!-- .site-mobile-menu -->
+      
+      
+      <div class="site-navbar-wrap">
+       
+        <div class="site-navbar site-navbar-target js-sticky-header">
+          <div class="container">
+            <div class="row align-items-center">
+             
+              <div class="col-12">
+                <img src="./assets/images/logo.png" width="335" height="70" style="float: left; margin-right: 20px; padding-top: 15px;">
+                <nav class="site-navigation text-right" role="navigation">
+                  <div class="container">
+                   
+                    <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3 " style="text-align: right; float: right;">
+                        <a href="#" class="site-menu-toggle js-menu-toggle" style="float: right;">
+                            <span class="icon-menu h3"></span></a>
+                        </div>
+  
+                    <ul class="site-menu main-menu js-clone-nav d-none d-lg-block">
+                      <li class="active"><a href="#home-section" class="nav-link">Home</a></li>
+                      <li><a href="about.html" class="nav-link">About Us</a></li>
+                      <li><a href="career.html" class="nav-link">Career</a></li>
+                      <li><a href="contactus.html" class="nav-link">Contact Us</a></li>
+                     
+                      <button (click)="onClick()" class="purpleButton" type="button" style="float: right; margin-top: 15px;">Login</button>
+                      <div  style="clear: both;"></div>
+                    </ul>
+                  </div>
+                 
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div  style="clear: both;"></div>
+      </div>
+      
+     
+      <div class="section hero-full">
+        
+       <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-6 hero-left" >
+                       <h2 class="wow bounceInUp" data-wow-offset="300">Time keeping Made <strong>Effortless</strong>
+                        Elevate <strong>Business Management</strong> with Us</h2> 
+                        <b class="wow bounceInDown" data-wow-offset="300">Experience the Future of Business Management with Workforce Verse!</b>
+                        <p class="wow fadeInDown">At Workforce Verse, we understand the importance of efficient Business 
+                            Management for organizations of all sizes. Our comprehensive and user-friendly 
+                            Business Management system is designed to streamline the process, eliminate manual 
+                            tracking, and enhance productivity. Whether you're a small business, educational 
+                            institution, or a large corporation, Workforce Verse has got you covered.</p>
+
+                            <form class="wow fadeInDown">
+                                <div class="trailForm">
+                                    <h5>Start scheduling with Work Force Work and track the time today.</h5>
+                                    <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" placeholder="Full Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" placeholder="Last Name">
+                                    </div>
+                                    
+                                        <div class="col-sm-12 text-center">
+                                            <button type="button"   class="form-button"
+                                            routerLink="/CompanySignUp">
+                                                Start Free Trail
+                                            </button>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </form>
+
+                            <div class="row logos">
+                              <div class="col-sm-3">
+                                  <img src="./assets/images/audit.png" width="99" height="51">
+                              </div>
+                              <div class="col-sm-3" style="padding-top: 15px;">
+                                <img src="./assets/images/food.png" width="144" height="27">
+                            </div>
+                            <div class="col-sm-3">
+                              <img src="./assets/images/game.png" width="114" height="51">
+                          </div>
+                          <div class="col-sm-3">
+                            <img src="./assets/images/psych.png" width="111" height="43">
+                        </div>
+                            </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 text-center right-slider-section" style="position: relative;">
+    
+                  <div class="carousel" >
+                    <div class="image-container" id="imgs">
+                      <img
+                        src="./assets/images/scren1.png"
+                        alt="first-image"
+                      />
+                      <img
+                        src="./assets/images/mobile-img.png"
+                        alt="second-image"
+                      />
+                      <img
+                        src="./assets/images/mobile-img.png"
+                        alt="third-image"
+                      />
+                      <img
+                        src="./assets/images/mobile-img.png"
+                        alt="fourth-image"
+                      />
+                    </div>
+                   
+              
+                    
+                  </div>
+                  <div class="buttons-container">
+                    <button id="left" class="btn"><i class="icon-arrow-left"></i></button>
+                    <button id="right" class="btn"><i class="icon-arrow-right"></i></button>
+                  </div> 
+                  <!-- wow pulse" data-wow-iteration="infinite" data-wow-duration="5000ms" -->
+                  <div class="mobile-image" > 
+                    <img src="./assets/images/mobile.png"> 
+                  </div>
+                  <div class="orangeCircle animate infinite-spinning2  rotate-full2"></div>
+                  <div class="blueCircle infinite-spinning  rotate-full"></div>
+              
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="section feature-services" style="position: relative;">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+                <div class="feature-service-box wow bounceInLeft" data-wow-offset="300" >
+                    <img class="wow bounceInDown" data-wow-offset="300" src="./assets/images/tracking.png" width="180" height="172" />
+                <h2 class="wow bounceInDown" data-wow-offset="300">EMPLOYEE LEAVE MANAGEMENT</h2>
+                <P class="wow bounceInDown" data-wow-offset="300">Create the work schedule in minutes and
+                  share with your team.</P>
+                  <button type="button" class="wow bounceInUp" data-wow-offset="300">Explore Tracking</button>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="feature-service-box wow bounceInUp" data-wow-offset="300" >
+                <img src="./assets/images/leave.png" width="184" height="172" class="wow bounceInUp" data-wow-offset="300" />
+            <h2 class="wow bounceInDown" data-wow-offset="300">EMPLOYEE TASK MANAGEMENT</h2>
+            <P class="wow bounceInDown" data-wow-offset="300">Create the work schedule in minutes and
+              share with your team.</P>
+              <button type="button" class="wow bounceInUp" data-wow-offset="300">Explore Leaves</button>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="feature-service-box wow bounceInRight" data-wow-offset="300" >
+            <img src="./assets/images/management.png" width="179" height="172" class="wow bounceInDown" data-wow-offset="300" />
+        <h2 class="wow bounceInDown" data-wow-offset="300">EMPLOYEE TIME TRACKING</h2>
+        <P class="wow bounceInDown" data-wow-offset="300">Create the work schedule in minutes and
+          share with your team.</P>
+          <button type="button" class="wow bounceInUp" data-wow-offset="300">Explore Tasks</button>
+    </div>
+  </div>
+      </div>
+      
+    </div>
+
+ 
+  </div>
+
+  <div class="section services">
+    <div class="container">
+      <div class="row">
+            <div class="center-heading">
+                <h2 class="wow bounceInDown" data-wow-offset="300">Why Choose Our <strong>Workforce Verse?</strong></h2>
+                <p class="wow bounceInUp" data-wow-offset="300">
+                  Welcome to the future of Business Management! Our cutting-edge
+                  Workforce Verse is designed to streamline and enhance the way you 
+                  handle attendance tracking for your organization. Here's why you should choose our app:
+                </p>
+            </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+            <div class="service-box wow bounceInLeft" data-wow-offset="300">
+              <div class="service-box-img">
+                 <img src="./assets/images/simplicity.png" />
+              </div>
+            <h2 >Simplicity and Ease of Use</h2>
+            <P>Our Workforce Verse is built with user-friendliness in mind. Say goodbye to complicated systems and steep learning curves. With an intuitive interface, you can get started without any hassle.</P>
+          </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="service-box wow bounceInUp" data-wow-offset="300">
+          <div class="service-box-img">
+             <img src="./assets/images/real-time.png" />
+          </div>
+        <h2>Real-time Tracking</h2>
+        <P>Stay up-to-date with attendance records in real-time. Our app ensures that you have instant access to attendance data, making it easier to manage schedules, plan resources, and address any attendance-related issues promptly.</P>
+      </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="service-box wow bounceInRight" data-wow-offset="300">
+      <div class="service-box-img">
+         <img src="./assets/images/accuracy.png" />
+      </div>
+    <h2>Accuracy and Reliability</h2>
+    <P>Say goodbye to manual data entry and the risk of errors. Our Workforce Verse eliminates the chances of inaccurate record-keeping, providing reliable data that you can trust for decision-making.</P>
+  </div>
+</div>
+
+<div class="col-sm-4">
+  <div class="service-box wow bounceInLeft" data-wow-offset="300">
+    <div class="service-box-img">
+       <img src="./assets/images/flexibilty.png" />
+    </div>
+  <h2>Flexibility</h2>
+  <P>Whether your organization follows a traditional 9-to-5 schedule or has a unique shift pattern, our app is flexible enough to accommodate various attendance scenarios. Customize settings to match your specific needs effortlessly.</P>
+</div>
+</div>
+
+<div class="col-sm-4">
+  <div class="service-box wow bounceInUp" data-wow-offset="300">
+    <div class="service-box-img">
+       <img src="./assets/images/dataSecure.png" />
+    </div>
+  <h2>Data Security</h2>
+  <P>We prioritize the security of your data. Our Workforce Verse employs robust encryption and security measures to keep sensitive attendance information safe from unauthorized access. </P>
+</div>
+</div>
+
+<div class="col-sm-4">
+  <div class="service-box wow bounceInRight" data-wow-offset="300">
+    <div class="service-box-img">
+       <img src="./assets/images/reportinig.png" />
+    </div>
+  <h2>Comprehensive Reporting</h2>
+  <P>Make informed decisions with the help of insightful attendance reports. Our app generates detailed reports that provide valuable insights into attendance patterns, helping you optimize workforce management.</P>
+</div>
+</div>
+
+<div class="col-sm-4">
+  <div class="service-box wow bounceInLeft" data-wow-offset="300">
+    <div class="service-box-img">
+       <img src="./assets/images/costSaving.png" />
+    </div>
+  <h2>Time and Cost Savings</h2>
+  <P>By automating attendance tracking, you free up valuable time for your HR team and reduce administrative costs associated with manual record-keeping.</P>
+</div>
+</div>
+
+<div class="col-sm-4">
+  <div class="service-box wow bounceInUp" data-wow-offset="300">
+    <div class="service-box-img">
+       <img src="./assets/images/excellentSupport .png" />
+    </div>
+  <h2>Excellent Support</h2>
+  <P>We're here for you every step of the way. Our dedicated support team is ready to assist you with any queries, concerns, or technical assistance you might need while using our app.</P>
+</div>
+</div>
+
+<div class="col-sm-4">
+  <div class="service-box wow bounceInRight" data-wow-offset="300">
+    <div class="service-box-img">
+       <img src="./assets/images/attandeceReport.png" />
+    </div>
+  <h2>Attendance Reports</h2>
+  <P>Make informed decisions with the help of insightful attendance reports. Our app generates detailed reports that provide valuable insights into attendance patterns, helping you optimize workforce management.</P>
+</div>
+</div>
+     
+  </div>
+</div>
+</div>
+
+<div class="section aboutUs">
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="aboutImage">
+                <img src="./assets/images/aboutImg.png" width="100%" height="100%" />
+                <div class="aboutCircle"></div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="aboutText">
+                <h2>About <strong>US</strong></h2>
+                <p>Welcome to Workforce Verse, your trusted partner in attendance system 
+                  solutions. We are passionate about revolutionizing the way organizations 
+                  manage attendance and time-tracking, helping them streamline their processes, 
+                  increase efficiency, and ultimately, boost productivity.</p>
+                  <button class="">Read More</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="section image-tabs-section">
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="image-tabs-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="tab-content-heading">
+                            <h5>MOBILE SCHEDULING AND TIME CLOCK APPS</h5>
+                            <h2>Put the back office in your <strong>Front Pocket</strong></h2>
+                          </div>
+                      </div>
+
+                      <div class="row full-tabls">
+                          <div class="col-sm-6">
+                                <div class="tabs-box">
+                                  <button data-destination="myItem1" class="button">
+                                   <h2><span class="icon-mobile"></span>Team Management</h2>
+                                    </button>
+                                    <p>Onboard new employees, approve time off
+                                      requests, review shift trades, and fill shifts in 
+                                      seconds.</p>
+                                </div>  
+                          </div>
+
+                          <div class="col-sm-6">
+                            <div class="tabs-box">
+                              <button data-destination="myItem2" class="button">
+                               <h2><span class="icon-mobile"></span>Team Accountability</h2>
+                                </button>
+                                <p>Onboard new employees, approve time off
+                                  requests, review shift trades, and fill shifts in 
+                                  seconds.</p>
+                            </div>  
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="tabs-box">
+                          <button data-destination="myItem3" class="button">
+                           <h2><span class="icon-mobile"></span>Team Communication</h2>
+                            </button>
+                            <p>Onboard new employees, approve time off
+                              requests, review shift trades, and fill shifts in 
+                              seconds.</p>
+                        </div>  
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="tabs-box">
+                      <button data-destination="myItem4" class="button">
+                       <h2><span class="icon-mobile"></span>Team Empowerment</h2>
+                        </button>
+                        <p>Onboard new employees, approve time off
+                          requests, review shift trades, and fill shifts in 
+                          seconds.</p>
+                    </div>  
+              </div>
+                      </div>
+                      </div>
+                </div>
+               <div style="display: none;">
+                  <button data-destination="myItem2" class="button">Show Second image</button>
+                  <button data-destination="myItem3" class="button">Show Third image</button>
+                  <button data-destination="myItem4" class="button">Show Fourth image</button>
+                  <button data-destination="myItem5" class="button">Show Fifth image</button>
+                  <button data-destination="myItem6" class="button">Show Sixth image</button>
+                </div>
+            </div>
+          
+          <div class="col-sm-4">
+          <div class="wrap">
+            <ul class="content-wrap">
+              <li class="content show" id="myItem1">
+                <img src="https://picsum.photos/id/10/260/540" alt="Image 1" width="260" height="540">
+              </li>
+              <li class="content" id="myItem2">
+                <img src="https://picsum.photos/id/20/260/540" alt="Image 2" width="260" height="540">
+              </li>
+              <li class="content" id="myItem3">
+                <img src="https://picsum.photos/id/30/260/540" alt="Image 3" width="260" height="540">
+              </li>
+              <li class="content" id="myItem4">
+                <img src="https://picsum.photos/id/40/260/540" alt="Image 4" width="260" height="540">
+              </li>
+              <li class="content" id="myItem5">
+                <img src="https://picsum.photos/id/50/260/540" alt="Image 5" width="260" height="540">
+              </li>
+              <li class="content" id="myItem6">
+                <img src="https://picsum.photos/id/60/260/540" alt="Image 6" width="260" height="540">
+              </li>
+            </ul>
+          </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+ 
+
+<div class="client-feedback">
+  <div class="blue-background ">
+      <div class="container">
+        <h2>What our clients <strong>Say!</strong></h2>
+      </div>
+  </div>
+  <div class="section">
+    <div class="container">
+        <div class="row owl-2-style">
+         <div class="owl-carousel owl-2">
+              <div class="">
+                  <div class="feebackCard">
+                        <p>Onboard new employees, approve time off requests, review shift trades, and fill shifts in seconds.</p>
+                        <div class="client-img">
+                            <img src="./assets/images/client1.png" width="115" height="115" />
+                        </div>
+                        <div class="client-name">
+                            Dave Rove
+                        </div>
+                  </div>
+              </div>
+
+              <div class="">
+                <div class="feebackCard">
+                      <p>Onboard new employees, approve time off requests, review shift trades, and fill shifts in seconds.</p>
+                      <div class="client-img">
+                          <img src="./assets/images/client2.png" width="115" height="115" />
+                      </div>
+                      <div class="client-name">
+                          Dave Rove
+                      </div>
+                </div>
+            </div>
+
+            <div class="">
+              <div class="feebackCard">
+                    <p>Onboard new employees, approve time off requests, review shift trades, and fill shifts in seconds.</p>
+                    <div class="client-img">
+                        <img src="./assets/images/client3.png" width="115" height="115" />
+                    </div>
+                    <div class="client-name">
+                        Dave Rove
+                    </div>
+              </div>
+          </div>
+
+          <div class="">
+            <div class="feebackCard">
+                  <p>Onboard new employees, approve time off requests, review shift trades, and fill shifts in seconds.</p>
+                  <div class="client-img">
+                      <img src="./assets/images/client4.png" width="115" height="115" />
+                  </div>
+                  <div class="client-name">
+                      Dave Rove
+                  </div>
+            </div>
+        </div>
+
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="section bottom-Form">
+    <div class="container">
+        <div class="row">
+              <h2 class="center-heading">
+                <span><img src="./assets/images/headingbefore.png"></span>
+                Start scheduling free!<strong> No credit card required</strong></h2>
+              <div class="col-sm-6">
+                  <input type="text" class="" placeholder="Full Name" >
+              </div>
+              <div class="col-sm-6">
+                <input type="text" class="" placeholder="Last Name" >
+            </div>
+            <div class=" text-center">
+                <button type="button" routerLink="/CompanySignUp">Start Free Trail</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="section Footer">
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-md-4">
+              <div class="address">
+                <div class="downloadbuttons">
+                  <img src="./assets/images/appstore.png" width="159" height="47" />
+                  <img src="./assets/images/googleplay.png" width="159" height="47" style="margin-left: 10px;" />
+                </div>
+
+                <div class="contactDetail">
+                    <h2>CONTACT US</h2>
+                    <p>444 Johar Town Lahore, Pakistan <br>
+                    Call: 0300 11 222 333 <br>
+                    Email: work4vorce@email.com</p>
+                    <div class="sociallinks">
+                      <a href="#" class="fa fa-facebook"></a>
+                      <a href="#" class="fa fa-twitter"></a>
+                      <a href="#" class="fa fa-linkedin"></a>
+                    </div>
+                </div>
+              </div>
+              </div>
+
+          <div class="col-sm-2 col-md-2">
+              <div class="quickLinks">
+                  <h2>CONTACT US</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.us">ABUT US</a></li>
+                    <li><a href="career.html">CAREER</a></li>
+                    <li><a href="contactus.html">CONTACT US</a></li>
+                </ul>
+               </div>
+        </div>
+        <div class="col-sm-6 col-md-6">
+               <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d850.7201559516138!2d74.27038755643684!3d31.47246986934057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391903d16f0e5daf%3A0x4b011e2cdb865dbd!2s444%2C%20Block%20G4%20Block%20G%204%20Phase%202%20Johar%20Town%2C%20Lahore%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1694794516147!5m2!1sen!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+ <script>
+     wow = new WOW(
+         {
+           animateClass: 'animated',
+          offset:       100,
+          callback:     function(box) {
+            console.log("WOW: animating <" + box.tagName.toLowerCase() + ">")
+          }
+        }
+      );
+       wow.init();
+       document.getElementById('moar').onclick = function() {
+         var section = document.createElement('section');
+         section.className = 'section--purple wow fadeInDown';
+         this.parentNode.insertBefore(section, this);
+       };
+ </script>
+
+
+     
+
+
+
